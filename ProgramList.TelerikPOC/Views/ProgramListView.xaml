@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="ProgramList.TelerikPOC.Views.ProgramListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProgramList.TelerikPOC.Views"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:behavior="clr-namespace:ProgramList.TelerikPOC.Views.Behaviours"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <!--<Setter Property="CanUserSortGroups" Value="False"/>-->
+    </UserControl.Resources>
+    <Grid>
+        <telerik:RadGridView x:Name="ListGrid"
+                             AutoGenerateColumns="False"  
+                             ItemsSource="{Binding Path=GridData}" 
+                             behavior:ColumnsBindingBehavior.Columns="{Binding Columns}"
+                             IsReadOnlyBinding="{Binding IsReadOnly}"
+                             EnableRowVirtualization="True"
+                             EnableColumnVirtualization="True"
+                             ValidatesOnDataErrors="InEditMode"
+                             IsFilteringAllowed="True"
+                             ShowGroupPanel="True"
+                             RowIndicatorVisibility="Visible"
+                             CanUserReorderColumns="True"
+                             CanUserResizeColumns="True"
+                             CanUserSortColumns ="True"
+                             CanUserDeleteRows="False"
+                             CanUserInsertRows ="False"
+                             ShowColumnFooters ="True"
+                             SelectionMode="Multiple"
+                             SelectionUnit="Mixed"
+                             CanUserSelectColumns="True"
+                             
+                             >
+            <telerik:EventToCommandBehavior.EventBindings>
+                <!--<telerik:EventBinding EventName="AutoGeneratingColumn" Command="{Binding AutoGeneratingColumnCommand}" PassEventArgsToCommand="True" />-->
+                <telerik:EventBinding EventName="PreviewKeyDown" Command="{Binding PreviewKeyDownCommand}" PassEventArgsToCommand="True" />
+            </telerik:EventToCommandBehavior.EventBindings>
+
+        </telerik:RadGridView>
+
+    </Grid>
+</UserControl>

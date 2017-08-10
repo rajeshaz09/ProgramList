@@ -1,0 +1,17 @@
+﻿<Window x:Class="ProgramList.TelerikPOC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:My="clr-namespace:ProgramList.TelerikPOC.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized">
+    <Grid>
+        <StackPanel Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+            <Button x:Name="PrepateData" Margin="0" Width="150" Click="PrepateData_Click" Content="Prepare Data" Visibility="Collapsed" />
+            <Button x:Name="LoadGrid" Margin="10,0,0,0" Width="150" Click="LoadGrid_Click" Content="Load Grid" />
+            <Button x:Name="ToggleChart" Margin="10,0,0,0" Width="150" Click="ToggleChart_Click" Content="Toggle Chart Column" Visibility="Collapsed" />
+        </StackPanel>
+        <Border x:Name="PlaceHolder" Margin="0,45,0,0" />
+    </Grid>
+</Window>

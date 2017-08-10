@@ -1,0 +1,90 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+   
+
+    <Style x:Key="GridViewColumnStyle" TargetType="telerik:GridViewDataColumn">
+        <Setter Property="Header" Value="{Binding Header}" />
+        <Setter Property="IsVisible" Value="{Binding IsVisible}" />
+        <Setter Property="IsReadOnly" Value="{Binding IsReadOnly}" />
+        <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+        <Setter Property="DataType" Value="{Binding DataType}" />
+    </Style>
+
+    <Style x:Key="GridViewCellStyle" TargetType="{x:Type telerik:GridViewCell}">
+        <Setter Property="Background" Value="{Binding Background}"/>
+        <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+    </Style>
+    
+    <DataTemplate x:Key="DateTimeColumnCellEditTemplate">
+        <telerik:RadDateTimePicker InputMode="DatePicker" SelectedValue="{Binding Established, Mode=TwoWay}"/>
+    </DataTemplate>
+    <DataTemplate x:Key="ChartColumnCellEditTemplate">
+        <telerik:RadCartesianChart Background="Bisque">
+            <telerik:RadCartesianChart.VerticalAxis>
+                <telerik:LinearAxis/>
+            </telerik:RadCartesianChart.VerticalAxis>
+            <telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:CategoricalAxis/>
+            </telerik:RadCartesianChart.HorizontalAxis>
+            <telerik:RadCartesianChart.Series>
+                <telerik:LineSeries ItemsSource="{Binding ChartCollection}" ValueBinding="Value" CategoryBinding="Category"/>
+            </telerik:RadCartesianChart.Series>
+        </telerik:RadCartesianChart>
+    </DataTemplate>
+
+    <DataTemplate x:Key="eee"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                    >
+
+        <telerik:RadCartesianChart Background="Bisque" EmptyContent="NoData">
+            <telerik:RadCartesianChart.VerticalAxis>
+                <telerik:LinearAxis />
+            </telerik:RadCartesianChart.VerticalAxis>
+
+            <telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:CategoricalAxis />
+            </telerik:RadCartesianChart.HorizontalAxis>
+
+            <telerik:RadCartesianChart.Series>
+                <telerik:LineSeries 
+                                ItemsSource = "{ Binding Chart, Mode = TwoWay }" 
+                                ValueBinding = "Value" 
+                                CategoryBinding = "Category" 
+                            />
+            </telerik:RadCartesianChart.Series>
+        </telerik:RadCartesianChart>
+    </DataTemplate>
+
+    <!-- For displaying the cell -->
+    <!--<DataTemplate x:Key="DisplayDateTemplate">
+        <TextBlock Text="{Binding VariableItem, StringFormat='{}{0:D}'}" />
+    </DataTemplate>
+    <DataTemplate x:Key="DisplayIntTemplate">
+        <TextBlock Text="{Binding VariableItem, StringFormat='{}{0:N0}'}" />
+    </DataTemplate>
+    <DataTemplate x:Key="DisplayBoolTemplate">
+        <CheckBox Checked="{Binding VariableItem}" />
+    </DataTemplate>-->
+
+    <!--<selectors:MyCellTemplateSelector x:Key="MyCellTemplateSelector"
+                                          DatePickerTemplate="{StaticResource DisplayDateTemplate}"
+                                          NumberPickerTemplate="{StaticResource DisplayIntTemplate}"
+                                          CheckboxPickerTemplate="{StaticResource DisplayBoolTemplate}" />-->
+
+    <!-- For editing the cell -->
+    <!--<DataTemplate x:Key="EditDateTemplate">
+        <telerik:RadDatePicker SelectedValue="{Binding VariableItem}"/>
+    </DataTemplate>
+    <DataTemplate x:Key="EditIntTemplate">
+        <telerik:RadNumericUpDown Value="{Binding VariableItem}"/>
+    </DataTemplate>-->
+
+    <!--<Selectors:MyCellTemplateSelector x:Key="MyCellEditTemplateSelector"
+                                          DatePickerTemplate="{StaticResource EditDateTemplate}"
+                                          NumberPickerTemplate="{StaticResource EditIntTemplate}" />-->
+
+</ResourceDictionary>
