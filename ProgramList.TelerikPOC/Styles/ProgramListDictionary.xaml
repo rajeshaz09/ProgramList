@@ -19,7 +19,9 @@
     </Style>
     
     <DataTemplate x:Key="DateTimeColumnCellEditTemplate">
-        <telerik:RadDateTimePicker InputMode="DatePicker" SelectedValue="{Binding Established, Mode=TwoWay}"/>
+        <telerik:RadDateTimePicker 
+            TimeInterval="00:15" 
+            InputMode="DatePicker" SelectedValue="{Binding Established, Mode=TwoWay}"/>
     </DataTemplate>
     <DataTemplate x:Key="ChartColumnCellEditTemplate">
         <telerik:RadCartesianChart Background="Bisque">

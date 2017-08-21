@@ -1,16 +1,16 @@
-﻿using System;
+﻿using ProgramList.Common.DynamicType;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Telerik.Windows.Controls;
 
-namespace ProgramList.TelerikPOC.Models
+namespace ProgramList.Common.Models
 {
     public class ListItemBase : RunTimeModelBase, ICustomisation
     {
-        private IList<GridViewBoundColumnBase> _columns;
+        private IList<IColumnInfo> _columns;
         private Dictionary<string, CellInfo> _cellInfoList;
 
         private int _rowNumber = -1;
@@ -106,7 +106,7 @@ namespace ProgramList.TelerikPOC.Models
         }
 
 
-        public ListItemBase(IList<GridViewBoundColumnBase> columns, int rowNumber) : base(new Dictionary<string, object>(columns.Count))
+        public ListItemBase(IList<IColumnInfo> columns, int rowNumber) : base(new Dictionary<string, object>(columns.Count))
         {
             _columns = columns;
             _rowNumber = rowNumber;
@@ -246,7 +246,7 @@ namespace ProgramList.TelerikPOC.Models
         }
 
 
-        private string GetPropertyName(string caller)
+        private static string GetPropertyName(string caller)
         {
             return caller.Substring(caller.IndexOf('_') + 1);
         }

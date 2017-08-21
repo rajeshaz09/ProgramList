@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
+using ProgramList.Common.Models;
+using ProgramList.Common.ViewModels;
 using ProgramList.TelerikPOC.Columns;
-using ProgramList.TelerikPOC.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,22 +15,17 @@ using Telerik.Windows.Controls;
 
 namespace ProgramList.TelerikPOC.ViewModels
 {
-    public class ProgramListViewModel<T>: ModelBase
+    public class ProgramListViewModel: ProgramListViewModelBase
     {
-        public ObservableCollection<GridViewBoundColumnBase> Columns { get; set; }
-
-        public ObservableCollection<T> GridData { get; private set; }
 
         #region Commands
         public ICommand AutoGeneratingColumnCommand { get; set; }
         public ICommand PreviewKeyDownCommand { get; set; }
-        public IDictionary<string, ICommand> Commands;
+        public readonly IDictionary<string, ICommand> Commands;
         #endregion Commands
 
         public ProgramListViewModel()
         {
-            Columns = new ObservableCollection<GridViewBoundColumnBase>();
-            GridData = new ObservableCollection<T>();
             AutoGeneratingColumnCommand = new DelegateCommand<GridViewAutoGeneratingColumnEventArgs>(OnCustomizeGridExecuted);
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
             Commands = new Dictionary<string, ICommand>();
@@ -47,7 +43,7 @@ namespace ProgramList.TelerikPOC.ViewModels
             return command;
         }
 
-        private void OnCommandExecute(string columnName, ListItemBase model)
+        private static void OnCommandExecute(string columnName, ListItemBase model)
         {
             MessageBox.Show($"Row\t{model.RowNumber}{Environment.NewLine}Column\t{columnName}");
         }
@@ -100,12 +96,6 @@ namespace ProgramList.TelerikPOC.ViewModels
             else
                 e.Handled = false;
         }
-
-        public void AddColumn(string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
-        {
-            Columns.Add(new ColumnInfo(header, dataType, isVisible, isReadOnly, isEnabled, isSelected));
-        }
-
 
     }
 }

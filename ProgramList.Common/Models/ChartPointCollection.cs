@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgramList.TelerikPOC.Models
+namespace ProgramList.Common.Models
 {
-    public class ChartModel: ObservableCollection<ChartPoint>
+    public class ChartPointCollection: ObservableCollection<ChartPoint>
     {
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Telerik.Windows.Controls;
 
-namespace ProgramList.TelerikPOC.Models
+namespace ProgramList.Common.Models
 {
     public class NormalModel : ListItemBase, INotifyPropertyChanged
     {
-        public NormalModel(IList<GridViewBoundColumnBase> columns, int rowNumber) : base(columns, rowNumber)
+        public NormalModel(IList<IColumnInfo> columns, int rowNumber) : base(columns, rowNumber)
         {
         }
         public string StringProperty

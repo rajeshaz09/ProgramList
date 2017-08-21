@@ -1,27 +1,27 @@
-﻿using System;
+﻿using ProgramList.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-using Telerik.Windows.Controls;
-
-namespace ProgramList.TelerikPOC.Models
+namespace ProgramList.Common.DynamicType
 {
     public static class RunTimeTypeHelper
     {
         private static Type _baseClassType;
         private static Type[] _baseInterfaceTypeList;
-        public static Type[] ConstructorParameterTypeList;
+        private static Type[] ConstructorParameterTypeList;
         private static ConstructorInfo _baseClassConstructorInfo;
 
-        private static Type[] _stringType;
-        private static Type[] _intType;
-        private static Type[] _boolType;
-        private static Type[] _datetimeType;
-        private static Type[] _chartType;
+        private static Type[] _stringType = new Type[] { typeof(string) };
+        private static Type[] _intType = new Type[] { typeof(int) };
+        private static Type[] _boolType = new Type[] { typeof(bool) };
+        private static Type[] _datetimeType = new Type[] { typeof(DateTime?) };
+        private static Type[] _chartType = new Type[] { typeof(ChartPointCollection) };
 
         private static MethodInfo _instancePropertyGetter;
         private static MethodInfo _instancePropertySetter;
@@ -64,15 +64,11 @@ namespace ProgramList.TelerikPOC.Models
 
         static RunTimeTypeHelper()
         {
-            _stringType = new Type[] { typeof(string) };
-            _intType = new Type[] { typeof(int) };
-            _boolType = new Type[] { typeof(bool) };
-            _datetimeType = new Type[] { typeof(DateTime?) };
-            _chartType = new Type[] { typeof(ChartModel) };
+
 
             _baseClassType = typeof(ListItemBase);
             _baseInterfaceTypeList = new Type[] { typeof(INotifyPropertyChanged) };
-            ConstructorParameterTypeList = new Type[] { typeof(IList<GridViewBoundColumnBase>), _intType[0] };
+            ConstructorParameterTypeList = new Type[] { typeof(IList<IColumnInfo>), _intType[0] };
             _baseClassConstructorInfo = _baseClassType.GetConstructor(ConstructorParameterTypeList);
 
 
@@ -116,7 +112,7 @@ namespace ProgramList.TelerikPOC.Models
 
         }
 
-        public static void CreateAssembly(string className, IList<GridViewBoundColumnBase> propertires)
+        public static Func<IList<IColumnInfo>, int, ListItemBase> CreateAssembly(string className, IList<IColumnInfo> propertires)
         {
             var assemblyName = $"{className}.dll";
             var assemblyBuilder = GetAssemblyBuilder(assemblyName);
@@ -142,6 +138,19 @@ namespace ProgramList.TelerikPOC.Models
 #if DEBUG
             assemblyBuilder.Save(assemblyName);
 #endif
+            return GenerateObjectExpression(assemblyName);
+        }
+
+        public static Func<IList<IColumnInfo>, int, ListItemBase> GenerateObjectExpression(string assemblyName)
+        {
+            var containerAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(assembly => assembly.GetName().Name == assemblyName);
+            var paramTypes = new[] { Expression.Parameter(ConstructorParameterTypeList[0]),
+                Expression.Parameter(ConstructorParameterTypeList[1]) };
+            return Expression.Lambda<Func<IList<IColumnInfo>, int, ListItemBase>>
+                             (Expression
+                             .New(containerAssembly.DefinedTypes.First().GetConstructor(ConstructorParameterTypeList), paramTypes)
+                             , paramTypes)
+                             .Compile();
         }
 
         private static AssemblyBuilder GetAssemblyBuilder(string assemblyName)

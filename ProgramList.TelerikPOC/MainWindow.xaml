@@ -8,7 +8,6 @@
         Title="MainWindow" WindowState="Maximized">
     <Grid>
         <StackPanel Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-            <Button x:Name="PrepateData" Margin="0" Width="150" Click="PrepateData_Click" Content="Prepare Data" Visibility="Collapsed" />
             <Button x:Name="LoadGrid" Margin="10,0,0,0" Width="150" Click="LoadGrid_Click" Content="Load Grid" />
             <Button x:Name="ToggleChart" Margin="10,0,0,0" Width="150" Click="ToggleChart_Click" Content="Toggle Chart Column" Visibility="Collapsed" />
         </StackPanel>

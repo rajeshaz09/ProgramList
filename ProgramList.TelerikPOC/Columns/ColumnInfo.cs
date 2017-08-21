@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgramList.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using Telerik.Windows.Controls;
 
 namespace ProgramList.TelerikPOC.Columns
 {
-    public class ColumnInfo : GridViewDataColumn
+    public class ColumnInfo : GridViewDataColumn, IColumnInfo
     {
         public int Ordinal { get; private set; }
 

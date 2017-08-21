@@ -21,7 +21,6 @@ namespace ProgramList.TelerikPOC
     /// </summary>
     public partial class MainWindow : Window
     {
-        private object _data;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,19 +30,16 @@ namespace ProgramList.TelerikPOC
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //PlaceHolder.Child = new Views.ProgramWindowView();
-            PlaceHolder.Child = new Views.ProgramListView(null);
+            PlaceHolder.Child = new Views.ProgramListView(ViewModels.ProgramListViewModelHelper.GetRunTimeTypeSampleViewModel());
         }
-
-        private void PrepateData_Click(object sender, RoutedEventArgs e)
-        {
-            _data = ViewModels.ProgramListViewModelHelper.GetRunTimeTypeSampleViewModel();
-        }
-
+        
         private void LoadGrid_Click(object sender, RoutedEventArgs e)
         {
-            //(PlaceHolder.Child as FrameworkElement).DataContext = _data;
-            PlaceHolder.Child = new Views.ProgramListView(ViewModels.ProgramListViewModelHelper.GetRunTimeTypeSampleViewModel());
+            var viewModel = (PlaceHolder.Child as Views.ProgramListView).DataContext
+                as Common.ViewModels.ProgramListViewModelBase;
+
+            ViewModels.ProgramListViewModelHelper.AssignData(viewModel);
+
             ToggleChart.Visibility = Visibility.Visible;
         }
 

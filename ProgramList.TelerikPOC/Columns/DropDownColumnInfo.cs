@@ -1,13 +1,14 @@
-﻿using ProgramList.TelerikPOC.Models;
+﻿using ProgramList.Common.Models;
 using System;
 using System.Windows.Data;
+using Telerik.Windows.Controls;
 
 namespace ProgramList.TelerikPOC.Columns
 {
-    public class DropDownColumnInfo: Telerik.Windows.Controls.GridViewComboBoxColumn
+    public sealed class DropDownColumnInfo: GridViewComboBoxColumn, IColumnInfo
     {
-        private DropDownModel _itemsSource;
-        public DropDownColumnInfo(string header, Type dataType, DropDownModel itemsSource, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
+        private DropDownItemCollection _itemsSource;
+        public DropDownColumnInfo(string header, Type dataType, DropDownItemCollection itemsSource, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
         {
             this.ApplyDefaultSettings(header, dataType, isVisible, isReadOnly, isEnabled, isSelected);
             _itemsSource = itemsSource;

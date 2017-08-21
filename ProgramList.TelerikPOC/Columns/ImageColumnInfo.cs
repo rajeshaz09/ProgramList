@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ProgramList.Common.Models;
+using System;
 using Telerik.Windows.Controls;
 
 namespace ProgramList.TelerikPOC.Columns
 {
-    public class ImageColumnInfo: GridViewImageColumn
+    public sealed class ImageColumnInfo: GridViewImageColumn, IColumnInfo
     {
         public ImageColumnInfo(string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
         {

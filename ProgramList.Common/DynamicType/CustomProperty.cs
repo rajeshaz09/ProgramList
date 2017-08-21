@@ -1,4 +1,4 @@
-﻿namespace ProgramList.TelerikPOC.Models
+﻿namespace ProgramList.Common.DynamicType
 {
     public struct CustomProperty<T>
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgramList.TelerikPOC.Models
+namespace ProgramList.Common.Models
 {
     public class ChartPoint : ModelBase
     {

@@ -8,7 +8,7 @@ using Telerik.Windows.Controls.GridView;
 
 namespace ProgramList.TelerikPOC.Columns
 {
-    public class ButtonColumnInfo : ColumnInfo
+    public sealed class ButtonColumnInfo : ColumnInfo
     {
         private ICommand _command;
         public ButtonColumnInfo(string header, Type dataType, ICommand command, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)

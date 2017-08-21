@@ -1,4 +1,4 @@
-﻿namespace ProgramList.TelerikPOC.Models
+﻿namespace ProgramList.Common.Models
 {
     public interface ICustomisation
     {

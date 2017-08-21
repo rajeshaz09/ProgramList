@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using ProgramList.Common.Models;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace ProgramList.TelerikPOC.Models
+namespace ProgramList.Common.DynamicType
 {
     public abstract class RunTimeModelBase: ModelBase
     {
         private Dictionary<string, object> _propertyValues;
 
-        public RunTimeModelBase(Dictionary<string, object> propertyValues)
+        protected RunTimeModelBase(Dictionary<string, object> propertyValues)
         {
             _propertyValues = propertyValues;
         }

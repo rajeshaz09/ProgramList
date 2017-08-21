@@ -10,14 +10,9 @@ namespace ProgramList.TelerikPOC.Columns
 {
     public static class ColumnExtensions
     {
-        private static Style DefaultCellStyle;
-        private static IValueConverter RGBToBrushConverter;
-        static ColumnExtensions()
-        {
-            DefaultCellStyle = Application.Current.FindResource("GridViewCellCoreValidationStyle") as Style;
-            RGBToBrushConverter = new RGBToBrushConverter();
-
-        }
+        private static Style DefaultCellStyle = Application.Current.FindResource("GridViewCellCoreValidationStyle") as Style;
+        private static IValueConverter RGBToBrushConverter = new RGBToBrushConverter();
+       
         public static void ApplyDefaultSettings(this GridViewBoundColumnBase column, 
             string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
         {
