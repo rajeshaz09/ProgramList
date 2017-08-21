@@ -39,21 +39,7 @@ namespace ProgramList.TelerikPOC
                 as Common.ViewModels.ProgramListViewModelBase;
 
             ViewModels.ProgramListViewModelHelper.AssignData(viewModel);
-
-            ToggleChart.Visibility = Visibility.Visible;
         }
-
-        private void ToggleChart_Click(object sender, RoutedEventArgs e)
-        {
-            var grid = (PlaceHolder.Child as Views.ProgramListView).ListGrid;
-            var columns = grid
-                .Columns
-                .Cast<Telerik.Windows.Controls.GridViewBoundColumnBase>()
-                .Where((column) => column.UniqueName == "Chart");
-            if (columns.Any())
-            {
-                columns.First().IsVisible = !columns.First().IsVisible;
-            }
-        }
+        
     }
 }
