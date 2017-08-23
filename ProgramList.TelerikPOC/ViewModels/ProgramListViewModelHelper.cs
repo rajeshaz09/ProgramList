@@ -14,7 +14,7 @@ namespace ProgramList.TelerikPOC.ViewModels
     public static class ProgramListViewModelHelper
     {
         private const int MaxColumns = 10;
-        private const int MaxRows = 200;
+        private const int MaxRows = 10000;
 
         internal static ProgramListViewModelBase GetRunTimeTypeSampleViewModel()
         {
@@ -52,8 +52,8 @@ namespace ProgramList.TelerikPOC.ViewModels
 
             //viewModel.Columns.Add(new ChartColumnInfo("Chart", typeof(ChartPointCollection), chartItemsSource, true, false, true, false));
 
-            viewModel.Columns.Add(new ButtonColumnInfo("Button", typeof(int), viewModel.GenerateCommand("Button"), true, false, true, false));
-            viewModel.Columns.Add(new ButtonColumnInfo("Button1", typeof(int), viewModel.GenerateCommand("Button1"), true, false, true, false));
+            //viewModel.Columns.Add(new ButtonColumnInfo("Button", typeof(int), viewModel.GenerateCommand("Button"), true, false, true, false));
+            //viewModel.Columns.Add(new ButtonColumnInfo("Button1", typeof(int), viewModel.GenerateCommand("Button1"), true, false, true, false));
             //viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
 
             viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(string), InputMode.DateTimePicker, true, false, true, false));
@@ -79,6 +79,7 @@ namespace ProgramList.TelerikPOC.ViewModels
             var objectExpression = RunTimeTypeHelper.GenerateObjectExpression($"{viewModel.TypeName}.dll");
 
 
+            viewModel.GridData.SuspendNotifications();
             for (var row = 1; row <= MaxRows; row++)
             {
                 //parameters[1] = row;
@@ -92,6 +93,7 @@ namespace ProgramList.TelerikPOC.ViewModels
                 }
                 viewModel.GridData.Add(model);
             }
+            viewModel.GridData.ResumeNotifications();
         }
     }
 }

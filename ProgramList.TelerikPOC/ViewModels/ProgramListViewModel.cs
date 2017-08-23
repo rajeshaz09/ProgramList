@@ -19,14 +19,12 @@ namespace ProgramList.TelerikPOC.ViewModels
     {
 
         #region Commands
-        public ICommand AutoGeneratingColumnCommand { get; set; }
         public ICommand PreviewKeyDownCommand { get; set; }
         public readonly IDictionary<string, ICommand> Commands;
         #endregion Commands
 
         public ProgramListViewModel()
         {
-            AutoGeneratingColumnCommand = new DelegateCommand<GridViewAutoGeneratingColumnEventArgs>(OnCustomizeGridExecuted);
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
             Commands = new Dictionary<string, ICommand>();
         }
@@ -46,12 +44,6 @@ namespace ProgramList.TelerikPOC.ViewModels
         private static void OnCommandExecute(string columnName, ListItemBase model)
         {
             MessageBox.Show($"Row\t{model.RowNumber}{Environment.NewLine}Column\t{columnName}");
-        }
-        private void OnCustomizeGridExecuted(GridViewAutoGeneratingColumnEventArgs e)
-        {
-            e.Column.DataContext = Columns
-                    .FirstOrDefault(column => column.UniqueName == e.Column.UniqueName);
-            e.Column.Style = Application.Current.TryFindResource("GridViewColumnStyle") as Style;
         }
 
         private void OnPreviewKeyDownHandler(KeyEventArgs e)

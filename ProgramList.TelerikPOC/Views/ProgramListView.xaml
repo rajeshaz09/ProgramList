@@ -42,6 +42,9 @@
                              SelectionUnit="Mixed"
                              CanUserSelectColumns="True"
                              
+                             DataLoadMode="Synchronous"
+                             GroupRenderMode="Flat"
+                             IsPropertyChangedAggregationEnabled="False"
                              >
             <telerik:EventToCommandBehavior.EventBindings>
                 <!--<telerik:EventBinding EventName="AutoGeneratingColumn" Command="{Binding AutoGeneratingColumnCommand}" PassEventArgsToCommand="True" />-->

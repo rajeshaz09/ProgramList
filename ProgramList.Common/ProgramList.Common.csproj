@@ -55,6 +55,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\ProgramList.TelerikPOC\TelerikBin\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DynamicType\RunTimeTypeHelper.cs" />

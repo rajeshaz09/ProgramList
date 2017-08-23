@@ -37,8 +37,13 @@ namespace ProgramList.TelerikPOC
         {
             var viewModel = (PlaceHolder.Child as Views.ProgramListView).DataContext
                 as Common.ViewModels.ProgramListViewModelBase;
+            //Task.Run(() =>
+            {
 
-            ViewModels.ProgramListViewModelHelper.AssignData(viewModel);
+                ViewModels.ProgramListViewModelHelper.AssignData(viewModel);
+
+            }
+            //).ConfigureAwait(false);
         }
         
     }
