@@ -16,7 +16,7 @@ namespace ProgramList.TelerikPOC.ViewModels
         private const int MaxColumns = 10;
         private const int MaxRows = 10000;
 
-        internal static ProgramListViewModelBase GetRunTimeTypeSampleViewModel()
+        internal static ProgramListViewModel GetRunTimeTypeSampleViewModel()
         {
 
             //ToDo https://stackoverflow.com/questions/2024435/how-to-pass-ctor-args-in-activator-createinstance-or-use-il

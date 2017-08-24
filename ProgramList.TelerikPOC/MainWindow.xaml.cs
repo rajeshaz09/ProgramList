@@ -30,12 +30,14 @@ namespace ProgramList.TelerikPOC
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            PlaceHolder.Child = new Views.ProgramListView(ViewModels.ProgramListViewModelHelper.GetRunTimeTypeSampleViewModel());
+            var viewModel = ViewModels.ProgramListViewModelHelper.GetRunTimeTypeSampleViewModel();
+            //ProgramList.ListGrid.Columns.AddRange(viewModel.Columns.Cast<Telerik.Windows.Controls.GridViewColumn>());
+            ProgramList.DataContext = viewModel;
         }
         
         private void LoadGrid_Click(object sender, RoutedEventArgs e)
         {
-            var viewModel = (PlaceHolder.Child as Views.ProgramListView).DataContext
+            var viewModel = ProgramList.DataContext
                 as Common.ViewModels.ProgramListViewModelBase;
             //Task.Run(() =>
             {
@@ -45,6 +47,12 @@ namespace ProgramList.TelerikPOC
             }
             //).ConfigureAwait(false);
         }
-        
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = ProgramList.DataContext
+                as Common.ViewModels.ProgramListViewModelBase;
+            viewModel.GridData.Clear();
+        }
     }
 }

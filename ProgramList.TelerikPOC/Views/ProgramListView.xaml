@@ -9,49 +9,16 @@
              xmlns:behavior="clr-namespace:ProgramList.TelerikPOC.Views.Behaviours"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <!--<Setter Property="CanUserSortGroups" Value="False"/>-->
-    </UserControl.Resources>
-    <Grid>
-        <telerik:RadGridView x:Name="ListGrid"
+    <telerik:RadGridView x:Name="ListGrid"
                              AutoGenerateColumns="False"  
                              ItemsSource="{Binding Path=GridData}" 
                              behavior:ColumnsBindingBehavior.Columns="{Binding Columns}"
                              IsReadOnlyBinding="{Binding IsReadOnly}"
-                             EnableRowVirtualization="True"
-                             EnableColumnVirtualization="True"
-                             ValidatesOnDataErrors="None"
-                             IsFilteringAllowed="True"
-                             
-                             FilteringMode="Popup"
-                             ShowColumnFooters ="True"
-                             ShowColumnHeaders="True"
-                             ShowColumnSortIndexes="True"
-                             ShowGroupFooters="True"
-                             ShowGroupPanel="True"
-                             ShowSearchPanel="True"
-                             ShowToolTipOnTrimmedText="True"
-                             
-                             RowIndicatorVisibility="Visible"
-                             CanUserReorderColumns="True"
-                             CanUserResizeColumns="True"
-                             CanUserSortColumns ="True"
-                             CanUserDeleteRows="False"
-                             CanUserInsertRows ="False"
-                             SelectionMode="Extended"
-                             SelectionUnit="Mixed"
-                             CanUserSelectColumns="True"
-                             
-                             DataLoadMode="Synchronous"
-                             GroupRenderMode="Flat"
-                             IsPropertyChangedAggregationEnabled="False"
                              >
-            <telerik:EventToCommandBehavior.EventBindings>
-                <!--<telerik:EventBinding EventName="AutoGeneratingColumn" Command="{Binding AutoGeneratingColumnCommand}" PassEventArgsToCommand="True" />-->
-                <telerik:EventBinding EventName="PreviewKeyDown" Command="{Binding PreviewKeyDownCommand}" PassEventArgsToCommand="True" />
-            </telerik:EventToCommandBehavior.EventBindings>
+        <telerik:EventToCommandBehavior.EventBindings>
+            <!--<telerik:EventBinding EventName="AutoGeneratingColumn" Command="{Binding AutoGeneratingColumnCommand}" PassEventArgsToCommand="True" />-->
+            <!--<telerik:EventBinding EventName="PreviewKeyDown" Command="{Binding PreviewKeyDownCommand}" PassEventArgsToCommand="True" />-->
+        </telerik:EventToCommandBehavior.EventBindings>
 
-        </telerik:RadGridView>
-
-    </Grid>
+    </telerik:RadGridView>
 </UserControl>

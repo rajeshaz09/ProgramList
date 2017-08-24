@@ -20,9 +20,8 @@ namespace ProgramList.TelerikPOC.Views
     /// </summary>
     public partial class ProgramListView : UserControl
     {
-        public ProgramListView(object viewModel)
+        public ProgramListView()
         {
-            DataContext = viewModel;
             InitializeComponent();
         }
         

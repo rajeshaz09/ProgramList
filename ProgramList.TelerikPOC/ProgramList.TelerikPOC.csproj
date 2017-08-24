@@ -165,15 +165,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProgramFormView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\ProgramListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ListNavigationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,35 +184,19 @@
     <Compile Include="Columns\DateTimeColumnInfo.cs" />
     <Compile Include="Columns\DropDownColumnInfo.cs" />
     <Compile Include="Converters\RGBToBrushConverter.cs" />
-    <Compile Include="ViewModels\ListNavigationViewModel.cs" />
-    <Compile Include="ViewModels\ProgramFormViewModel.cs" />
     <Compile Include="ViewModels\ProgramListViewModel.cs" />
     <Compile Include="ViewModels\ProgramListViewModelHelper.cs" />
-    <Compile Include="ViewModels\ProgramWindowViewModel.cs" />
     <Compile Include="Views\Behaviours\ColumnsBindingBehaviour.cs" />
-    <Compile Include="Views\ProgramFormView.xaml.cs">
-      <DependentUpon>ProgramFormView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ProgramListView.xaml.cs">
       <DependentUpon>ProgramListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ListNavigationView.xaml.cs">
-      <DependentUpon>ListNavigationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ProgramWindowView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Columns\ColumnInfo.cs" />
-    <Compile Include="Views\ProgramWindowView.xaml.cs">
-      <DependentUpon>ProgramWindowView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,13 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramList.TelerikPOC", "ProgramList.TelerikPOC\ProgramList.TelerikPOC.csproj", "{5CC3D351-9301-411E-8E2C-F488A2A21262}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramList.Common", "ProgramList.Common\ProgramList.Common.csproj", "{5683E0EA-5B91-4346-AADA-D8832F213F2B}"
 EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		DebugNoCA|Any CPU = DebugNoCA|Any CPU
@@ -30,16 +33,10 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://jvsoutalm01:8080/tfs/jeeveserp
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ProgramList.TelerikPOC\\ProgramList.TelerikPOC.csproj
-		SccProjectName1 = ProgramList.TelerikPOC
-		SccLocalPath1 = ProgramList.TelerikPOC
-		SccProjectUniqueName2 = ProgramList.Common\\ProgramList.Common.csproj
-		SccProjectName2 = ProgramList.Common
-		SccLocalPath2 = ProgramList.Common
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23491DE3-77BA-4B3A-B70D-4AE05D1750C3}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal
