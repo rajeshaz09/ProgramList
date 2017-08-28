@@ -116,6 +116,9 @@
     </Compile>
     <Compile Include="Club.cs" />
     <Compile Include="DateTimeColumnInfo.cs" />
+    <Compile Include="DropDownColumnInfo.cs" />
+    <Compile Include="DropDownItem.cs" />
+    <Compile Include="DropDownItemCollection.cs" />
     <Compile Include="Dynamic\CustomProperty.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

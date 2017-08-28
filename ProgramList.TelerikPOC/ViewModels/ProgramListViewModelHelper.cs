@@ -52,8 +52,8 @@ namespace ProgramList.TelerikPOC.ViewModels
 
             //viewModel.Columns.Add(new ChartColumnInfo("Chart", typeof(ChartPointCollection), chartItemsSource, true, false, true, false));
 
-            //viewModel.Columns.Add(new ButtonColumnInfo("Button", typeof(int), viewModel.GenerateCommand("Button"), true, false, true, false));
-            //viewModel.Columns.Add(new ButtonColumnInfo("Button1", typeof(int), viewModel.GenerateCommand("Button1"), true, false, true, false));
+            viewModel.Columns.Add(new ButtonColumnInfo("Button1", typeof(string), viewModel.GenerateCommand("Button"), true, false, true, false));
+            viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button1"), true, false, true, false));
             //viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
 
             viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(string), InputMode.DateTimePicker, true, false, true, false));
@@ -70,7 +70,7 @@ namespace ProgramList.TelerikPOC.ViewModels
                 viewModel.Columns.Add(new ColumnInfo($"BoolProperty{i}", typeof(bool), true, false, true, false));
             }
             RunTimeTypeHelper.CreateAssembly(viewModel.TypeName, viewModel.Columns);
-            
+
             return viewModel;
         }
 
@@ -85,7 +85,12 @@ namespace ProgramList.TelerikPOC.ViewModels
                 //parameters[1] = row;
                 //var model = (ListItemBase)Activator.CreateInstance(ass.GetType("Jeeves.CustomModels.MyType", true), parameters);
                 var model = objectExpression(viewModel.Columns, row);
-                model.SetValue(row % 10, "IntProperty");
+                model.SetValue(row % 4, "DropDown");
+                model.SetValue(row, "IntProperty");
+                model.SetValue($"String", "StringProperty");
+                model.SetValue(row % 2 == 0, "BoolProperty");
+                model.SetValue($"1 R {row}", "Button1");
+                model.SetValue($"2 R {row}", "Button2");
                 if (row == 1)
                 {
                     //model.SetValue(@"pack://application:,,,/Images/Add.png", "Image");

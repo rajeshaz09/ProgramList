@@ -595,8 +595,21 @@ namespace ScrollIntoViewAsyncMvvm
                 SetValue(value);
             }
         }
-        
-		protected virtual void OnPropertyChanged(PropertyChangedEventArgs args)
+
+        public int DropDown
+        {
+
+            get
+            {
+                return GetValue<int>();
+            }
+            set
+            {
+                SetValue(value);
+            }
+        }
+
+        protected virtual void OnPropertyChanged(PropertyChangedEventArgs args)
 		{
             this.PropertyChanged?.Invoke(this, args);
         }

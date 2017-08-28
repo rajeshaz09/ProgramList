@@ -16,6 +16,7 @@ namespace ProgramList.TelerikPOC.Columns
             ItemsSource = _itemsSource;
             SelectedValueMemberPath = DropDownItem.IdProperty;
             DisplayMemberPath = DropDownItem.NameProperty;
+            IsLightweightModeEnabled = true;
         }
     }
 }

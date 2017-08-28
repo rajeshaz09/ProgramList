@@ -36,6 +36,7 @@ namespace ScrollIntoViewAsyncMvvm
                     $"Club {Index + index}",
                     new DateTime(1892, 1, 1).AddDays(Index + index),
                     45362 + (Index + index * 5)));
+                Clubs[index].DropDown = index % 4; 
             }
             Index += count;
 

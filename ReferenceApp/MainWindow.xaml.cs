@@ -25,6 +25,7 @@ namespace WpfApplication1
 
             var rounds = 20;
             this.DataContext = new MyViewModel();
+            clubsGrid.Columns.Add(AddDropDownColumn("DropDown"));
             for (var count = 0; count < rounds; count++)
             {
                 var index = count.ToString();
@@ -43,7 +44,7 @@ namespace WpfApplication1
             }
         }
 
-        private GridViewColumn AddDateTimeColumn(string name)
+        private GridViewDataColumn AddDateTimeColumn(string name)
         {
             var column = new DateTimeColumnInfo(name)
             {
@@ -63,6 +64,23 @@ namespace WpfApplication1
             };
 
             return column;
+        }
+
+        private GridViewColumn AddDropDownColumn(string name)
+        {
+            var dropDownDataSource = new DropDownItemCollection()
+            {
+                new DropDownItem("0", "Zero"),
+                new DropDownItem("1", "One"),
+                new DropDownItem("2", "Two"),
+                new DropDownItem("3", "Three"),
+            };
+
+            return new DropDownColumnInfo(dropDownDataSource)
+            {
+                UniqueName = name,
+                Header = name
+            };
         }
 
         private void Load_Click(object sender, RoutedEventArgs e)
