@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,16 +28,38 @@ namespace ProgramList.TelerikPOC
             Loaded += MainWindow_Loaded;
         }
 
+        Stopwatch timer = new Stopwatch();
 
+        private void TimerStart()
+        {
+            timer.Reset();
+            timer.Start();
+        }
+
+        private void TimerStop()
+        {
+            timer.Stop();
+            LoadTime.Text = $"{timer.ElapsedMilliseconds} ms";
+        }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var viewModel = ViewModels.ProgramListViewModelHelper.GetRunTimeTypeSampleViewModel();
             //ProgramList.ListGrid.Columns.AddRange(viewModel.Columns.Cast<Telerik.Windows.Controls.GridViewColumn>());
             ProgramList.DataContext = viewModel;
+
         }
-        
+
+        private void ListGrid_LayoutUpdated(object sender, EventArgs e)
+        {
+            ProgramList.ListGrid.LayoutUpdated -= ListGrid_LayoutUpdated;
+            TimerStop();
+        }
+
         private void LoadGrid_Click(object sender, RoutedEventArgs e)
         {
+            ProgramList.ListGrid.LayoutUpdated += ListGrid_LayoutUpdated;
+            TimerStart();
+
             var viewModel = ProgramList.DataContext
                 as Common.ViewModels.ProgramListViewModelBase;
             //Task.Run(() =>
@@ -47,6 +70,7 @@ namespace ProgramList.TelerikPOC
             }
             //).ConfigureAwait(false);
         }
+
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
