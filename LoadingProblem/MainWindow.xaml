@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ScrollIntoViewAsyncMvvm"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Title="MainWindow" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button x:Name="Clear" Width="100" Grid.Row="0" Click="Clear_Click">Clear</Button>
+        <Button x:Name="Load" Margin="150,0,0,0" Width="100" Grid.Row="0" Click="Load_Click">Load</Button>
+        <telerik:RadGridView Name="clubsGrid"
+		                     Grid.Row="1"
+		                     Margin="5"
+		                     AutoGenerateColumns="False"
+		                     ItemsSource="{Binding Clubs}"
+                             EnableRowVirtualization="True"
+                             EnableColumnVirtualization="True"
+		                     >
+        </telerik:RadGridView>
+
+    </Grid>
+</Window>
