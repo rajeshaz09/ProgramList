@@ -13,7 +13,7 @@ namespace ProgramList.TelerikPOC.ViewModels
 {
     public static class ProgramListViewModelHelper
     {
-        private const int MaxColumns = 10;
+        private const int MaxColumns = 30;
         private const int MaxRows = 10000;
 
         internal static ProgramListViewModel GetRunTimeTypeSampleViewModel()
