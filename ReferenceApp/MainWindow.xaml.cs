@@ -10,6 +10,7 @@ using System.Collections.Specialized;
 using Telerik.Windows.Controls.GridView;
 using Telerik.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Diagnostics;
 
 namespace WpfApplication1
 {
@@ -21,6 +22,7 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+
             var rounds = 20;
             this.DataContext = new MyViewModel();
             for (var count = 0; count < rounds; count++)
@@ -65,11 +67,35 @@ namespace WpfApplication1
 
         private void Load_Click(object sender, RoutedEventArgs e)
         {
+            clubsGrid.LayoutUpdated += ClubsGrid_LayoutUpdated;
+            TimerStart();
             (this.DataContext as MyViewModel).UpdateClubs();
         }
+
+        private void ClubsGrid_LayoutUpdated(object sender, EventArgs e)
+        {
+            clubsGrid.LayoutUpdated -= ClubsGrid_LayoutUpdated;
+            TimerStop();
+        }
+
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             (this.DataContext as MyViewModel).Clubs.Clear();
+        }
+
+
+        Stopwatch timer = new Stopwatch();
+
+        private void TimerStart()
+        {
+            timer.Reset();
+            timer.Start();
+        }
+
+        private void TimerStop()
+        {
+            timer.Stop();
+            LoadTime.Text = $"{timer.ElapsedMilliseconds} ms";
         }
     }
 }

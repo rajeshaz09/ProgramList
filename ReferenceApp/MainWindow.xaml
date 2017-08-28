@@ -9,8 +9,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button x:Name="Clear" Width="100" Grid.Row="0" Click="Clear_Click">Clear</Button>
-        <Button x:Name="Load" Margin="150,0,0,0" Width="100" Grid.Row="0" Click="Load_Click">Load</Button>
+        <Button x:Name="Clear" Width="100" Grid.Row="0" HorizontalAlignment="Left" Click="Clear_Click">Clear</Button>
+        <Button x:Name="Load" Margin="150,0,0,0" Width="100" Grid.Row="0" HorizontalAlignment="Left" Click="Load_Click">Load</Button>
+        <TextBlock x:Name="LoadTime" Grid.Row="0" Margin="400,0,0,0" />
         <telerik:RadGridView Name="clubsGrid"
 		                     Grid.Row="1"
 		                     Margin="5"
