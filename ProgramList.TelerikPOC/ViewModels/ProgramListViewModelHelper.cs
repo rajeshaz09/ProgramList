@@ -52,8 +52,8 @@ namespace ProgramList.TelerikPOC.ViewModels
 
             //viewModel.Columns.Add(new ChartColumnInfo("Chart", typeof(ChartPointCollection), chartItemsSource, true, false, true, false));
 
-            viewModel.Columns.Add(new ButtonColumnInfo("Button1", typeof(string), viewModel.GenerateCommand("Button"), true, false, true, false));
-            viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button1"), true, false, true, false));
+            viewModel.Columns.Add(new ButtonColumnInfo("Button1", typeof(string), viewModel.GenerateCommand("Button1"), true, false, true, false));
+            viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button2"), true, false, true, false));
             //viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
 
             viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(string), InputMode.DateTimePicker, true, false, true, false));
