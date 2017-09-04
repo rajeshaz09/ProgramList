@@ -78,5 +78,17 @@ namespace ProgramList.TelerikPOC
                 as Common.ViewModels.ProgramListViewModelBase;
             viewModel.GridData.Clear();
         }
+
+        private void ClearAndLoadGrid_Click(object sender, RoutedEventArgs e)
+        {
+            ProgramList.ListGrid.LayoutUpdated += ListGrid_LayoutUpdated;
+            TimerStart();
+            var viewModel = ProgramList.DataContext
+                   as Common.ViewModels.ProgramListViewModelBase;
+            ViewModels.ProgramListViewModelHelper.ClearAndAssignData(viewModel);
+
+        }
     }
 }
+
+

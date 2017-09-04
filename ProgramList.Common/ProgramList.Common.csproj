@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicType\CustomDictionary.cs" />
+    <Compile Include="DynamicType\RuntimeHelperV2.cs" />
     <Compile Include="DynamicType\RunTimeTypeHelper.cs" />
     <Compile Include="Models\CellInfo.cs" />
     <Compile Include="Models\ChartPointCollection.cs" />
