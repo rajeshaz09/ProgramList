@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramList.TelerikPOC", "ProgramList.TelerikPOC\ProgramList.TelerikPOC.csproj", "{5CC3D351-9301-411E-8E2C-F488A2A21262}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramList.Common", "ProgramList.Common\ProgramList.Common.csproj", "{5683E0EA-5B91-4346-AADA-D8832F213F2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramList.Common", "..\Common\ProgramList.Common\ProgramList.Common.csproj", "{5683E0EA-5B91-4346-AADA-D8832F213F2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

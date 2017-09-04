@@ -227,7 +227,7 @@
     <Resource Include="Images\Add.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProgramList.Common\ProgramList.Common.csproj">
+    <ProjectReference Include="..\..\Common\ProgramList.Common\ProgramList.Common.csproj">
       <Project>{5683e0ea-5b91-4346-aada-d8832f213f2b}</Project>
       <Name>ProgramList.Common</Name>
     </ProjectReference>

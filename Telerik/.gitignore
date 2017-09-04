@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/ProgramList.TelerikPOC/bin
+/ProgramList.TelerikPOC/obj
+/ReferenceApp/bin
+/ReferenceApp/obj
