@@ -1,0 +1,17 @@
+﻿<dx:DXWindow x:Class="ProgramList.DevX.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        Title="MainWindow" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" x:Name="Clear" HorizontalAlignment="Left" Margin="10,0,0,0" Width="150" Click="Clear_Click" Content="Clear Grid" />
+        <Button Grid.Row="0"  x:Name="LoadGrid"  HorizontalAlignment="Left" Margin="200,0,0,0" Width="150" Click="LoadGrid_Click" Content="Load Grid" />
+        <Button Grid.Row="0"  x:Name="ClearAndLoadGrid"  HorizontalAlignment="Left" Margin="400,0,0,0" Width="150" Click="ClearAndLoadGrid_Click" Content="Clear and Load Grid" />
+        <TextBlock x:Name="LoadTime" Grid.Row="0" Margin="600,0,0,0" />
+    </Grid>
+</dx:DXWindow>
