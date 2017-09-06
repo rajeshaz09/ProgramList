@@ -23,6 +23,11 @@ namespace ProgramList.DevX
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)

@@ -61,22 +61,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DynamicType\CustomDictionary.cs" />
-    <Compile Include="DynamicType\CustomProperty.cs" />
-    <Compile Include="DynamicType\RunTimeModelBase.cs" />
-    <Compile Include="DynamicType\RunTimeTypeHelper.cs" />
-    <Compile Include="Models\CellInfo.cs" />
-    <Compile Include="Models\ChartPoint.cs" />
-    <Compile Include="Models\ChartPointCollection.cs" />
-    <Compile Include="Models\DropDownItem.cs" />
-    <Compile Include="Models\DropDownItemCollection.cs" />
-    <Compile Include="Models\IColumnInfo.cs" />
-    <Compile Include="Models\ICustomisation.cs" />
-    <Compile Include="Models\ListItemBase.cs" />
-    <Compile Include="Models\ModelBase.cs" />
-    <Compile Include="Models\NormalModel.cs" />
-    <Compile Include="Models\RangeObservableCollection.cs" />
-    <Compile Include="ViewModels\ProgramListViewModelBase.cs" />
     <Compile Include="Views\ProgramListView.xaml.cs">
       <DependentUpon>ProgramListView.xaml</DependentUpon>
     </Compile>
@@ -123,7 +107,9 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
