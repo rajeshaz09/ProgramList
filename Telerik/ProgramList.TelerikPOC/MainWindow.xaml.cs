@@ -61,7 +61,7 @@ namespace ProgramList.TelerikPOC
             TimerStart();
 
             var viewModel = ProgramList.DataContext
-                as Common.ViewModels.ProgramListViewModelBase;
+                as ViewModels.ProgramListViewModel;
             //Task.Run(() =>
             {
 
@@ -75,7 +75,7 @@ namespace ProgramList.TelerikPOC
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = ProgramList.DataContext
-                as Common.ViewModels.ProgramListViewModelBase;
+                as ViewModels.ProgramListViewModel;
             viewModel.GridData.Clear();
         }
 
@@ -84,7 +84,7 @@ namespace ProgramList.TelerikPOC
             ProgramList.ListGrid.LayoutUpdated += ListGrid_LayoutUpdated;
             TimerStart();
             var viewModel = ProgramList.DataContext
-                   as Common.ViewModels.ProgramListViewModelBase;
+                   as ViewModels.ProgramListViewModel;
             ViewModels.ProgramListViewModelHelper.ClearAndAssignData(viewModel);
 
         }

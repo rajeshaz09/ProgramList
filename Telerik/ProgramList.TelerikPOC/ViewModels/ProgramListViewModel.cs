@@ -12,11 +12,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Data;
 
 namespace ProgramList.TelerikPOC.ViewModels
 {
     public class ProgramListViewModel: ProgramListViewModelBase
     {
+        public RadObservableCollection<ListItemBase> GridData { get; private set; }
 
         #region Commands
         public ICommand PreviewKeyDownCommand { get; set; }
@@ -27,6 +29,7 @@ namespace ProgramList.TelerikPOC.ViewModels
         {
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
             Commands = new Dictionary<string, ICommand>();
+            GridData = new RadObservableCollection<ListItemBase>();
         }
 
         public ICommand GenerateCommand(string columnName)

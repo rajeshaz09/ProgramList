@@ -9,6 +9,6 @@ namespace ProgramList.Common.Models
     public interface IColumnInfo
     {
         string UniqueName { get; set; }
-        Type DataType { get; set; }
+        Type DataType { get; }
     }
 }

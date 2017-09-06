@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
 using System.Linq.Expressions;
-using Telerik.Windows.Controls;
-using ProgramList.TelerikPOC.Columns;
 using ProgramList.Common.Models;
 using ProgramList.Common.DynamicType;
 using ProgramList.Common.ViewModels;
 using System.Threading.Tasks;
+using ProgramList.DevX.Columns;
 
-namespace ProgramList.TelerikPOC.ViewModels
+namespace ProgramList.DevX.ViewModels
 {
     public static class ProgramListViewModelHelper
     {
@@ -30,7 +29,7 @@ namespace ProgramList.TelerikPOC.ViewModels
 
             viewModel.Columns.Add(new ColumnInfo("StringProperty", typeof(string), false, false, true, false));
             viewModel.Columns.Add(new ColumnInfo("IntProperty", typeof(int), true, true, true, false));
-            viewModel.Columns.Add(new ColumnInfo("BoolProperty", typeof(bool), true, false, true, false) { TabStopMode = Telerik.Windows.Controls.GridView.GridViewTabStop.Skip });
+            viewModel.Columns.Add(new ColumnInfo("BoolProperty", typeof(bool), true, false, true, false));
             var dropDownDataSource = new DropDownItemCollection()
             {
                 new DropDownItem("0", "Zero"),
@@ -57,11 +56,11 @@ namespace ProgramList.TelerikPOC.ViewModels
             viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button2"), true, false, true, false));
             //viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(string), InputMode.DateTimePicker, true, false, true, false));
+            //viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(string), InputMode.DateTimePicker, true, false, true, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(string), InputMode.DatePicker, true, false, true, false));
+            //viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(string), InputMode.DatePicker, true, false, true, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(string), InputMode.TimePicker, true, false, true, false));
+            //viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(string), InputMode.TimePicker, true, false, true, false));
 
 
             for (var i = 1; i <= MaxColumns; i++)
@@ -88,7 +87,10 @@ namespace ProgramList.TelerikPOC.ViewModels
             if (ClearOld)
                 viewModel.GridData.Clear();
 
-            viewModel.GridData.SuspendNotifications();
+            var gridData = viewModel.GridData;
+
+            // viewModel.GridData.SuspendNotifications();
+
             for (var index = 1; index <= MaxRows; index++)
             {
                 var row = index + seed;
@@ -120,12 +122,15 @@ namespace ProgramList.TelerikPOC.ViewModels
 
                 //batchList.Add(model);
 
-                viewModel.GridData.Add(model);
+                gridData.Add(model);
 
                 //await Task.Delay(0);
             }
+
             seed += MaxRows;
-            viewModel.GridData.ResumeNotifications();
+
+
+            // viewModel.GridData.ResumeNotifications();
         }
     }
 }

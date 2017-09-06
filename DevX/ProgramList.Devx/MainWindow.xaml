@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-    xmlns:Views="clr-namespace:ProgramList.DevX.Views"  
+    xmlns:My="clr-namespace:ProgramList.DevX.Views"  
     Title="MainWindow" 
     WindowState="Maximized">
     <Grid>
@@ -16,7 +16,7 @@
         <Button Grid.Row="0"  x:Name="LoadGrid"  HorizontalAlignment="Left" Margin="200,0,0,0" Width="150" Click="LoadGrid_Click" Content="Load Grid" />
         <Button Grid.Row="0"  x:Name="ClearAndLoadGrid"  HorizontalAlignment="Left" Margin="400,0,0,0" Width="150" Click="ClearAndLoadGrid_Click" Content="Clear and Load Grid" />
         <TextBlock x:Name="LoadTime" Grid.Row="0" Margin="600,0,0,0" />
-        <Views:ProgramListView Grid.Row="1" />
+        <My:ProgramListView Grid.Row="1" x:Name="ProgramList" />
         
     </Grid>
 </dx:DXWindow>

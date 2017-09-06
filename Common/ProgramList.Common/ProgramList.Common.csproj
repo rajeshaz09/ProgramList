@@ -55,9 +55,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Windows.Data">
-      <HintPath>..\..\Telerik\ProgramList.TelerikPOC\TelerikBin\Telerik.Windows.Data.dll</HintPath>
-    </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DynamicType\CustomDictionary.cs" />
