@@ -89,48 +89,54 @@ namespace ProgramList.DevX.ViewModels
 
             var gridData = viewModel.GridData;
 
-            // viewModel.GridData.SuspendNotifications();
-
-            for (var index = 1; index <= MaxRows; index++)
+            viewModel.GridData.BeginUpdate();
+            //using (var gridData = viewModel.GridData.DelayNotifications())
             {
-                var row = index + seed;
-                //parameters[1] = row;
-                //var model = (ListItemBase)Activator.CreateInstance(ass.GetType("Jeeves.CustomModels.MyType", true), parameters);
+                for (var index = 1; index <= MaxRows; index++)
+                {
+                    var row = index + seed;
+                    //parameters[1] = row;
+                    //var model = (ListItemBase)Activator.CreateInstance(ass.GetType("Jeeves.CustomModels.MyType", true), parameters);
 
 
-                var model = objectExpression(viewModel.Columns, row);
-                model.SetValue(row % 4, "DropDown");
-                model.SetValue(row, "IntProperty");
-                model.SetValue($"String{row}", "StringProperty");
-                model.SetValue(row % 2 == 0, "BoolProperty");
-                model.SetValue($"1 R {row}", "Button1");
-                model.SetValue($"2 R {row}", "Button2");
+                    var model = objectExpression(viewModel.Columns, row);
+                    model.SetValue(row % 4, "DropDown");
+                    model.SetValue(row, "IntProperty");
+                    model.SetValue($"String{row}", "StringProperty");
+                    model.SetValue(row % 2 == 0, "BoolProperty");
+                    model.SetValue($"1 R {row}", "Button1");
+                    model.SetValue($"2 R {row}", "Button2");
 
-                //if (row == 1)
-                //{
-                //    //model.SetValue(@"pack://application:,,,/Images/Add.png", "Image");
-                //    //model.SetValue(chartItemsSource, "Chart");
-                //}
+                    //if (row == 1)
+                    //{
+                    //    //model.SetValue(@"pack://application:,,,/Images/Add.png", "Image");
+                    //    //model.SetValue(chartItemsSource, "Chart");
+                    //}
 
-                //var model = new Jeeves.CustomModels.MyType(viewModel.Columns, row);
-                //model.DropDown = row % 4;
-                //model.IntProperty = row;
-                //model.StringProperty = $"String{row}";
-                //model.BoolProperty = (row % 2 == 0);
-                //model.Button1 = $"1 R {row}";
-                //model.Button2 = $"2 R {row}";
 
-                //batchList.Add(model);
+                    //var model = new Jeeves.CustomModels.MyType(viewModel.Columns, row);
+                    //model.DropDown = row % 4;
+                    //model.IntProperty = row;
+                    //model.StringProperty = $"String{row}";
+                    //model.BoolProperty = (row % 2 == 0);
+                    //model.Button1 = $"1 R {row}";
+                    //model.Button2 = $"2 R {row}";
 
-                gridData.Add(model);
+                    //batchList.Add(model);
+                    if (row == 1)
+                    {
+                        model.SetBackground("#EC2B2B", "StringProperty1");
+                        model.SetForeground("#FFFFFF", "StringProperty1");
+                    }
+                    gridData.Add(model);
 
-                //await Task.Delay(0);
+                    //await Task.Delay(0);
+                }
             }
-
             seed += MaxRows;
 
 
-            // viewModel.GridData.ResumeNotifications();
+            viewModel.GridData.EndUpdate();
         }
     }
 }

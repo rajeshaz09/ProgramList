@@ -1,6 +1,8 @@
-﻿using Prism.Commands;
+﻿using DevExpress.Xpf.Core;
+using Prism.Commands;
 using ProgramList.Common.Models;
 using ProgramList.Common.ViewModels;
+using ProgramList.DevX.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +17,7 @@ namespace ProgramList.DevX.ViewModels
 {
     public class ProgramListViewModel: ProgramListViewModelBase
     {
-        public ObservableCollection<object> GridData { get; private set; }
+        public ObservableCollectionCore<object> GridData { get; private set; }
 
         #region Commands
         public ICommand PreviewKeyDownCommand { get; set; }
@@ -26,7 +28,7 @@ namespace ProgramList.DevX.ViewModels
         {
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
             Commands = new Dictionary<string, ICommand>();
-            GridData = new ObservableCollection<object>();
+            GridData = new ObservableCollectionCore<object>();
         }
 
         public ICommand GenerateCommand(string columnName)
