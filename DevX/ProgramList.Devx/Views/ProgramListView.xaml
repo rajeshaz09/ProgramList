@@ -7,6 +7,7 @@
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="ProgramList.DevX.Views.ProgramListView"
              xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"          
              mc:Ignorable="d" 
+             Width="auto"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate x:Key="DefaultColumnTemplate">
@@ -28,7 +29,14 @@
                       
                      >
         <dxg:GridControl.View>
-            <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+            <dxg:TableView 
+                AllowPerPixelScrolling="True" 
+                ShowTotalSummary="True" 
+                BestFitArea="Header" 
+                AllowBestFit="True" 
+                AllowColumnMoving="True"
+                AllowResizing="True"
+                />
         </dxg:GridControl.View>
     </dxg:GridControl>
 

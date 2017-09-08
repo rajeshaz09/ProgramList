@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using System.Diagnostics;
 using DevExpress.Xpf.Grid;
+using System.Windows.Threading;
 
 namespace ProgramList.DevX
 {
@@ -47,6 +48,9 @@ namespace ProgramList.DevX
             //ProgramList.ListGrid.Columns.AddRange(viewModel.Columns.Cast<Telerik.Windows.Controls.GridViewColumn>());
             //foreach (var column in viewModel.Columns)
             //    ProgramList.ListGrid.Columns.Add(column as GridColumn);
+
+            ProgramList.ListGrid.ItemsSourceChanged += ListGrid_ItemsSourceChanged;
+
             ProgramList.DataContext = viewModel;
 
         }
@@ -61,7 +65,6 @@ namespace ProgramList.DevX
         {
             ProgramList.ListGrid.LayoutUpdated += ListGrid_LayoutUpdated;
             TimerStart();
-
             var viewModel = ProgramList.DataContext
                 as ViewModels.ProgramListViewModel;
             //Task.Run(() =>
@@ -73,6 +76,10 @@ namespace ProgramList.DevX
             //).ConfigureAwait(false);
         }
 
+        private void ListGrid_ItemsSourceChanged(object sender, ItemsSourceChangedEventArgs e)
+        {
+            ResizeColumnsInternal((sender as GridControl).View as TableView);
+        }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
@@ -89,6 +96,15 @@ namespace ProgramList.DevX
                    as ViewModels.ProgramListViewModel;
             ViewModels.ProgramListViewModelHelper.ClearAndAssignData(viewModel);
 
+        }
+
+        private void ResizeColumnsInternal(TableView view)
+        {
+            Dispatcher.BeginInvoke( (Action)(() => 
+            {
+                view.BestFitColumns();
+            }), DispatcherPriority.Render);
+            
         }
     }
 }

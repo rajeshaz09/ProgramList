@@ -10,7 +10,7 @@ namespace ProgramList.DevX.Columns
 {
     public sealed class DateTimeColumnInfo : ColumnInfo
     {
-        public DateTimeColumnInfo(string header, Type dataType, InputMode pickerType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
+        public DateTimeColumnInfo(string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
             : base(header, dataType, isVisible, isReadOnly, isEnabled, isSelected)
         {
             //CellEditTemplate = GetCellEditTemplate(FieldName, pickerType);

@@ -26,6 +26,9 @@ namespace ProgramList.DevX.Columns
             //column.select = isSelected;
             column.AllowGrouping =  DevExpress.Utils.DefaultBoolean.True;
 
+            column.MinWidth = 95;
+
+
             //column.Rea = new Binding($"IsReadOnly_{column.FieldName}") { Mode = BindingMode.TwoWay };
 
 

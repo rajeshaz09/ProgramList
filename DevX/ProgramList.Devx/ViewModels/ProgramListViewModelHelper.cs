@@ -56,18 +56,18 @@ namespace ProgramList.DevX.ViewModels
             viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button2"), true, false, true, false));
             //viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
 
-            //viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(string), InputMode.DateTimePicker, true, false, true, false));
+            viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(DateTime?),  true, false, true, false));
 
-            //viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(string), InputMode.DatePicker, true, false, true, false));
+            viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(DateTime?), true, false, true, false));
 
-            //viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(string), InputMode.TimePicker, true, false, true, false));
+            viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false));
 
 
             for (var i = 1; i <= MaxColumns; i++)
             {
-                viewModel.Columns.Add(new ColumnInfo($"StringProperty{i}", typeof(string), true, false, true, false));
-                viewModel.Columns.Add(new ColumnInfo($"IntProperty{i}", typeof(int), true, false, true, false));
-                viewModel.Columns.Add(new ColumnInfo($"BoolProperty{i}", typeof(bool), true, false, true, false));
+                viewModel.Columns.Add(new ColumnInfo($"String{i}Property", typeof(string), true, false, true, false));
+                viewModel.Columns.Add(new ColumnInfo($"Int{i}Property", typeof(int), true, false, true, false));
+                viewModel.Columns.Add(new ColumnInfo($"Bool{i}Property", typeof(bool), true, false, true, false));
             }
             RunTimeTypeHelper.CreateAssembly(viewModel.TypeName, viewModel.Columns);
 
