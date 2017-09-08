@@ -65,9 +65,9 @@ namespace ProgramList.DevX.ViewModels
 
             for (var i = 1; i <= MaxColumns; i++)
             {
-                viewModel.Columns.Add(new ColumnInfo($"String{i}Property", typeof(string), true, false, true, false));
-                viewModel.Columns.Add(new ColumnInfo($"Int{i}Property", typeof(int), true, false, true, false));
-                viewModel.Columns.Add(new ColumnInfo($"Bool{i}Property", typeof(bool), true, false, true, false));
+                viewModel.Columns.Add(new ColumnInfo($"StringProperty{i}", typeof(string), true, false, true, false));
+                viewModel.Columns.Add(new ColumnInfo($"IntProperty{i}", typeof(int), true, false, true, false));
+                viewModel.Columns.Add(new ColumnInfo($"BoolProperty{i}", typeof(bool), true, false, true, false));
             }
             RunTimeTypeHelper.CreateAssembly(viewModel.TypeName, viewModel.Columns);
 
@@ -107,7 +107,7 @@ namespace ProgramList.DevX.ViewModels
                     model.SetValue($"1 R {row}", "Button1");
                     model.SetValue($"2 R {row}", "Button2");
 
-                    //if (row == 1)
+                    //if (index == 1)
                     //{
                     //    //model.SetValue(@"pack://application:,,,/Images/Add.png", "Image");
                     //    //model.SetValue(chartItemsSource, "Chart");
@@ -123,7 +123,7 @@ namespace ProgramList.DevX.ViewModels
                     //model.Button2 = $"2 R {row}";
 
                     //batchList.Add(model);
-                    if (row == 1)
+                    if (index == 1)
                     {
                         model.SetBackground("#EC2B2B", "StringProperty1");
                         model.SetForeground("#FFFFFF", "StringProperty1");
