@@ -1,6 +1,9 @@
-﻿using ProgramList.Common.Models;
+﻿using DevExpress.Xpf.Editors.Settings;
+using DevExpress.Xpf.Grid;
+using ProgramList.Common.Models;
 using System;
 using System.Windows.Data;
+
 
 namespace ProgramList.DevX.Columns
 {
@@ -11,7 +14,13 @@ namespace ProgramList.DevX.Columns
             : base(header, dataType, isVisible, isReadOnly, isEnabled, isSelected)
         {
             //this.ApplyDefaultSettings(header, dataType, isVisible, isReadOnly, isEnabled, isSelected);
-            //_itemsSource = itemsSource;
+            _itemsSource = itemsSource;
+            EditSettings = new ComboBoxEditSettings()
+            {
+                ItemsSource = _itemsSource,
+                DisplayMember = DropDownItem.NameProperty,
+                ValueMember = DropDownItem.IdProperty
+            };
 
             //ItemsSource = _itemsSource;
             //SelectedValueMemberPath = DropDownItem.IdProperty;

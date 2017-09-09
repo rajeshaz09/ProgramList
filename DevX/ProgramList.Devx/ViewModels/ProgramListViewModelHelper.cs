@@ -38,7 +38,7 @@ namespace ProgramList.DevX.ViewModels
                 new DropDownItem("3", "Three"),
             };
 
-            viewModel.Columns.Add(new DropDownColumnInfo("DropDown", typeof(int), dropDownDataSource, true, false, true, false));
+            viewModel.Columns.Add(new DropDownColumnInfo("DropDown", typeof(string), dropDownDataSource, true, false, true, false));
 
             var chartItemsSource = new ChartPointCollection()
             {
@@ -100,7 +100,7 @@ namespace ProgramList.DevX.ViewModels
 
 
                     var model = objectExpression(viewModel.Columns, row);
-                    model.SetValue(row % 4, "DropDown");
+                    model.SetValue((row % 4).ToString(), "DropDown");
                     model.SetValue(row, "IntProperty");
                     model.SetValue($"String{row}", "StringProperty");
                     model.SetValue(row % 2 == 0, "BoolProperty");
@@ -115,7 +115,7 @@ namespace ProgramList.DevX.ViewModels
 
 
                     //var model = new Jeeves.CustomModels.MyType(viewModel.Columns, row);
-                    //model.DropDown = row % 4;
+                    //model.DropDown = (row % 4).ToString();
                     //model.IntProperty = row;
                     //model.StringProperty = $"String{row}";
                     //model.BoolProperty = (row % 2 == 0);

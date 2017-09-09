@@ -12,7 +12,6 @@ namespace ProgramList.DevX.Columns
     {
         //private static Style DefaultCellStyle = Application.Current.FindResource("GridViewCellCoreValidationStyle") as Style;
         private static IValueConverter RGBToBrushConverter = new RGBToBrushConverter();
-       static ObservableCollectionCore<string> aaaaaaa;
         public static void ApplyDefaultSettings(this GridColumn column, 
             string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
         {
