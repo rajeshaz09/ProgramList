@@ -4,12 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProgramList.InfragisticsPOC.Views"
-             xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf"
+             xmlns:igDP="http://schemas.infragistics.com/xaml/wpf"
              xmlns:ig="http://schemas.infragistics.com/xaml" 
              x:Class="ProgramList.InfragisticsPOC.Views.ProgramListView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <igWPF:XamDataGrid x:Name="ListGrid" DataSource="{Binding GridData}">
-    </igWPF:XamDataGrid>
+    <igDP:XamDataGrid x:Name="ListGrid" DataSource="{Binding GridData}">
+        <igDP:XamDataGrid.FieldLayoutSettings>
+            <igDP:FieldLayoutSettings AutoGenerateFields="False" />
+        </igDP:XamDataGrid.FieldLayoutSettings>
+    </igDP:XamDataGrid>
 </UserControl>

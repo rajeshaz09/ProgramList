@@ -46,13 +46,20 @@ namespace ProgramList.InfragisticsPOC
         {
             var viewModel = ViewModels.ProgramListViewModelHelper.GetRunTimeTypeSampleViewModel();
             //ProgramList.ListGrid.Columns.AddRange(viewModel.Columns.Cast<Telerik.Windows.Controls.GridViewColumn>());
-            //foreach (var column in viewModel.Columns)
-            //    ProgramList.ListGrid.FieldLayouts[0].Fields.Add(column as Field);
 
-            //ProgramList.ListGrid.ItemsSourceChanged += ListGrid_ItemsSourceChanged;
+
+            ProgramList.ListGrid.FieldLayoutInitialized += ListGrid_FieldLayoutInitialized;
 
             ProgramList.DataContext = viewModel;
 
+        }
+
+        private void ListGrid_FieldLayoutInitialized(object sender, Infragistics.Windows.DataPresenter.Events.FieldLayoutInitializedEventArgs e)
+        {
+            var viewModel = ProgramList.DataContext
+                   as ViewModels.ProgramListViewModel;
+            foreach (var column in viewModel.Columns)
+                e.FieldLayout.Fields.Add(column as Field);
         }
 
         private void ListGrid_LayoutUpdated(object sender, EventArgs e)
