@@ -104,6 +104,12 @@ namespace ProgramList.TelerikPOC.ViewModels
                 model.SetValue($"1 R {row}", "Button1");
                 model.SetValue($"2 R {row}", "Button2");
 
+                if (index == 1)
+                {
+                    model.SetBackground("#EC2B2B", "StringProperty1");
+                    model.SetForeground("#FFFFFF", "StringProperty1");
+                }
+
                 //if (row == 1)
                 //{
                 //    //model.SetValue(@"pack://application:,,,/Images/Add.png", "Image");
@@ -119,6 +125,7 @@ namespace ProgramList.TelerikPOC.ViewModels
                 //model.Button2 = $"2 R {row}";
 
                 //batchList.Add(model);
+
 
                 viewModel.GridData.Add(model);
 

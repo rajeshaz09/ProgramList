@@ -81,7 +81,6 @@
     <Compile Include="Columns\DateTimeColumnInfo.cs" />
     <Compile Include="Columns\DropDownColumnInfo.cs" />
     <Compile Include="Columns\ImageColumnInfo.cs" />
-    <Compile Include="Converters\RGBToBrushConverter.cs" />
     <Compile Include="Models\INotifyCollectionStateProvider.cs" />
     <Compile Include="Models\MyCollection.cs" />
     <Compile Include="Models\MyObservableCollectionEx.cs" />

@@ -183,7 +183,6 @@
     <Compile Include="Columns\ImageColumnInfo.cs" />
     <Compile Include="Columns\DateTimeColumnInfo.cs" />
     <Compile Include="Columns\DropDownColumnInfo.cs" />
-    <Compile Include="Converters\RGBToBrushConverter.cs" />
     <Compile Include="ViewModels\ProgramListViewModel.cs" />
     <Compile Include="ViewModels\ProgramListViewModelHelper.cs" />
     <Compile Include="Views\Behaviours\ColumnsBindingBehaviour.cs" />
@@ -222,9 +221,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Add.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ProgramList.Common\ProgramList.Common.csproj">

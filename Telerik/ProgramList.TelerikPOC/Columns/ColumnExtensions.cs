@@ -1,4 +1,4 @@
-﻿using ProgramList.TelerikPOC.Converters;
+﻿using ProgramList.Common.Converters;
 using System;
 using System.Windows;
 using System.Windows.Controls;
