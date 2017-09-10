@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramList.Infragistics", "ProgramList.Infragistics\ProgramList.Infragistics.csproj", "{07A67620-A098-466C-B929-897D0E74E7ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramList.Infragistics", "ProgramList.InfragisticsPOC\ProgramList.InfragisticsPOC.csproj", "{07A67620-A098-466C-B929-897D0E74E7ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramList.Common", "..\Common\ProgramList.Common\ProgramList.Common.csproj", "{5683E0EA-5B91-4346-AADA-D8832F213F2B}"
 EndProject
