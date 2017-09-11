@@ -18,13 +18,11 @@ namespace ProgramList.InfragisticsPOC.ViewModels
 
         #region Commands
         public ICommand PreviewKeyDownCommand { get; set; }
-        public readonly IDictionary<string, ICommand> Commands;
         #endregion Commands
 
         public ProgramListViewModel()
         {
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
-            Commands = new Dictionary<string, ICommand>();
             GridData = new ObservableCollection<ListItemBase>();
         }
 
