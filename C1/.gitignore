@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/ProgramList.C1FlexGrid/bin
+/ProgramList.C1FlexGrid/obj
+/ProgramList.C1DataGrid/bin
+/ProgramList.C1DataGrid/obj
