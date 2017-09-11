@@ -71,6 +71,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Columns\ButtonColumnInfo.cs" />
+    <Compile Include="Columns\ChartColumnInfo.cs" />
+    <Compile Include="Columns\ColumnExtensions.cs" />
+    <Compile Include="Columns\ColumnInfo.cs" />
+    <Compile Include="Columns\DateTimeColumnInfo.cs" />
+    <Compile Include="Columns\DropDownColumnInfo.cs" />
+    <Compile Include="Columns\ImageColumnInfo.cs" />
     <Compile Include="ViewModels\ProgramListViewModel.cs" />
     <Compile Include="ViewModels\ProgramListViewModelHelper.cs" />
     <Compile Include="Views\ProgramListView.xaml.cs">
@@ -124,8 +131,6 @@
       <Name>ProgramList.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Columns\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

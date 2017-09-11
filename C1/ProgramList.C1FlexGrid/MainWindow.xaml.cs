@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using C1.WPF.FlexGrid;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -46,8 +47,8 @@ namespace ProgramList.C1FlexGrid
         {
             var viewModel = ViewModels.ProgramListViewModelHelper.GetRunTimeTypeSampleViewModel();
             //ProgramList.ListGrid.Columns.AddRange(viewModel.Columns.Cast<Telerik.Windows.Controls.GridViewColumn>());
-            //foreach (var column in viewModel.Columns)
-            //    ProgramList.ListGrid.Columns.Add(column as GridColumn);
+            foreach (var column in viewModel.Columns)
+                ProgramList.ListGrid.Columns.Add(column as Column);
 
             //ProgramList.ListGrid.ItemsSourceChanged += ListGrid_ItemsSourceChanged;
 

@@ -1,4 +1,5 @@
-﻿using ProgramList.Common.DynamicType;
+﻿using ProgramList.C1FlexGrid.Columns;
+using ProgramList.Common.DynamicType;
 using ProgramList.Common.Models;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,8 @@ namespace ProgramList.C1FlexGrid.ViewModels
 {
     public static class ProgramListViewModelHelper
     {
-        private const int MaxColumns = 30;
-        private const int MaxRows = 10000;
+        private const int MaxColumns = 2;
+        private const int MaxRows = 10;
 
         internal static ProgramListViewModel GetRunTimeTypeSampleViewModel()
         {
@@ -23,7 +24,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
 
             var viewModel = new ProgramListViewModel();
             //AddSampleColumns(viewModel.AddColumn);
-            /*
+            
             viewModel.Columns.Add(new ColumnInfo("StringProperty", typeof(string), false, false, true, false));
             viewModel.Columns.Add(new ColumnInfo("IntProperty", typeof(int), true, true, true, false));
             viewModel.Columns.Add(new ColumnInfo("BoolProperty", typeof(bool), true, false, true, false));
@@ -67,7 +68,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
                 viewModel.Columns.Add(new ColumnInfo($"BoolProperty{i}", typeof(bool), true, false, true, false));
             }
             RunTimeTypeHelper.CreateAssembly(viewModel.TypeName, viewModel.Columns);
-            */
+            
 
             return viewModel;
         }

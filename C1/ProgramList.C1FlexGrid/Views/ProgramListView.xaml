@@ -11,6 +11,7 @@
         <c1:C1FlexGrid Grid.Row="1"
         x:Name="ListGrid" 
         ItemsSource="{Binding GridData}"
+                       AutoGenerateColumns="False"
         >
         </c1:C1FlexGrid>
     </Grid>
