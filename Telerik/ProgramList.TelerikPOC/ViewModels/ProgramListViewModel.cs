@@ -24,13 +24,11 @@ namespace ProgramList.TelerikPOC.ViewModels
         public ICommand PreviewKeyDownCommand { get; set; }
 
         public ICommand WhoCaresCommand { get; set; }
-        public IDictionary<string, ICommand> Commands { get; private set; }
         #endregion Commands
 
         public ProgramListViewModel()
         {
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
-            Commands = new Dictionary<string, ICommand>();
             GridData = new RadObservableCollection<ListItemBase>();
         }
 

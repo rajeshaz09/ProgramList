@@ -21,19 +21,17 @@ namespace ProgramList.DevX.ViewModels
 
         #region Commands
         public ICommand PreviewKeyDownCommand { get; set; }
-        public readonly IDictionary<string, ICommand> Commands;
         #endregion Commands
 
         public ProgramListViewModel()
         {
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
-            Commands = new Dictionary<string, ICommand>();
             GridData = new ObservableCollectionCore<object>();
         }
 
         public ICommand GenerateCommand(string columnName)
         {
-            var command = new DelegateCommand<object>(
+            var command = new DelegateCommand<ListItemBase>(
                 (model)=> 
                 {
                     OnCommandExecute(columnName, model);
@@ -43,9 +41,9 @@ namespace ProgramList.DevX.ViewModels
             return command;
         }
 
-        private static void OnCommandExecute(string columnName, object model)
+        private static void OnCommandExecute(string columnName, ListItemBase model)
         {
-            MessageBox.Show($"Row\t{columnName}{Environment.NewLine}Column\t{columnName}");
+            MessageBox.Show($"Row\t{model.RowNumber}{Environment.NewLine}Column\t{columnName}");
         }
 
         private void OnPreviewKeyDownHandler(KeyEventArgs e)
