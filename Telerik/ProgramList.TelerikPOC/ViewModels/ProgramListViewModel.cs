@@ -16,13 +16,15 @@ using Telerik.Windows.Data;
 
 namespace ProgramList.TelerikPOC.ViewModels
 {
-    public class ProgramListViewModel: ProgramListViewModelBase
+    public class ProgramListViewModel : ProgramListViewModelBase
     {
         public RadObservableCollection<ListItemBase> GridData { get; private set; }
 
         #region Commands
         public ICommand PreviewKeyDownCommand { get; set; }
-        public readonly IDictionary<string, ICommand> Commands;
+
+        public ICommand WhoCaresCommand { get; set; }
+        public IDictionary<string, ICommand> Commands { get; private set; }
         #endregion Commands
 
         public ProgramListViewModel()
@@ -35,11 +37,10 @@ namespace ProgramList.TelerikPOC.ViewModels
         public ICommand GenerateCommand(string columnName)
         {
             var command = new DelegateCommand<ListItemBase>(
-                (model)=> 
+                (model) =>
                 {
                     OnCommandExecute(columnName, model);
                 });
-
             Commands.Add(columnName, command);
             return command;
         }

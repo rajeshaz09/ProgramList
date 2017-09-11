@@ -1,8 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Markup;
+using System.Xml;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.GridView;
 
@@ -15,23 +19,34 @@ namespace ProgramList.TelerikPOC.Columns
             : base(header, dataType, isVisible, isReadOnly, isEnabled, isSelected)
         {
             _command = command;
+            CellTemplate = GetCellEditTemplate(UniqueName);
         }
 
-        public override FrameworkElement CreateCellElement(GridViewCell cell, object dataItem)
+        private static DataTemplate GetCellEditTemplate(string bindingProperty)
         {
-            RadButton button = cell.Content as RadButton;
-            if (button == null)
+            var strTemplate = $@"
+                <DataTemplate 
+                    xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+                    xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
+                    xmlns:telerik=""http://schemas.telerik.com/2008/xaml/presentation""
+                    >
+
+                    <telerik:RadButton
+                        Content=""{{ Binding {bindingProperty}, Mode = TwoWay }}""
+                        CommandParameter=""{{ Binding ., Mode = TwoWay }}""
+                        Command=""{{ Binding RelativeSource={{RelativeSource Mode=FindAncestor, AncestorType={{x:Type telerik:RadGridView}}}}, Path=DataContext.Commands[{bindingProperty}], Mode = TwoWay }}""
+                    />
+                </DataTemplate>
+            ";
+            using (var stringReader = new StringReader(strTemplate))
             {
-                button = new RadButton()
                 {
-                    Command = _command
-                };
-                button.SetBinding(ContentControl.ContentProperty, new Binding(UniqueName) { Mode = BindingMode.TwoWay });
+                    var xmlReader = XmlReader.Create(stringReader);
+                    return XamlReader.Load(xmlReader) as DataTemplate;
+                }
             }
+            //ToDo use convertors and datetime objects use  ToShortTimeString, ToShortDateString
 
-            button.SetBinding(System.Windows.Controls.Primitives.ButtonBase.CommandParameterProperty, new Binding(".") { Mode = BindingMode.TwoWay });
-
-            return button;
         }
     }
 }
