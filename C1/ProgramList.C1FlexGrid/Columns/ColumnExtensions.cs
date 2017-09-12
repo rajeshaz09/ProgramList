@@ -20,6 +20,7 @@ namespace ProgramList.C1FlexGrid.Columns
             column.DataType = dataType;
             column.Visible = isVisible;
             column.IsReadOnly = isReadOnly;
+            column.Binding = new Binding(header);
             //column.IsEnabled = isEnabled;
             column.Selected = isSelected;
             //column.GroupAggregate = true;
