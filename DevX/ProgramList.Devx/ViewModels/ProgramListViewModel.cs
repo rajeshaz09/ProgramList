@@ -23,7 +23,7 @@ namespace ProgramList.DevX.ViewModels
         public ICommand PreviewKeyDownCommand { get; set; }
         #endregion Commands
 
-        public ProgramListViewModel()
+        public ProgramListViewModel(int rows, int columnSets): base(rows, columnSets)
         {
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
             GridData = new ObservableCollectionCore<object>();

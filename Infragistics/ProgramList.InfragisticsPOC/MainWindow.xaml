@@ -12,13 +12,21 @@
         >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" x:Name="Clear" HorizontalAlignment="Left" Margin="10,0,0,0" Width="150" Click="Clear_Click" Content="Clear Grid" />
-        <Button Grid.Row="0"  x:Name="LoadGrid"  HorizontalAlignment="Left" Margin="200,0,0,0" Width="150" Click="LoadGrid_Click" Content="Load Grid" />
-        <Button Grid.Row="0"  x:Name="ClearAndLoadGrid"  HorizontalAlignment="Left" Margin="400,0,0,0" Width="150" Click="ClearAndLoadGrid_Click" Content="Clear and Load Grid" />
-        <TextBlock x:Name="LoadTime" Grid.Row="0" Margin="600,0,0,0" />
-        <My:ProgramListView Grid.Row="1" x:Name="ProgramList" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Rows"  Grid.Row="0"  Grid.Column="0" />
+        <Label Content="Column Sets"  Grid.Row="1" Grid.Column="0"  />
+        <TextBox x:Name="Rows" Text="10000"  Grid.Row="0" Grid.Column="1" />
+        <TextBox x:Name="ColumnSets" Text="30"  Grid.Row="1" Grid.Column="1" />
+        <CheckBox x:Name="FullScreen" Content="FullScreen" IsChecked="True" Grid.Row="2" Grid.Column="0" />
+        <Button x:Name="OpenGrid" Grid.Row="2" Grid.Column="1" Click="OpenGrid_Click" Content="Open Grid"  />
+
     </Grid>
 </Window>
+

@@ -11,10 +11,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
 {
     public static class ProgramListViewModelHelper
     {
-        private const int MaxColumns = 2;
-        private const int MaxRows = 10;
-
-        internal static ProgramListViewModel GetRunTimeTypeSampleViewModel()
+        internal static ProgramListViewModel GetRunTimeTypeSampleViewModel(int rows, int columnSets)
         {
 
             //ToDo https://stackoverflow.com/questions/2024435/how-to-pass-ctor-args-in-activator-createinstance-or-use-il
@@ -22,7 +19,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
             //ToDo https://msdn.microsoft.com/en-us/library/dd554932(vs.100).aspx
             //ToDo https://www.codeproject.com/Articles/1118828/Faster-than-Reflection-Delegates-Part
 
-            var viewModel = new ProgramListViewModel();
+            var viewModel = new ProgramListViewModel(rows, columnSets);
             //AddSampleColumns(viewModel.AddColumn);
             
             viewModel.Columns.Add(new ColumnInfo("StringProperty", typeof(string), false, false, true, false));
@@ -61,7 +58,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
             viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false));
 
 
-            for (var i = 1; i <= MaxColumns; i++)
+            for (var i = 1; i <= viewModel.ColumnSets; i++)
             {
                 viewModel.Columns.Add(new ColumnInfo($"StringProperty{i}", typeof(string), true, false, true, false));
                 viewModel.Columns.Add(new ColumnInfo($"IntProperty{i}", typeof(int), true, false, true, false));
@@ -77,8 +74,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
         {
             AssignData(viewModel, true);
         }
-
-        private static int seed = 0;
+        
         public static void AssignData(ProgramListViewModel viewModel, bool ClearOld = false)
         {
             //var objectExpression = RunTimeTypeHelper.GenerateObjectExpression($"{viewModel.TypeName}.dll");
@@ -91,9 +87,9 @@ namespace ProgramList.C1FlexGrid.ViewModels
             //viewModel.GridData.BeginUpdate();
             //using (var gridData = viewModel.GridData.DelayNotifications())
             {
-                for (var index = 1; index <= MaxRows; index++)
+                for (var index = 1; index <= viewModel.Rows; index++)
                 {
-                    var row = index + seed;
+                    var row = index + viewModel.Seed;
                     //parameters[1] = row;
                     //var model = (ListItemBase)Activator.CreateInstance(ass.GetType("Jeeves.CustomModels.MyType", true), parameters);
 
@@ -132,7 +128,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
                     //await Task.Delay(0);
                 }
             }
-            seed += MaxRows;
+            viewModel.Seed += viewModel.Rows;
 
 
             //viewModel.GridData.EndUpdate();

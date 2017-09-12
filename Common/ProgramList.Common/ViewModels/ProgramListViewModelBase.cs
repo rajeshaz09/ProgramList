@@ -9,18 +9,26 @@ using System.Windows.Input;
 
 namespace ProgramList.Common.ViewModels
 {
-    public class ProgramListViewModelBase: ModelBase
+    public class ProgramListViewModelBase : ModelBase
     {
-        public string TypeName = "Jeeves.CustomModels.MyType";
+        public readonly string TypeName;
         public IList<IColumnInfo> Columns { get; private set; }
         public IDictionary<string, ICommand> Commands { get; private set; }
 
-        public ProgramListViewModelBase()
+        private static int TypeSeed = 0;
+        public int Seed = 0;
+        public int Rows { get; private set; }
+        public int ColumnSets { get; private set; }
+
+
+        public ProgramListViewModelBase(int rows, int columnSets)
         {
+            Rows = rows;
+            ColumnSets = columnSets;
+            TypeName = $"Jeeves.CustomModels.MyType{TypeSeed++}";
             Columns = new ObservableCollection<IColumnInfo>();
             Commands = new Dictionary<string, ICommand>();
 
         }
-
     }
 }

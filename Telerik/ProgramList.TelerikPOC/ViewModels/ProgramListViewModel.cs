@@ -26,7 +26,7 @@ namespace ProgramList.TelerikPOC.ViewModels
         public ICommand WhoCaresCommand { get; set; }
         #endregion Commands
 
-        public ProgramListViewModel()
+        public ProgramListViewModel(int rows, int columnSets):base(rows, columnSets)
         {
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
             GridData = new RadObservableCollection<ListItemBase>();

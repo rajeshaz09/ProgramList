@@ -27,86 +27,25 @@ namespace ProgramList.C1FlexGrid
         public MainWindow()
         {
             InitializeComponent();
-            Loaded += MainWindow_Loaded;
         }
 
-        Stopwatch timer = new Stopwatch();
-
-        private void TimerStart()
+        private void OpenGrid_Click(object sender, RoutedEventArgs e)
         {
-            timer.Reset();
-            timer.Start();
-        }
-
-        private void TimerStop()
-        {
-            timer.Stop();
-            LoadTime.Text = $"{timer.ElapsedMilliseconds} ms";
-        }
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            var viewModel = ViewModels.ProgramListViewModelHelper.GetRunTimeTypeSampleViewModel();
-            //ProgramList.ListGrid.Columns.AddRange(viewModel.Columns.Cast<Telerik.Windows.Controls.GridViewColumn>());
-            foreach (var column in viewModel.Columns)
-                ProgramList.ListGrid.Columns.Add(column as Column);
-
-            //ProgramList.ListGrid.ItemsSourceChanged += ListGrid_ItemsSourceChanged;
-
-            ProgramList.DataContext = viewModel;
-
-        }
-
-        private void ListGrid_LayoutUpdated(object sender, EventArgs e)
-        {
-            ProgramList.ListGrid.LayoutUpdated -= ListGrid_LayoutUpdated;
-            TimerStop();
-        }
-
-        private void LoadGrid_Click(object sender, RoutedEventArgs e)
-        {
-            ProgramList.ListGrid.LayoutUpdated += ListGrid_LayoutUpdated;
-            TimerStart();
-            var viewModel = ProgramList.DataContext
-                as ViewModels.ProgramListViewModel;
-            //Task.Run(() =>
+            int.TryParse(Rows.Text, out int rows);
+            int.TryParse(ColumnSets.Text, out int columns);
+            if (rows < 0)
             {
-
-                ViewModels.ProgramListViewModelHelper.AssignData(viewModel);
-
+                return;
             }
-            //).ConfigureAwait(false);
-        }
-
-        //private void ListGrid_ItemsSourceChanged(object sender, ItemsSourceChangedEventArgs e)
-        //{
-        //    ResizeColumnsInternal((sender as C1FlexGrid).View as TableView);
-        //}
-
-        private void Clear_Click(object sender, RoutedEventArgs e)
-        {
-            var viewModel = ProgramList.DataContext
-                as ViewModels.ProgramListViewModel;
-            viewModel.GridData.Clear();
-        }
-
-        private void ClearAndLoadGrid_Click(object sender, RoutedEventArgs e)
-        {
-            ProgramList.ListGrid.LayoutUpdated += ListGrid_LayoutUpdated;
-            TimerStart();
-            var viewModel = ProgramList.DataContext
-                   as ViewModels.ProgramListViewModel;
-            ViewModels.ProgramListViewModelHelper.ClearAndAssignData(viewModel);
-
-        }
-
-        private void ResizeColumnsInternal(object view)
-        {
-            Dispatcher.BeginInvoke((Action)(() =>
+            if (columns < 0)
             {
-                //view.BestFitColumns();
-            }), DispatcherPriority.Render);
-
+                return;
+            }
+            var programListWindow = new Views.ProgramListWindow((FullScreen.IsChecked == true), rows, columns);
+            programListWindow.ShowDialog();
         }
     }
 }
+
+
 
