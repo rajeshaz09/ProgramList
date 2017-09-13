@@ -15,7 +15,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
 {
     public class ProgramListViewModel : ProgramListViewModelBase
     {
-        public ObservableCollection<MyType> GridData { get; private set; }
+        public ObservableCollection<ListItemBase> GridData { get; private set; }
 
         #region Commands
         public ICommand PreviewKeyDownCommand { get; set; }
@@ -24,12 +24,12 @@ namespace ProgramList.C1FlexGrid.ViewModels
         public ProgramListViewModel(int rows, int columnSets):base(rows, columnSets)
         {
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
-            GridData = new ObservableCollection<MyType>();
+            GridData = new ObservableCollection<ListItemBase>();
         }
 
         public ICommand GenerateCommand(string columnName)
         {
-            var command = new DelegateCommand<object>(
+            var command = new DelegateCommand<ListItemBase>(
                 (model) =>
                 {
                     OnCommandExecute(columnName, model);
@@ -39,9 +39,9 @@ namespace ProgramList.C1FlexGrid.ViewModels
             return command;
         }
 
-        private static void OnCommandExecute(string columnName, object model)
+        private static void OnCommandExecute(string columnName, ListItemBase model)
         {
-            MessageBox.Show($"Row\t{columnName}{Environment.NewLine}Column\t{columnName}");
+            MessageBox.Show($"Row\t{model.RowNumber}{Environment.NewLine}Column\t{columnName}");
         }
 
         private void OnPreviewKeyDownHandler(KeyEventArgs e)

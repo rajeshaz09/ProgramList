@@ -1,4 +1,5 @@
-﻿using ProgramList.Common.Models;
+﻿using C1.WPF.FlexGrid;
+using ProgramList.Common.Models;
 using System;
 using System.Windows.Data;
 
@@ -13,6 +14,8 @@ namespace ProgramList.C1FlexGrid.Columns
         {
             //this.ApplyDefaultSettings(header, dataType, isVisible, isReadOnly, isEnabled, isSelected);
             _itemsSource = itemsSource;
+            ValueConverter = new ColumnValueConverter(_itemsSource, DropDownItem.IdProperty, DropDownItem.NameProperty);
+            
             //EditSettings = new ComboBoxEditSettings()
             //{
             //    ItemsSource = _itemsSource,
