@@ -76,6 +76,7 @@
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\NormalModel.cs" />
     <Compile Include="DynamicType\RunTimeModelBase.cs" />
+    <Compile Include="Collections\ObservableCollectionEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ProgramListViewModelBase.cs" />
   </ItemGroup>

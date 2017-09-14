@@ -1,10 +1,10 @@
 ﻿using Jeeves.CustomModels;
 using Prism.Commands;
+using ProgramList.Common.Collections;
 using ProgramList.Common.Models;
 using ProgramList.Common.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +15,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
 {
     public class ProgramListViewModel : ProgramListViewModelBase
     {
-        public ObservableCollection<ListItemBase> GridData { get; private set; }
+        public ObservableCollectionEx<ListItemBase> GridData { get; private set; }
 
         #region Commands
         public ICommand PreviewKeyDownCommand { get; set; }
@@ -24,7 +24,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
         public ProgramListViewModel(int rows, int columnSets):base(rows, columnSets)
         {
             PreviewKeyDownCommand = new DelegateCommand<KeyEventArgs>(OnPreviewKeyDownHandler);
-            GridData = new ObservableCollection<ListItemBase>();
+            GridData = new ObservableCollectionEx<ListItemBase>();
         }
 
         public ICommand GenerateCommand(string columnName)

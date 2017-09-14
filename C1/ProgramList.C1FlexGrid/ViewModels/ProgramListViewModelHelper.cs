@@ -84,7 +84,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
 
             var gridData = viewModel.GridData;
 
-            //viewModel.GridData.BeginUpdate();
+            viewModel.GridData.SuspendNotifications();
             //using (var gridData = viewModel.GridData.DelayNotifications())
             {
                 for (var index = 1; index <= viewModel.Rows; index++)
@@ -131,7 +131,7 @@ namespace ProgramList.C1FlexGrid.ViewModels
             viewModel.Seed += viewModel.Rows;
 
 
-            //viewModel.GridData.EndUpdate();
+            viewModel.GridData.ResumeNotifications();
         }
     }
 
