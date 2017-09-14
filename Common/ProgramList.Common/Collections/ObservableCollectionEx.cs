@@ -11,16 +11,16 @@ namespace ProgramList.Common.Collections
     public class ObservableCollectionEx<T> : ObservableCollection<T>
     {
         private bool _notificationsWaiting = false;
-        private bool _suspendNotifications = false;
+        private bool _NotificationsSuspended = false;
 
         public void SuspendNotifications()
         {
-            _suspendNotifications = true;
+            _NotificationsSuspended = true;
         }
 
         public void ResumeNotifications()
         {
-            _suspendNotifications = false;
+            _NotificationsSuspended = false;
             if (_notificationsWaiting)
             {
                 OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
@@ -30,7 +30,7 @@ namespace ProgramList.Common.Collections
 
         protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
-            if (_suspendNotifications)
+            if (_NotificationsSuspended)
             {
                 _notificationsWaiting = true;
                 return;
