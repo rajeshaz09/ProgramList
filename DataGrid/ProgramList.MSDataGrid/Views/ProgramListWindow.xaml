@@ -1,0 +1,22 @@
+﻿<Window x:Class="ProgramList.MSDataGrid.Views.ProgramListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:My="clr-namespace:ProgramList.MSDataGrid.Views"
+        mc:Ignorable="d"
+        Title="ProgramListWindow" WindowState="Maximized">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" x:Name="Clear" HorizontalAlignment="Left" Margin="10,0,0,0" Width="150" Click="Clear_Click" Content="Clear Grid" />
+        <Button Grid.Row="0"  x:Name="LoadGrid"  HorizontalAlignment="Left" Margin="200,0,0,0" Width="150" Click="LoadGrid_Click" Content="Load Grid" />
+        <Button Grid.Row="0"  x:Name="ClearAndLoadGrid"  HorizontalAlignment="Left" Margin="400,0,0,0" Width="150" Click="ClearAndLoadGrid_Click" Content="Clear and Load Grid" />
+        <TextBlock x:Name="LoadTime" Grid.Row="0" Margin="600,0,0,0" />
+        <My:ProgramListView Grid.Row="1" x:Name="ProgramList" />
+
+    </Grid>
+</Window>

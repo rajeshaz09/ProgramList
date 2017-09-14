@@ -1,17 +1,19 @@
-﻿using C1.WPF.FlexGrid;
-using ProgramList.Common.Models;
+﻿using ProgramList.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
-namespace ProgramList.C1FlexGrid.Columns
+namespace ProgramList.MSDataGrid.Columns
 {
-    public class ColumnInfo : Column, IColumnInfo
+    public class ColumnInfo : DataGridTextColumn, IColumnInfo
     {
         public int Ordinal { get; private set; }
-        public string UniqueName { get => ColumnName; set => ColumnName = value; }
+        public string UniqueName { get => Header.ToString(); set => Header = value; }
+
+        public Type DataType { get; set; }
 
         public ColumnInfo(string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
         {

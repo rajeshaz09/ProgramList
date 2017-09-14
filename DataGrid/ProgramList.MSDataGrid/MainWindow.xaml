@@ -1,0 +1,27 @@
+﻿<Window x:Class="ProgramList.MSDataGrid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgramList.MSDataGrid"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized" x:Name="Root">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Rows"  Grid.Row="0"  Grid.Column="0" />
+        <Label Content="Column Sets"  Grid.Row="1" Grid.Column="0"  />
+        <TextBox x:Name="Rows" Text="10000"  Grid.Row="0" Grid.Column="1" />
+        <TextBox x:Name="ColumnSets" Text="30"  Grid.Row="1" Grid.Column="1" />
+        <CheckBox x:Name="FullScreen" Content="FullScreen" IsChecked="True" Grid.Row="2" Grid.Column="0" />
+        <Button x:Name="OpenGrid" Grid.Row="2" Grid.Column="1" Click="OpenGrid_Click" Content="Open Grid"  />
+
+    </Grid>
+</Window>
