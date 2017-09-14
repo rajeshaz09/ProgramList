@@ -7,213 +7,15 @@ namespace Jeeves.CustomModels
 {
     public class MyType : ListItemBase, INotifyPropertyChanged
     {
-        private string _StringProperty;
-
-        private int _IntProperty;
-
-        private bool _BoolProperty;
-
-        private int _DropDown;
-
-        private string _Button1;
-
-        private string _Button2;
-
-        private string _DateTimeProperty;
-
-        private string _DateProperty;
-
-        private string _TimeProperty;
-
-        private string _StringProperty1;
-
-        private int _IntProperty1;
-
-        private bool _BoolProperty1;
-
-        private string _StringProperty2;
-
-        private int _IntProperty2;
-
-        private bool _BoolProperty2;
-
-        private string _StringProperty3;
-
-        private int _IntProperty3;
-
-        private bool _BoolProperty3;
-
-        private string _StringProperty4;
-
-        private int _IntProperty4;
-
-        private bool _BoolProperty4;
-
-        private string _StringProperty5;
-
-        private int _IntProperty5;
-
-        private bool _BoolProperty5;
-
-        private string _StringProperty6;
-
-        private int _IntProperty6;
-
-        private bool _BoolProperty6;
-
-        private string _StringProperty7;
-
-        private int _IntProperty7;
-
-        private bool _BoolProperty7;
-
-        private string _StringProperty8;
-
-        private int _IntProperty8;
-
-        private bool _BoolProperty8;
-
-        private string _StringProperty9;
-
-        private int _IntProperty9;
-
-        private bool _BoolProperty9;
-
-        private string _StringProperty10;
-
-        private int _IntProperty10;
-
-        private bool _BoolProperty10;
-
-        private string _StringProperty11;
-
-        private int _IntProperty11;
-
-        private bool _BoolProperty11;
-
-        private string _StringProperty12;
-
-        private int _IntProperty12;
-
-        private bool _BoolProperty12;
-
-        private string _StringProperty13;
-
-        private int _IntProperty13;
-
-        private bool _BoolProperty13;
-
-        private string _StringProperty14;
-
-        private int _IntProperty14;
-
-        private bool _BoolProperty14;
-
-        private string _StringProperty15;
-
-        private int _IntProperty15;
-
-        private bool _BoolProperty15;
-
-        private string _StringProperty16;
-
-        private int _IntProperty16;
-
-        private bool _BoolProperty16;
-
-        private string _StringProperty17;
-
-        private int _IntProperty17;
-
-        private bool _BoolProperty17;
-
-        private string _StringProperty18;
-
-        private int _IntProperty18;
-
-        private bool _BoolProperty18;
-
-        private string _StringProperty19;
-
-        private int _IntProperty19;
-
-        private bool _BoolProperty19;
-
-        private string _StringProperty20;
-
-        private int _IntProperty20;
-
-        private bool _BoolProperty20;
-
-        private string _StringProperty21;
-
-        private int _IntProperty21;
-
-        private bool _BoolProperty21;
-
-        private string _StringProperty22;
-
-        private int _IntProperty22;
-
-        private bool _BoolProperty22;
-
-        private string _StringProperty23;
-
-        private int _IntProperty23;
-
-        private bool _BoolProperty23;
-
-        private string _StringProperty24;
-
-        private int _IntProperty24;
-
-        private bool _BoolProperty24;
-
-        private string _StringProperty25;
-
-        private int _IntProperty25;
-
-        private bool _BoolProperty25;
-
-        private string _StringProperty26;
-
-        private int _IntProperty26;
-
-        private bool _BoolProperty26;
-
-        private string _StringProperty27;
-
-        private int _IntProperty27;
-
-        private bool _BoolProperty27;
-
-        private string _StringProperty28;
-
-        private int _IntProperty28;
-
-        private bool _BoolProperty28;
-
-        private string _StringProperty29;
-
-        private int _IntProperty29;
-
-        private bool _BoolProperty29;
-
-        private string _StringProperty30;
-
-        private int _IntProperty30;
-
-        private bool _BoolProperty30;
-
         public string StringProperty
         {
             get
             {
-                return this._StringProperty;
+                return base.GetValue<string>("StringProperty");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty, value, "StringProperty");
+                base.SetValue<string>(value, "StringProperty");
             }
         }
 
@@ -293,11 +95,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty;
+                return base.GetValue<int>("IntProperty");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty, value, "IntProperty");
+                base.SetValue<int>(value, "IntProperty");
             }
         }
 
@@ -377,11 +179,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty;
+                return base.GetValue<bool>("BoolProperty");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty, value, "BoolProperty");
+                base.SetValue<bool>(value, "BoolProperty");
             }
         }
 
@@ -457,15 +259,15 @@ namespace Jeeves.CustomModels
             }
         }
 
-        public int DropDown
+        public string DropDown
         {
             get
             {
-                return this._DropDown;
+                return base.GetValue<string>("DropDown");
             }
             set
             {
-                base.SetProperty<int>(ref this._DropDown, value, "DropDown");
+                base.SetValue<string>(value, "DropDown");
             }
         }
 
@@ -545,11 +347,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._Button1;
+                return base.GetValue<string>("Button1");
             }
             set
             {
-                base.SetProperty<string>(ref this._Button1, value, "Button1");
+                base.SetValue<string>(value, "Button1");
             }
         }
 
@@ -629,11 +431,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._Button2;
+                return base.GetValue<string>("Button2");
             }
             set
             {
-                base.SetProperty<string>(ref this._Button2, value, "Button2");
+                base.SetValue<string>(value, "Button2");
             }
         }
 
@@ -709,15 +511,15 @@ namespace Jeeves.CustomModels
             }
         }
 
-        public string DateTimeProperty
+        public DateTime? DateTimeProperty
         {
             get
             {
-                return this._DateTimeProperty;
+                return base.GetValue<DateTime?>("DateTimeProperty");
             }
             set
             {
-                base.SetProperty<string>(ref this._DateTimeProperty, value, "DateTimeProperty");
+                base.SetValue<DateTime?>(value, "DateTimeProperty");
             }
         }
 
@@ -793,15 +595,15 @@ namespace Jeeves.CustomModels
             }
         }
 
-        public string DateProperty
+        public DateTime? DateProperty
         {
             get
             {
-                return this._DateProperty;
+                return base.GetValue<DateTime?>("DateProperty");
             }
             set
             {
-                base.SetProperty<string>(ref this._DateProperty, value, "DateProperty");
+                base.SetValue<DateTime?>(value, "DateProperty");
             }
         }
 
@@ -877,15 +679,15 @@ namespace Jeeves.CustomModels
             }
         }
 
-        public string TimeProperty
+        public DateTime? TimeProperty
         {
             get
             {
-                return this._TimeProperty;
+                return base.GetValue<DateTime?>("TimeProperty");
             }
             set
             {
-                base.SetProperty<string>(ref this._TimeProperty, value, "TimeProperty");
+                base.SetValue<DateTime?>(value, "TimeProperty");
             }
         }
 
@@ -965,11 +767,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty1;
+                return base.GetValue<string>("StringProperty1");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty1, value, "StringProperty1");
+                base.SetValue<string>(value, "StringProperty1");
             }
         }
 
@@ -1049,11 +851,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty1;
+                return base.GetValue<int>("IntProperty1");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty1, value, "IntProperty1");
+                base.SetValue<int>(value, "IntProperty1");
             }
         }
 
@@ -1133,11 +935,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty1;
+                return base.GetValue<bool>("BoolProperty1");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty1, value, "BoolProperty1");
+                base.SetValue<bool>(value, "BoolProperty1");
             }
         }
 
@@ -1217,11 +1019,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty2;
+                return base.GetValue<string>("StringProperty2");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty2, value, "StringProperty2");
+                base.SetValue<string>(value, "StringProperty2");
             }
         }
 
@@ -1301,11 +1103,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty2;
+                return base.GetValue<int>("IntProperty2");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty2, value, "IntProperty2");
+                base.SetValue<int>(value, "IntProperty2");
             }
         }
 
@@ -1385,11 +1187,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty2;
+                return base.GetValue<bool>("BoolProperty2");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty2, value, "BoolProperty2");
+                base.SetValue<bool>(value, "BoolProperty2");
             }
         }
 
@@ -1469,11 +1271,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty3;
+                return base.GetValue<string>("StringProperty3");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty3, value, "StringProperty3");
+                base.SetValue<string>(value, "StringProperty3");
             }
         }
 
@@ -1553,11 +1355,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty3;
+                return base.GetValue<int>("IntProperty3");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty3, value, "IntProperty3");
+                base.SetValue<int>(value, "IntProperty3");
             }
         }
 
@@ -1637,11 +1439,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty3;
+                return base.GetValue<bool>("BoolProperty3");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty3, value, "BoolProperty3");
+                base.SetValue<bool>(value, "BoolProperty3");
             }
         }
 
@@ -1721,11 +1523,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty4;
+                return base.GetValue<string>("StringProperty4");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty4, value, "StringProperty4");
+                base.SetValue<string>(value, "StringProperty4");
             }
         }
 
@@ -1805,11 +1607,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty4;
+                return base.GetValue<int>("IntProperty4");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty4, value, "IntProperty4");
+                base.SetValue<int>(value, "IntProperty4");
             }
         }
 
@@ -1889,11 +1691,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty4;
+                return base.GetValue<bool>("BoolProperty4");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty4, value, "BoolProperty4");
+                base.SetValue<bool>(value, "BoolProperty4");
             }
         }
 
@@ -1973,11 +1775,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty5;
+                return base.GetValue<string>("StringProperty5");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty5, value, "StringProperty5");
+                base.SetValue<string>(value, "StringProperty5");
             }
         }
 
@@ -2057,11 +1859,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty5;
+                return base.GetValue<int>("IntProperty5");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty5, value, "IntProperty5");
+                base.SetValue<int>(value, "IntProperty5");
             }
         }
 
@@ -2141,11 +1943,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty5;
+                return base.GetValue<bool>("BoolProperty5");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty5, value, "BoolProperty5");
+                base.SetValue<bool>(value, "BoolProperty5");
             }
         }
 
@@ -2225,11 +2027,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty6;
+                return base.GetValue<string>("StringProperty6");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty6, value, "StringProperty6");
+                base.SetValue<string>(value, "StringProperty6");
             }
         }
 
@@ -2309,11 +2111,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty6;
+                return base.GetValue<int>("IntProperty6");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty6, value, "IntProperty6");
+                base.SetValue<int>(value, "IntProperty6");
             }
         }
 
@@ -2393,11 +2195,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty6;
+                return base.GetValue<bool>("BoolProperty6");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty6, value, "BoolProperty6");
+                base.SetValue<bool>(value, "BoolProperty6");
             }
         }
 
@@ -2477,11 +2279,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty7;
+                return base.GetValue<string>("StringProperty7");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty7, value, "StringProperty7");
+                base.SetValue<string>(value, "StringProperty7");
             }
         }
 
@@ -2561,11 +2363,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty7;
+                return base.GetValue<int>("IntProperty7");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty7, value, "IntProperty7");
+                base.SetValue<int>(value, "IntProperty7");
             }
         }
 
@@ -2645,11 +2447,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty7;
+                return base.GetValue<bool>("BoolProperty7");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty7, value, "BoolProperty7");
+                base.SetValue<bool>(value, "BoolProperty7");
             }
         }
 
@@ -2729,11 +2531,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty8;
+                return base.GetValue<string>("StringProperty8");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty8, value, "StringProperty8");
+                base.SetValue<string>(value, "StringProperty8");
             }
         }
 
@@ -2813,11 +2615,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty8;
+                return base.GetValue<int>("IntProperty8");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty8, value, "IntProperty8");
+                base.SetValue<int>(value, "IntProperty8");
             }
         }
 
@@ -2897,11 +2699,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty8;
+                return base.GetValue<bool>("BoolProperty8");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty8, value, "BoolProperty8");
+                base.SetValue<bool>(value, "BoolProperty8");
             }
         }
 
@@ -2981,11 +2783,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty9;
+                return base.GetValue<string>("StringProperty9");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty9, value, "StringProperty9");
+                base.SetValue<string>(value, "StringProperty9");
             }
         }
 
@@ -3065,11 +2867,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty9;
+                return base.GetValue<int>("IntProperty9");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty9, value, "IntProperty9");
+                base.SetValue<int>(value, "IntProperty9");
             }
         }
 
@@ -3149,11 +2951,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty9;
+                return base.GetValue<bool>("BoolProperty9");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty9, value, "BoolProperty9");
+                base.SetValue<bool>(value, "BoolProperty9");
             }
         }
 
@@ -3233,11 +3035,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty10;
+                return base.GetValue<string>("StringProperty10");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty10, value, "StringProperty10");
+                base.SetValue<string>(value, "StringProperty10");
             }
         }
 
@@ -3317,11 +3119,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty10;
+                return base.GetValue<int>("IntProperty10");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty10, value, "IntProperty10");
+                base.SetValue<int>(value, "IntProperty10");
             }
         }
 
@@ -3401,11 +3203,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty10;
+                return base.GetValue<bool>("BoolProperty10");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty10, value, "BoolProperty10");
+                base.SetValue<bool>(value, "BoolProperty10");
             }
         }
 
@@ -3485,11 +3287,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty11;
+                return base.GetValue<string>("StringProperty11");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty11, value, "StringProperty11");
+                base.SetValue<string>(value, "StringProperty11");
             }
         }
 
@@ -3569,11 +3371,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty11;
+                return base.GetValue<int>("IntProperty11");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty11, value, "IntProperty11");
+                base.SetValue<int>(value, "IntProperty11");
             }
         }
 
@@ -3653,11 +3455,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty11;
+                return base.GetValue<bool>("BoolProperty11");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty11, value, "BoolProperty11");
+                base.SetValue<bool>(value, "BoolProperty11");
             }
         }
 
@@ -3737,11 +3539,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty12;
+                return base.GetValue<string>("StringProperty12");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty12, value, "StringProperty12");
+                base.SetValue<string>(value, "StringProperty12");
             }
         }
 
@@ -3821,11 +3623,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty12;
+                return base.GetValue<int>("IntProperty12");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty12, value, "IntProperty12");
+                base.SetValue<int>(value, "IntProperty12");
             }
         }
 
@@ -3905,11 +3707,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty12;
+                return base.GetValue<bool>("BoolProperty12");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty12, value, "BoolProperty12");
+                base.SetValue<bool>(value, "BoolProperty12");
             }
         }
 
@@ -3989,11 +3791,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty13;
+                return base.GetValue<string>("StringProperty13");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty13, value, "StringProperty13");
+                base.SetValue<string>(value, "StringProperty13");
             }
         }
 
@@ -4073,11 +3875,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty13;
+                return base.GetValue<int>("IntProperty13");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty13, value, "IntProperty13");
+                base.SetValue<int>(value, "IntProperty13");
             }
         }
 
@@ -4157,11 +3959,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty13;
+                return base.GetValue<bool>("BoolProperty13");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty13, value, "BoolProperty13");
+                base.SetValue<bool>(value, "BoolProperty13");
             }
         }
 
@@ -4241,11 +4043,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty14;
+                return base.GetValue<string>("StringProperty14");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty14, value, "StringProperty14");
+                base.SetValue<string>(value, "StringProperty14");
             }
         }
 
@@ -4325,11 +4127,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty14;
+                return base.GetValue<int>("IntProperty14");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty14, value, "IntProperty14");
+                base.SetValue<int>(value, "IntProperty14");
             }
         }
 
@@ -4409,11 +4211,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty14;
+                return base.GetValue<bool>("BoolProperty14");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty14, value, "BoolProperty14");
+                base.SetValue<bool>(value, "BoolProperty14");
             }
         }
 
@@ -4493,11 +4295,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty15;
+                return base.GetValue<string>("StringProperty15");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty15, value, "StringProperty15");
+                base.SetValue<string>(value, "StringProperty15");
             }
         }
 
@@ -4577,11 +4379,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty15;
+                return base.GetValue<int>("IntProperty15");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty15, value, "IntProperty15");
+                base.SetValue<int>(value, "IntProperty15");
             }
         }
 
@@ -4661,11 +4463,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty15;
+                return base.GetValue<bool>("BoolProperty15");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty15, value, "BoolProperty15");
+                base.SetValue<bool>(value, "BoolProperty15");
             }
         }
 
@@ -4745,11 +4547,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty16;
+                return base.GetValue<string>("StringProperty16");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty16, value, "StringProperty16");
+                base.SetValue<string>(value, "StringProperty16");
             }
         }
 
@@ -4829,11 +4631,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty16;
+                return base.GetValue<int>("IntProperty16");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty16, value, "IntProperty16");
+                base.SetValue<int>(value, "IntProperty16");
             }
         }
 
@@ -4913,11 +4715,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty16;
+                return base.GetValue<bool>("BoolProperty16");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty16, value, "BoolProperty16");
+                base.SetValue<bool>(value, "BoolProperty16");
             }
         }
 
@@ -4997,11 +4799,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty17;
+                return base.GetValue<string>("StringProperty17");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty17, value, "StringProperty17");
+                base.SetValue<string>(value, "StringProperty17");
             }
         }
 
@@ -5081,11 +4883,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty17;
+                return base.GetValue<int>("IntProperty17");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty17, value, "IntProperty17");
+                base.SetValue<int>(value, "IntProperty17");
             }
         }
 
@@ -5165,11 +4967,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty17;
+                return base.GetValue<bool>("BoolProperty17");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty17, value, "BoolProperty17");
+                base.SetValue<bool>(value, "BoolProperty17");
             }
         }
 
@@ -5249,11 +5051,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty18;
+                return base.GetValue<string>("StringProperty18");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty18, value, "StringProperty18");
+                base.SetValue<string>(value, "StringProperty18");
             }
         }
 
@@ -5333,11 +5135,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty18;
+                return base.GetValue<int>("IntProperty18");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty18, value, "IntProperty18");
+                base.SetValue<int>(value, "IntProperty18");
             }
         }
 
@@ -5417,11 +5219,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty18;
+                return base.GetValue<bool>("BoolProperty18");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty18, value, "BoolProperty18");
+                base.SetValue<bool>(value, "BoolProperty18");
             }
         }
 
@@ -5501,11 +5303,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty19;
+                return base.GetValue<string>("StringProperty19");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty19, value, "StringProperty19");
+                base.SetValue<string>(value, "StringProperty19");
             }
         }
 
@@ -5585,11 +5387,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty19;
+                return base.GetValue<int>("IntProperty19");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty19, value, "IntProperty19");
+                base.SetValue<int>(value, "IntProperty19");
             }
         }
 
@@ -5669,11 +5471,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty19;
+                return base.GetValue<bool>("BoolProperty19");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty19, value, "BoolProperty19");
+                base.SetValue<bool>(value, "BoolProperty19");
             }
         }
 
@@ -5753,11 +5555,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty20;
+                return base.GetValue<string>("StringProperty20");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty20, value, "StringProperty20");
+                base.SetValue<string>(value, "StringProperty20");
             }
         }
 
@@ -5837,11 +5639,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty20;
+                return base.GetValue<int>("IntProperty20");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty20, value, "IntProperty20");
+                base.SetValue<int>(value, "IntProperty20");
             }
         }
 
@@ -5921,11 +5723,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty20;
+                return base.GetValue<bool>("BoolProperty20");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty20, value, "BoolProperty20");
+                base.SetValue<bool>(value, "BoolProperty20");
             }
         }
 
@@ -6005,11 +5807,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty21;
+                return base.GetValue<string>("StringProperty21");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty21, value, "StringProperty21");
+                base.SetValue<string>(value, "StringProperty21");
             }
         }
 
@@ -6089,11 +5891,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty21;
+                return base.GetValue<int>("IntProperty21");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty21, value, "IntProperty21");
+                base.SetValue<int>(value, "IntProperty21");
             }
         }
 
@@ -6173,11 +5975,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty21;
+                return base.GetValue<bool>("BoolProperty21");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty21, value, "BoolProperty21");
+                base.SetValue<bool>(value, "BoolProperty21");
             }
         }
 
@@ -6257,11 +6059,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty22;
+                return base.GetValue<string>("StringProperty22");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty22, value, "StringProperty22");
+                base.SetValue<string>(value, "StringProperty22");
             }
         }
 
@@ -6341,11 +6143,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty22;
+                return base.GetValue<int>("IntProperty22");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty22, value, "IntProperty22");
+                base.SetValue<int>(value, "IntProperty22");
             }
         }
 
@@ -6425,11 +6227,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty22;
+                return base.GetValue<bool>("BoolProperty22");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty22, value, "BoolProperty22");
+                base.SetValue<bool>(value, "BoolProperty22");
             }
         }
 
@@ -6509,11 +6311,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty23;
+                return base.GetValue<string>("StringProperty23");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty23, value, "StringProperty23");
+                base.SetValue<string>(value, "StringProperty23");
             }
         }
 
@@ -6593,11 +6395,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty23;
+                return base.GetValue<int>("IntProperty23");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty23, value, "IntProperty23");
+                base.SetValue<int>(value, "IntProperty23");
             }
         }
 
@@ -6677,11 +6479,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty23;
+                return base.GetValue<bool>("BoolProperty23");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty23, value, "BoolProperty23");
+                base.SetValue<bool>(value, "BoolProperty23");
             }
         }
 
@@ -6761,11 +6563,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty24;
+                return base.GetValue<string>("StringProperty24");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty24, value, "StringProperty24");
+                base.SetValue<string>(value, "StringProperty24");
             }
         }
 
@@ -6845,11 +6647,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty24;
+                return base.GetValue<int>("IntProperty24");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty24, value, "IntProperty24");
+                base.SetValue<int>(value, "IntProperty24");
             }
         }
 
@@ -6929,11 +6731,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty24;
+                return base.GetValue<bool>("BoolProperty24");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty24, value, "BoolProperty24");
+                base.SetValue<bool>(value, "BoolProperty24");
             }
         }
 
@@ -7013,11 +6815,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty25;
+                return base.GetValue<string>("StringProperty25");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty25, value, "StringProperty25");
+                base.SetValue<string>(value, "StringProperty25");
             }
         }
 
@@ -7097,11 +6899,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty25;
+                return base.GetValue<int>("IntProperty25");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty25, value, "IntProperty25");
+                base.SetValue<int>(value, "IntProperty25");
             }
         }
 
@@ -7181,11 +6983,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty25;
+                return base.GetValue<bool>("BoolProperty25");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty25, value, "BoolProperty25");
+                base.SetValue<bool>(value, "BoolProperty25");
             }
         }
 
@@ -7265,11 +7067,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty26;
+                return base.GetValue<string>("StringProperty26");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty26, value, "StringProperty26");
+                base.SetValue<string>(value, "StringProperty26");
             }
         }
 
@@ -7349,11 +7151,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty26;
+                return base.GetValue<int>("IntProperty26");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty26, value, "IntProperty26");
+                base.SetValue<int>(value, "IntProperty26");
             }
         }
 
@@ -7433,11 +7235,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty26;
+                return base.GetValue<bool>("BoolProperty26");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty26, value, "BoolProperty26");
+                base.SetValue<bool>(value, "BoolProperty26");
             }
         }
 
@@ -7517,11 +7319,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty27;
+                return base.GetValue<string>("StringProperty27");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty27, value, "StringProperty27");
+                base.SetValue<string>(value, "StringProperty27");
             }
         }
 
@@ -7601,11 +7403,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty27;
+                return base.GetValue<int>("IntProperty27");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty27, value, "IntProperty27");
+                base.SetValue<int>(value, "IntProperty27");
             }
         }
 
@@ -7685,11 +7487,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty27;
+                return base.GetValue<bool>("BoolProperty27");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty27, value, "BoolProperty27");
+                base.SetValue<bool>(value, "BoolProperty27");
             }
         }
 
@@ -7769,11 +7571,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty28;
+                return base.GetValue<string>("StringProperty28");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty28, value, "StringProperty28");
+                base.SetValue<string>(value, "StringProperty28");
             }
         }
 
@@ -7853,11 +7655,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty28;
+                return base.GetValue<int>("IntProperty28");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty28, value, "IntProperty28");
+                base.SetValue<int>(value, "IntProperty28");
             }
         }
 
@@ -7937,11 +7739,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty28;
+                return base.GetValue<bool>("BoolProperty28");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty28, value, "BoolProperty28");
+                base.SetValue<bool>(value, "BoolProperty28");
             }
         }
 
@@ -8021,11 +7823,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty29;
+                return base.GetValue<string>("StringProperty29");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty29, value, "StringProperty29");
+                base.SetValue<string>(value, "StringProperty29");
             }
         }
 
@@ -8105,11 +7907,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty29;
+                return base.GetValue<int>("IntProperty29");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty29, value, "IntProperty29");
+                base.SetValue<int>(value, "IntProperty29");
             }
         }
 
@@ -8189,11 +7991,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty29;
+                return base.GetValue<bool>("BoolProperty29");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty29, value, "BoolProperty29");
+                base.SetValue<bool>(value, "BoolProperty29");
             }
         }
 
@@ -8273,11 +8075,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._StringProperty30;
+                return base.GetValue<string>("StringProperty30");
             }
             set
             {
-                base.SetProperty<string>(ref this._StringProperty30, value, "StringProperty30");
+                base.SetValue<string>(value, "StringProperty30");
             }
         }
 
@@ -8357,11 +8159,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._IntProperty30;
+                return base.GetValue<int>("IntProperty30");
             }
             set
             {
-                base.SetProperty<int>(ref this._IntProperty30, value, "IntProperty30");
+                base.SetValue<int>(value, "IntProperty30");
             }
         }
 
@@ -8441,11 +8243,11 @@ namespace Jeeves.CustomModels
         {
             get
             {
-                return this._BoolProperty30;
+                return base.GetValue<bool>("BoolProperty30");
             }
             set
             {
-                base.SetProperty<bool>(ref this._BoolProperty30, value, "BoolProperty30");
+                base.SetValue<bool>(value, "BoolProperty30");
             }
         }
 
@@ -8518,6 +8320,762 @@ namespace Jeeves.CustomModels
             set
             {
                 base.SetIsCurrentInternal(value, "IsCurrent_BoolProperty30");
+            }
+        }
+
+        public string StringProperty31
+        {
+            get
+            {
+                return base.GetValue<string>("StringProperty31");
+            }
+            set
+            {
+                base.SetValue<string>(value, "StringProperty31");
+            }
+        }
+
+        public string Foreground_StringProperty31
+        {
+            get
+            {
+                return base.GetForegroundInternal("Foreground_StringProperty31");
+            }
+            set
+            {
+                base.SetForegroundInternal(value, "Foreground_StringProperty31");
+            }
+        }
+
+        public string Background_StringProperty31
+        {
+            get
+            {
+                return base.GetBackgroundInternal("Background_StringProperty31");
+            }
+            set
+            {
+                base.SetBackgroundInternal(value, "Background_StringProperty31");
+            }
+        }
+
+        public bool IsEnabled_StringProperty31
+        {
+            get
+            {
+                return base.GetIsEnabledInternal("IsEnabled_StringProperty31");
+            }
+            set
+            {
+                base.SetIsEnabledInternal(value, "IsEnabled_StringProperty31");
+            }
+        }
+
+        public bool IsReadOnly_StringProperty31
+        {
+            get
+            {
+                return base.GetIsReadOnlyInternal("IsReadOnly_StringProperty31");
+            }
+            set
+            {
+                base.SetIsReadOnlyInternal(value, "IsReadOnly_StringProperty31");
+            }
+        }
+
+        public bool IsInEditMode_StringProperty31
+        {
+            get
+            {
+                return base.GetIsInEditModeInternal("IsInEditMode_StringProperty31");
+            }
+            set
+            {
+                base.SetIsInEditModeInternal(value, "IsInEditMode_StringProperty31");
+            }
+        }
+
+        public bool IsCurrent_StringProperty31
+        {
+            get
+            {
+                return base.GetIsCurrentInternal("IsCurrent_StringProperty31");
+            }
+            set
+            {
+                base.SetIsCurrentInternal(value, "IsCurrent_StringProperty31");
+            }
+        }
+
+        public int IntProperty31
+        {
+            get
+            {
+                return base.GetValue<int>("IntProperty31");
+            }
+            set
+            {
+                base.SetValue<int>(value, "IntProperty31");
+            }
+        }
+
+        public string Foreground_IntProperty31
+        {
+            get
+            {
+                return base.GetForegroundInternal("Foreground_IntProperty31");
+            }
+            set
+            {
+                base.SetForegroundInternal(value, "Foreground_IntProperty31");
+            }
+        }
+
+        public string Background_IntProperty31
+        {
+            get
+            {
+                return base.GetBackgroundInternal("Background_IntProperty31");
+            }
+            set
+            {
+                base.SetBackgroundInternal(value, "Background_IntProperty31");
+            }
+        }
+
+        public bool IsEnabled_IntProperty31
+        {
+            get
+            {
+                return base.GetIsEnabledInternal("IsEnabled_IntProperty31");
+            }
+            set
+            {
+                base.SetIsEnabledInternal(value, "IsEnabled_IntProperty31");
+            }
+        }
+
+        public bool IsReadOnly_IntProperty31
+        {
+            get
+            {
+                return base.GetIsReadOnlyInternal("IsReadOnly_IntProperty31");
+            }
+            set
+            {
+                base.SetIsReadOnlyInternal(value, "IsReadOnly_IntProperty31");
+            }
+        }
+
+        public bool IsInEditMode_IntProperty31
+        {
+            get
+            {
+                return base.GetIsInEditModeInternal("IsInEditMode_IntProperty31");
+            }
+            set
+            {
+                base.SetIsInEditModeInternal(value, "IsInEditMode_IntProperty31");
+            }
+        }
+
+        public bool IsCurrent_IntProperty31
+        {
+            get
+            {
+                return base.GetIsCurrentInternal("IsCurrent_IntProperty31");
+            }
+            set
+            {
+                base.SetIsCurrentInternal(value, "IsCurrent_IntProperty31");
+            }
+        }
+
+        public bool BoolProperty31
+        {
+            get
+            {
+                return base.GetValue<bool>("BoolProperty31");
+            }
+            set
+            {
+                base.SetValue<bool>(value, "BoolProperty31");
+            }
+        }
+
+        public string Foreground_BoolProperty31
+        {
+            get
+            {
+                return base.GetForegroundInternal("Foreground_BoolProperty31");
+            }
+            set
+            {
+                base.SetForegroundInternal(value, "Foreground_BoolProperty31");
+            }
+        }
+
+        public string Background_BoolProperty31
+        {
+            get
+            {
+                return base.GetBackgroundInternal("Background_BoolProperty31");
+            }
+            set
+            {
+                base.SetBackgroundInternal(value, "Background_BoolProperty31");
+            }
+        }
+
+        public bool IsEnabled_BoolProperty31
+        {
+            get
+            {
+                return base.GetIsEnabledInternal("IsEnabled_BoolProperty31");
+            }
+            set
+            {
+                base.SetIsEnabledInternal(value, "IsEnabled_BoolProperty31");
+            }
+        }
+
+        public bool IsReadOnly_BoolProperty31
+        {
+            get
+            {
+                return base.GetIsReadOnlyInternal("IsReadOnly_BoolProperty31");
+            }
+            set
+            {
+                base.SetIsReadOnlyInternal(value, "IsReadOnly_BoolProperty31");
+            }
+        }
+
+        public bool IsInEditMode_BoolProperty31
+        {
+            get
+            {
+                return base.GetIsInEditModeInternal("IsInEditMode_BoolProperty31");
+            }
+            set
+            {
+                base.SetIsInEditModeInternal(value, "IsInEditMode_BoolProperty31");
+            }
+        }
+
+        public bool IsCurrent_BoolProperty31
+        {
+            get
+            {
+                return base.GetIsCurrentInternal("IsCurrent_BoolProperty31");
+            }
+            set
+            {
+                base.SetIsCurrentInternal(value, "IsCurrent_BoolProperty31");
+            }
+        }
+
+        public string StringProperty32
+        {
+            get
+            {
+                return base.GetValue<string>("StringProperty32");
+            }
+            set
+            {
+                base.SetValue<string>(value, "StringProperty32");
+            }
+        }
+
+        public string Foreground_StringProperty32
+        {
+            get
+            {
+                return base.GetForegroundInternal("Foreground_StringProperty32");
+            }
+            set
+            {
+                base.SetForegroundInternal(value, "Foreground_StringProperty32");
+            }
+        }
+
+        public string Background_StringProperty32
+        {
+            get
+            {
+                return base.GetBackgroundInternal("Background_StringProperty32");
+            }
+            set
+            {
+                base.SetBackgroundInternal(value, "Background_StringProperty32");
+            }
+        }
+
+        public bool IsEnabled_StringProperty32
+        {
+            get
+            {
+                return base.GetIsEnabledInternal("IsEnabled_StringProperty32");
+            }
+            set
+            {
+                base.SetIsEnabledInternal(value, "IsEnabled_StringProperty32");
+            }
+        }
+
+        public bool IsReadOnly_StringProperty32
+        {
+            get
+            {
+                return base.GetIsReadOnlyInternal("IsReadOnly_StringProperty32");
+            }
+            set
+            {
+                base.SetIsReadOnlyInternal(value, "IsReadOnly_StringProperty32");
+            }
+        }
+
+        public bool IsInEditMode_StringProperty32
+        {
+            get
+            {
+                return base.GetIsInEditModeInternal("IsInEditMode_StringProperty32");
+            }
+            set
+            {
+                base.SetIsInEditModeInternal(value, "IsInEditMode_StringProperty32");
+            }
+        }
+
+        public bool IsCurrent_StringProperty32
+        {
+            get
+            {
+                return base.GetIsCurrentInternal("IsCurrent_StringProperty32");
+            }
+            set
+            {
+                base.SetIsCurrentInternal(value, "IsCurrent_StringProperty32");
+            }
+        }
+
+        public int IntProperty32
+        {
+            get
+            {
+                return base.GetValue<int>("IntProperty32");
+            }
+            set
+            {
+                base.SetValue<int>(value, "IntProperty32");
+            }
+        }
+
+        public string Foreground_IntProperty32
+        {
+            get
+            {
+                return base.GetForegroundInternal("Foreground_IntProperty32");
+            }
+            set
+            {
+                base.SetForegroundInternal(value, "Foreground_IntProperty32");
+            }
+        }
+
+        public string Background_IntProperty32
+        {
+            get
+            {
+                return base.GetBackgroundInternal("Background_IntProperty32");
+            }
+            set
+            {
+                base.SetBackgroundInternal(value, "Background_IntProperty32");
+            }
+        }
+
+        public bool IsEnabled_IntProperty32
+        {
+            get
+            {
+                return base.GetIsEnabledInternal("IsEnabled_IntProperty32");
+            }
+            set
+            {
+                base.SetIsEnabledInternal(value, "IsEnabled_IntProperty32");
+            }
+        }
+
+        public bool IsReadOnly_IntProperty32
+        {
+            get
+            {
+                return base.GetIsReadOnlyInternal("IsReadOnly_IntProperty32");
+            }
+            set
+            {
+                base.SetIsReadOnlyInternal(value, "IsReadOnly_IntProperty32");
+            }
+        }
+
+        public bool IsInEditMode_IntProperty32
+        {
+            get
+            {
+                return base.GetIsInEditModeInternal("IsInEditMode_IntProperty32");
+            }
+            set
+            {
+                base.SetIsInEditModeInternal(value, "IsInEditMode_IntProperty32");
+            }
+        }
+
+        public bool IsCurrent_IntProperty32
+        {
+            get
+            {
+                return base.GetIsCurrentInternal("IsCurrent_IntProperty32");
+            }
+            set
+            {
+                base.SetIsCurrentInternal(value, "IsCurrent_IntProperty32");
+            }
+        }
+
+        public bool BoolProperty32
+        {
+            get
+            {
+                return base.GetValue<bool>("BoolProperty32");
+            }
+            set
+            {
+                base.SetValue<bool>(value, "BoolProperty32");
+            }
+        }
+
+        public string Foreground_BoolProperty32
+        {
+            get
+            {
+                return base.GetForegroundInternal("Foreground_BoolProperty32");
+            }
+            set
+            {
+                base.SetForegroundInternal(value, "Foreground_BoolProperty32");
+            }
+        }
+
+        public string Background_BoolProperty32
+        {
+            get
+            {
+                return base.GetBackgroundInternal("Background_BoolProperty32");
+            }
+            set
+            {
+                base.SetBackgroundInternal(value, "Background_BoolProperty32");
+            }
+        }
+
+        public bool IsEnabled_BoolProperty32
+        {
+            get
+            {
+                return base.GetIsEnabledInternal("IsEnabled_BoolProperty32");
+            }
+            set
+            {
+                base.SetIsEnabledInternal(value, "IsEnabled_BoolProperty32");
+            }
+        }
+
+        public bool IsReadOnly_BoolProperty32
+        {
+            get
+            {
+                return base.GetIsReadOnlyInternal("IsReadOnly_BoolProperty32");
+            }
+            set
+            {
+                base.SetIsReadOnlyInternal(value, "IsReadOnly_BoolProperty32");
+            }
+        }
+
+        public bool IsInEditMode_BoolProperty32
+        {
+            get
+            {
+                return base.GetIsInEditModeInternal("IsInEditMode_BoolProperty32");
+            }
+            set
+            {
+                base.SetIsInEditModeInternal(value, "IsInEditMode_BoolProperty32");
+            }
+        }
+
+        public bool IsCurrent_BoolProperty32
+        {
+            get
+            {
+                return base.GetIsCurrentInternal("IsCurrent_BoolProperty32");
+            }
+            set
+            {
+                base.SetIsCurrentInternal(value, "IsCurrent_BoolProperty32");
+            }
+        }
+
+        public string StringProperty33
+        {
+            get
+            {
+                return base.GetValue<string>("StringProperty33");
+            }
+            set
+            {
+                base.SetValue<string>(value, "StringProperty33");
+            }
+        }
+
+        public string Foreground_StringProperty33
+        {
+            get
+            {
+                return base.GetForegroundInternal("Foreground_StringProperty33");
+            }
+            set
+            {
+                base.SetForegroundInternal(value, "Foreground_StringProperty33");
+            }
+        }
+
+        public string Background_StringProperty33
+        {
+            get
+            {
+                return base.GetBackgroundInternal("Background_StringProperty33");
+            }
+            set
+            {
+                base.SetBackgroundInternal(value, "Background_StringProperty33");
+            }
+        }
+
+        public bool IsEnabled_StringProperty33
+        {
+            get
+            {
+                return base.GetIsEnabledInternal("IsEnabled_StringProperty33");
+            }
+            set
+            {
+                base.SetIsEnabledInternal(value, "IsEnabled_StringProperty33");
+            }
+        }
+
+        public bool IsReadOnly_StringProperty33
+        {
+            get
+            {
+                return base.GetIsReadOnlyInternal("IsReadOnly_StringProperty33");
+            }
+            set
+            {
+                base.SetIsReadOnlyInternal(value, "IsReadOnly_StringProperty33");
+            }
+        }
+
+        public bool IsInEditMode_StringProperty33
+        {
+            get
+            {
+                return base.GetIsInEditModeInternal("IsInEditMode_StringProperty33");
+            }
+            set
+            {
+                base.SetIsInEditModeInternal(value, "IsInEditMode_StringProperty33");
+            }
+        }
+
+        public bool IsCurrent_StringProperty33
+        {
+            get
+            {
+                return base.GetIsCurrentInternal("IsCurrent_StringProperty33");
+            }
+            set
+            {
+                base.SetIsCurrentInternal(value, "IsCurrent_StringProperty33");
+            }
+        }
+
+        public int IntProperty33
+        {
+            get
+            {
+                return base.GetValue<int>("IntProperty33");
+            }
+            set
+            {
+                base.SetValue<int>(value, "IntProperty33");
+            }
+        }
+
+        public string Foreground_IntProperty33
+        {
+            get
+            {
+                return base.GetForegroundInternal("Foreground_IntProperty33");
+            }
+            set
+            {
+                base.SetForegroundInternal(value, "Foreground_IntProperty33");
+            }
+        }
+
+        public string Background_IntProperty33
+        {
+            get
+            {
+                return base.GetBackgroundInternal("Background_IntProperty33");
+            }
+            set
+            {
+                base.SetBackgroundInternal(value, "Background_IntProperty33");
+            }
+        }
+
+        public bool IsEnabled_IntProperty33
+        {
+            get
+            {
+                return base.GetIsEnabledInternal("IsEnabled_IntProperty33");
+            }
+            set
+            {
+                base.SetIsEnabledInternal(value, "IsEnabled_IntProperty33");
+            }
+        }
+
+        public bool IsReadOnly_IntProperty33
+        {
+            get
+            {
+                return base.GetIsReadOnlyInternal("IsReadOnly_IntProperty33");
+            }
+            set
+            {
+                base.SetIsReadOnlyInternal(value, "IsReadOnly_IntProperty33");
+            }
+        }
+
+        public bool IsInEditMode_IntProperty33
+        {
+            get
+            {
+                return base.GetIsInEditModeInternal("IsInEditMode_IntProperty33");
+            }
+            set
+            {
+                base.SetIsInEditModeInternal(value, "IsInEditMode_IntProperty33");
+            }
+        }
+
+        public bool IsCurrent_IntProperty33
+        {
+            get
+            {
+                return base.GetIsCurrentInternal("IsCurrent_IntProperty33");
+            }
+            set
+            {
+                base.SetIsCurrentInternal(value, "IsCurrent_IntProperty33");
+            }
+        }
+
+        public bool BoolProperty33
+        {
+            get
+            {
+                return base.GetValue<bool>("BoolProperty33");
+            }
+            set
+            {
+                base.SetValue<bool>(value, "BoolProperty33");
+            }
+        }
+
+        public string Foreground_BoolProperty33
+        {
+            get
+            {
+                return base.GetForegroundInternal("Foreground_BoolProperty33");
+            }
+            set
+            {
+                base.SetForegroundInternal(value, "Foreground_BoolProperty33");
+            }
+        }
+
+        public string Background_BoolProperty33
+        {
+            get
+            {
+                return base.GetBackgroundInternal("Background_BoolProperty33");
+            }
+            set
+            {
+                base.SetBackgroundInternal(value, "Background_BoolProperty33");
+            }
+        }
+
+        public bool IsEnabled_BoolProperty33
+        {
+            get
+            {
+                return base.GetIsEnabledInternal("IsEnabled_BoolProperty33");
+            }
+            set
+            {
+                base.SetIsEnabledInternal(value, "IsEnabled_BoolProperty33");
+            }
+        }
+
+        public bool IsReadOnly_BoolProperty33
+        {
+            get
+            {
+                return base.GetIsReadOnlyInternal("IsReadOnly_BoolProperty33");
+            }
+            set
+            {
+                base.SetIsReadOnlyInternal(value, "IsReadOnly_BoolProperty33");
+            }
+        }
+
+        public bool IsInEditMode_BoolProperty33
+        {
+            get
+            {
+                return base.GetIsInEditModeInternal("IsInEditMode_BoolProperty33");
+            }
+            set
+            {
+                base.SetIsInEditModeInternal(value, "IsInEditMode_BoolProperty33");
+            }
+        }
+
+        public bool IsCurrent_BoolProperty33
+        {
+            get
+            {
+                return base.GetIsCurrentInternal("IsCurrent_BoolProperty33");
+            }
+            set
+            {
+                base.SetIsCurrentInternal(value, "IsCurrent_BoolProperty33");
             }
         }
 
