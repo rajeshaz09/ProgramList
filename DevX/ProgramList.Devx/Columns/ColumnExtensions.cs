@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Grid;
+using DevExpress.Xpf.Grid.Themes;
 using ProgramList.Common.Converters;
 using System;
 using System.Windows;
@@ -10,7 +11,7 @@ namespace ProgramList.DevX.Columns
 {
     public static class ColumnExtensions
     {
-        //private static Style DefaultCellStyle = Application.Current.FindResource("GridViewCellCoreValidationStyle") as Style;
+        private static Style DefaultCellStyle = Application.Current.FindResource(new GridRowThemeKeyExtension() { ResourceKey = GridRowThemeKeys.LightweightCellStyle }) as Style;
         private static IValueConverter RGBToBrushConverter = new RGBToBrushConverter();
         public static void ApplyDefaultSettings(this GridColumn column, 
             string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
@@ -33,9 +34,12 @@ namespace ProgramList.DevX.Columns
 
             //column.Rea = new Binding($"IsReadOnly_{column.FieldName}") { Mode = BindingMode.TwoWay };
 
-
-
-            var cellStyle = new Style(typeof(LightweightCellEditor));
+            var cellStyle = new Style
+            {
+                BasedOn = DefaultCellStyle,
+                TargetType = typeof(LightweightCellEditor)
+            };
+            
             cellStyle.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, new Binding($"Data.Foreground_{column.FieldName}") { Mode = BindingMode.TwoWay, Converter = RGBToBrushConverter }));
             cellStyle.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, new Binding($"Data.Background_{column.FieldName}") { Mode = BindingMode.TwoWay, Converter = RGBToBrushConverter }));
             cellStyle.Setters.Add(new Setter(UIElement.IsEnabledProperty, new Binding($"Data.IsEnabled_{column.FieldName}") { Mode = BindingMode.TwoWay }));
