@@ -55,11 +55,11 @@ namespace ProgramList.DevX.Views
             //ProgramList.ListGrid.Columns.AddRange(viewModel.Columns.Cast<Telerik.Windows.Controls.GridViewColumn>());
             //foreach (var column in viewModel.Columns)
             //    ProgramList.ListGrid.Columns.Add(column as GridColumn);
-
-            ProgramList.ListGrid.ItemsSourceChanged += ListGrid_ItemsSourceChanged;
+            
 
             ProgramList.DataContext = viewModel;
 
+            ResizeColumnsInternal(ProgramList.ListGrid.View as TableView);
         }
 
         private void ListGrid_LayoutUpdated(object sender, EventArgs e)
@@ -83,16 +83,15 @@ namespace ProgramList.DevX.Views
             //).ConfigureAwait(false);
         }
 
-        private void ListGrid_ItemsSourceChanged(object sender, ItemsSourceChangedEventArgs e)
-        {
-            ResizeColumnsInternal((sender as GridControl).View as TableView);
-        }
-
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
+
             var viewModel = ProgramList.DataContext
                 as ViewModels.ProgramListViewModel;
             viewModel.GridData.Clear();
+
+            //(((viewModel.Columns[3] as DropDownColumnInfo).EditSettings as ComboBoxEditSettings)
+            //    .ItemsSource as DropDownItemCollection).Add(new DropDownItem("4", "Four"));
         }
 
         private void ClearAndLoadGrid_Click(object sender, RoutedEventArgs e)

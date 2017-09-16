@@ -22,6 +22,9 @@ namespace ProgramList.DevX.Columns
             column.Visible = isVisible;
             column.ReadOnly = isReadOnly;
             column.IsEnabled = isEnabled;
+            column.AllowEditing = DevExpress.Utils.DefaultBoolean.False;
+            column.AllowFocus = isEnabled;
+
             //column.select = isSelected;
             column.AllowGrouping =  DevExpress.Utils.DefaultBoolean.True;
 

@@ -35,7 +35,7 @@ namespace ProgramList.DevX.ViewModels
                 new DropDownItem("3", "Three"),
             };
 
-            viewModel.Columns.Add(new DropDownColumnInfo("DropDown", typeof(string), dropDownDataSource, true, false, true, false));
+            viewModel.Columns.Add(new DropDownColumnInfo("DropDown", typeof(string), dropDownDataSource, true, true, true, false));
 
             var chartItemsSource = new ChartPointCollection()
             {
@@ -101,6 +101,7 @@ namespace ProgramList.DevX.ViewModels
                     model.SetValue(row % 2 == 0, "BoolProperty");
                     model.SetValue($"1 R {row}", "Button1");
                     model.SetValue($"2 R {row}", "Button2");
+                    model.SetValue(false, "IsEnabled_DropDown");
 
                     //if (index == 1)
                     //{

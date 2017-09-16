@@ -3,32 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ProgramList.DevX.Views"
+             xmlns:My="clr-namespace:ProgramList.DevX.Views"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              x:Class="ProgramList.DevX.Views.ProgramListView"
              xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"          
              mc:Ignorable="d" 
              Width="auto"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <DataTemplate xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
-                      x:Key="DefaultColumnTemplate">
-            <dx:SimpleButton Content="AAA" Command="" />
-        </DataTemplate>
-    </UserControl.Resources>
     <dxg:GridControl x:Name="ListGrid" 
                      ItemsSource="{Binding Path=GridData}" 
                      ColumnsSource="{Binding Columns}"
                       
                      >
         <dxg:GridControl.View>
-            <dxg:TableView 
+            <My:MyTableView 
                 AllowPerPixelScrolling="True" 
                 ShowTotalSummary="True" 
                 BestFitArea="Header" 
                 AllowBestFit="True" 
                 AllowColumnMoving="True"
                 AllowResizing="True"
+                MultiSelectMode="Cell"
                 />
         </dxg:GridControl.View>
     </dxg:GridControl>

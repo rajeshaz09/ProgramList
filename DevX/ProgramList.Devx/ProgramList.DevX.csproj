@@ -88,6 +88,7 @@
     <Compile Include="Models\ObservableCollectionEx.cs" />
     <Compile Include="ViewModels\ProgramListViewModel.cs" />
     <Compile Include="ViewModels\ProgramListViewModelHelper.cs" />
+    <Compile Include="Views\MyTableView.cs" />
     <Compile Include="Views\ProgramListView.xaml.cs">
       <DependentUpon>ProgramListView.xaml</DependentUpon>
     </Compile>
