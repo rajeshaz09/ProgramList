@@ -12,11 +12,13 @@ namespace ProgramList.DevX.Columns
     {
         public int Ordinal { get; private set; }
         public string UniqueName { get => FieldName; set => FieldName = value; }
-        public Type DataType { get; private set; }
+        public Type DataType { get; set; }
+        public bool IsSelected { get; set; }
 
         public ColumnInfo(string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
         {
             DataType = dataType;
+            IsSelected = isSelected;
             this.ApplyDefaultSettings(header, dataType, isVisible, isReadOnly, isEnabled, isSelected);
         }
     }

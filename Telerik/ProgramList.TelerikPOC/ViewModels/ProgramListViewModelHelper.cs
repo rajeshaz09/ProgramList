@@ -52,7 +52,7 @@ namespace ProgramList.TelerikPOC.ViewModels
 
             viewModel.Columns.Add(new ButtonColumnInfo("Button1", typeof(string), viewModel.GenerateCommand("Button1"), true, false, true, false));
             viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button2"), true, false, true, false));
-            //viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
+            viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
 
             viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(string), InputMode.DateTimePicker, true, false, true, false));
 
@@ -104,13 +104,13 @@ namespace ProgramList.TelerikPOC.ViewModels
                 {
                     model.SetBackground("#EC2B2B", "StringProperty1");
                     model.SetForeground("#FFFFFF", "StringProperty1");
+                    model.SetValue(@"pack://application:,,,/ProgramList.Common;Component//Images/Add.png", "Image");
+                    //@"pack://application:,,,/Images/Add.png"
+                    //@"ProgramList.Common;Component/Images/Add.png"
+
+                    //model.SetValue(chartItemsSource, "Chart");
                 }
 
-                //if (row == 1)
-                //{
-                //    //model.SetValue(@"pack://application:,,,/Images/Add.png", "Image");
-                //    //model.SetValue(chartItemsSource, "Chart");
-                //}
 
                 //var model = new Jeeves.CustomModels.MyType(viewModel.Columns, row);
                 //model.DropDown = row % 4;
