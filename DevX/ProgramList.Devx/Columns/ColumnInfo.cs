@@ -14,11 +14,13 @@ namespace ProgramList.DevX.Columns
         public string UniqueName { get => FieldName; set => FieldName = value; }
         public Type DataType { get; set; }
         public bool IsSelected { get; set; }
+        public bool IsLinked { get; private set; }
 
-        public ColumnInfo(string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
+        public ColumnInfo(string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected, bool isLinked)
         {
             DataType = dataType;
             IsSelected = isSelected;
+            IsLinked = isLinked;
             this.ApplyDefaultSettings(header, dataType, isVisible, isReadOnly, isEnabled, isSelected);
         }
     }

@@ -11,8 +11,8 @@ namespace ProgramList.DevX.Columns
     public sealed class ChartColumnInfo : ColumnInfo
     {
         private ChartPointCollection _itemsSource;
-        public ChartColumnInfo(string header, Type dataType, ChartPointCollection itemsSource, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
-            : base(header, dataType, isVisible, isReadOnly, isEnabled, isSelected)
+        public ChartColumnInfo(string header, Type dataType, ChartPointCollection itemsSource, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected, bool isLinked)
+            : base(header, dataType, isVisible, isReadOnly, isEnabled, isSelected, isLinked)
         {
             _itemsSource = itemsSource;
             CellTemplate = GetCellEditTemplate(FieldName);

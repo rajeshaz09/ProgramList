@@ -24,9 +24,9 @@ namespace ProgramList.DevX.ViewModels
             var viewModel = new ProgramListViewModel(rows, columnSets);
             //AddSampleColumns(viewModel.AddColumn);
 
-            viewModel.Columns.Add(new ColumnInfo("StringProperty", typeof(string), false, false, true, false));
-            viewModel.Columns.Add(new ColumnInfo("IntProperty", typeof(int), true, true, true, false));
-            viewModel.Columns.Add(new ColumnInfo("BoolProperty", typeof(bool), true, false, true, false));
+            viewModel.Columns.Add(new ColumnInfo("StringProperty", typeof(string), false, false, true, false, false));
+            viewModel.Columns.Add(new ColumnInfo("IntProperty", typeof(int), true, true, true, false, false));
+            viewModel.Columns.Add(new ColumnInfo("BoolProperty", typeof(bool), true, false, true, false, false));
             var dropDownDataSource = new DropDownItemCollection()
             {
                 new DropDownItem("0", "Zero"),
@@ -35,7 +35,7 @@ namespace ProgramList.DevX.ViewModels
                 new DropDownItem("3", "Three"),
             };
 
-            viewModel.Columns.Add(new DropDownColumnInfo("DropDown", typeof(string), dropDownDataSource, true, true, true, false));
+            viewModel.Columns.Add(new DropDownColumnInfo("DropDown", typeof(string), dropDownDataSource, true, true, true, false, false));
 
             var chartItemsSource = new ChartPointCollection()
             {
@@ -47,24 +47,24 @@ namespace ProgramList.DevX.ViewModels
                 new ChartPoint(2, "c6"),
             };
 
-            //viewModel.Columns.Add(new ChartColumnInfo("Chart", typeof(ChartPointCollection), chartItemsSource, true, false, true, false));
+            //viewModel.Columns.Add(new ChartColumnInfo("Chart", typeof(ChartPointCollection), chartItemsSource, true, false, true, false, false));
 
-            viewModel.Columns.Add(new ButtonColumnInfo("Button1", typeof(string), viewModel.GenerateCommand("Button1"), true, false, true, false));
-            viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button2"), true, false, true, false));
+            viewModel.Columns.Add(new ButtonColumnInfo("Button1", typeof(string), viewModel.GenerateCommand("Button1"), true, false, true, false, false));
+            viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button2"), true, false, true, false, false));
             //viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(DateTime?),  true, false, true, false));
+            viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(DateTime?),  true, false, true, false, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(DateTime?), true, false, true, false));
+            viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(DateTime?), true, false, true, false, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false));
+            viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false, false));
 
 
             for (var i = 1; i <= viewModel.ColumnSets; i++)
             {
-                viewModel.Columns.Add(new ColumnInfo($"StringProperty{i}", typeof(string), true, false, true, false));
-                viewModel.Columns.Add(new ColumnInfo($"IntProperty{i}", typeof(int), true, false, true, false));
-                viewModel.Columns.Add(new ColumnInfo($"BoolProperty{i}", typeof(bool), true, false, true, false));
+                viewModel.Columns.Add(new ColumnInfo($"StringProperty{i}", typeof(string), true, false, true, false, false));
+                viewModel.Columns.Add(new ColumnInfo($"IntProperty{i}", typeof(int), true, false, true, false, false));
+                viewModel.Columns.Add(new ColumnInfo($"BoolProperty{i}", typeof(bool), true, false, true, false, false));
             }
             RunTimeTypeHelper.CreateAssembly(viewModel.TypeName, viewModel.Columns);
 

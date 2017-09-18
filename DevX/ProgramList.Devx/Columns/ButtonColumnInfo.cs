@@ -14,8 +14,8 @@ namespace ProgramList.DevX.Columns
     public sealed class ButtonColumnInfo : ColumnInfo
     {
         private ICommand _command;
-        public ButtonColumnInfo(string header, Type dataType, ICommand command, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
-            : base(header, dataType, isVisible, isReadOnly, isEnabled, isSelected)
+        public ButtonColumnInfo(string header, Type dataType, ICommand command, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected, bool isLinked)
+            : base(header, dataType, isVisible, isReadOnly, isEnabled, isSelected, isLinked)
         {
             _command = command;
             CellTemplate = GetCellEditTemplate(FieldName);
