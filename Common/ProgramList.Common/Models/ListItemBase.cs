@@ -111,7 +111,7 @@ namespace ProgramList.Common.Models
             _columns = columns;
             _rowNumber = rowNumber;
             _cellInfoList = new Dictionary<string, CellInfo>(_columns.Count);
-            
+
             foreach (var column in _columns)
             {
                 _cellInfoList.Add(column.UniqueName, new CellInfo(column.UniqueName, this, false));
@@ -127,16 +127,17 @@ namespace ProgramList.Common.Models
             return null;
         }
 
-        public void SetForeground(string foreground, string propertyName)
+        private bool SetForeground(string foreground, string propertyName)
         {
             if (_cellInfoList.ContainsKey(propertyName))
             {
                 var cellProperties = _cellInfoList[propertyName];
                 if (cellProperties.Foreground == foreground)
-                    return;
+                    return false;
                 _cellInfoList[propertyName].Foreground = foreground;
-                OnPropertyChanged(propertyName);
+                return true;
             }
+            return false;
 
         }
 
@@ -148,16 +149,17 @@ namespace ProgramList.Common.Models
             return null;
         }
 
-        public void SetBackground(string background, string propertyName)
+        private bool SetBackground(string background, string propertyName)
         {
             if (_cellInfoList.ContainsKey(propertyName))
             {
                 var cellProperties = _cellInfoList[propertyName];
                 if (cellProperties.Background == background)
-                    return;
+                    return false;
                 _cellInfoList[propertyName].Background = background;
-                OnPropertyChanged(propertyName);
+                return true;
             }
+            return false;
 
         }
 
@@ -169,17 +171,17 @@ namespace ProgramList.Common.Models
             return true;
         }
 
-        public void SetIsEnabled(bool isEnabled, string propertyName)
+        private bool SetIsEnabled(bool isEnabled, string propertyName)
         {
             if (_cellInfoList.ContainsKey(propertyName))
             {
                 var cellProperties = _cellInfoList[propertyName];
                 if (cellProperties.IsEnabled == isEnabled)
-                    return;
+                    return false;
                 _cellInfoList[propertyName].IsEnabled = isEnabled;
-                OnPropertyChanged(propertyName);
+                return true;
             }
-
+            return false;
         }
 
         public bool GetIsReadOnly(string propertyName)
@@ -190,16 +192,17 @@ namespace ProgramList.Common.Models
             return true;
         }
 
-        public void SetIsReadOnly(bool isReadOnly, string propertyName)
+        private bool SetIsReadOnly(bool isReadOnly, string propertyName)
         {
             if (_cellInfoList.ContainsKey(propertyName))
             {
                 var cellProperties = _cellInfoList[propertyName];
                 if (cellProperties.IsReadOnly == isReadOnly)
-                    return;
+                    return false;
                 _cellInfoList[propertyName].IsReadOnly = isReadOnly;
-                OnPropertyChanged(propertyName);
+                return true;
             }
+            return false;
 
         }
 
@@ -211,17 +214,17 @@ namespace ProgramList.Common.Models
             return true;
         }
 
-        public void SetIsInEditMode(bool isInEditMode, string propertyName)
+        private bool SetIsInEditMode(bool isInEditMode, string propertyName)
         {
             if (_cellInfoList.ContainsKey(propertyName))
             {
                 var cellProperties = _cellInfoList[propertyName];
                 if (cellProperties.IsInEditMode == isInEditMode)
-                    return;
+                    return false;
                 _cellInfoList[propertyName].IsInEditMode = isInEditMode;
-                OnPropertyChanged(propertyName);
+                return true;
             }
-
+            return false;
         }
 
         public bool GetIsCurrent(string propertyName)
@@ -232,16 +235,17 @@ namespace ProgramList.Common.Models
             return true;
         }
 
-        public void SetIsCurrent(bool isCurrent, string propertyName)
+        private bool SetIsCurrent(bool isCurrent, string propertyName)
         {
             if (_cellInfoList.ContainsKey(propertyName))
             {
                 var cellProperties = _cellInfoList[propertyName];
                 if (cellProperties.IsCurrent == isCurrent)
-                    return;
+                    return false;
                 _cellInfoList[propertyName].IsCurrent = isCurrent;
-                OnPropertyChanged(propertyName);
+                return true;
             }
+            return false;
 
         }
 
@@ -262,7 +266,8 @@ namespace ProgramList.Common.Models
 
         public void SetForegroundInternal(string foreground, string caller)
         {
-            SetForeground(foreground, GetPropertyName(caller));
+            if (SetForeground(foreground, GetPropertyName(caller)))
+                OnPropertyChanged(caller);
         }
         public string GetBackgroundInternal(string caller)
         {
@@ -271,7 +276,8 @@ namespace ProgramList.Common.Models
 
         public void SetBackgroundInternal(string background, string caller)
         {
-            SetBackground(background, GetPropertyName(caller));
+            if (SetBackground(background, GetPropertyName(caller)))
+                OnPropertyChanged(caller);
         }
 
         protected bool GetIsEnabledInternal([CallerMemberName]string caller = "")
@@ -281,7 +287,8 @@ namespace ProgramList.Common.Models
 
         protected void SetIsEnabledInternal(bool isEnabled, [CallerMemberName] string caller = "")
         {
-            SetIsEnabled(isEnabled, GetPropertyName(caller));
+            if (SetIsEnabled(isEnabled, GetPropertyName(caller)))
+                OnPropertyChanged(caller);
         }
         protected bool GetIsReadOnlyInternal(string caller)
         {
@@ -290,7 +297,8 @@ namespace ProgramList.Common.Models
 
         protected void SetIsReadOnlyInternal(bool isReadOnly, string caller)
         {
-            SetIsReadOnly(isReadOnly, GetPropertyName(caller));
+            if (SetIsReadOnly(isReadOnly, GetPropertyName(caller)))
+                OnPropertyChanged(caller);
         }
         protected bool GetIsInEditModeInternal(string caller)
         {
@@ -299,16 +307,18 @@ namespace ProgramList.Common.Models
 
         protected void SetIsInEditModeInternal(bool isInEditMode, string caller)
         {
-            SetIsInEditMode(isInEditMode, GetPropertyName(caller));
+            if (SetIsInEditMode(isInEditMode, GetPropertyName(caller)))
+                OnPropertyChanged(caller);
         }
         protected bool GetIsCurrentInternal(string caller)
         {
             return GetIsCurrent(GetPropertyName(caller));
         }
 
-        protected void SetIsCurrentInternal(bool isCurrent, string caller)
+        public void SetIsCurrentInternal(bool isCurrent, string caller)
         {
-            SetIsCurrent(isCurrent, GetPropertyName(caller));
+            if (SetIsCurrent(isCurrent, GetPropertyName(caller)))
+                OnPropertyChanged(caller);
         }
 
     }

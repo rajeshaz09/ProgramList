@@ -121,8 +121,8 @@ namespace ProgramList.DevX.ViewModels
                     //batchList.Add(model);
                     if (index == 1)
                     {
-                        model.SetBackground("#EC2B2B", "StringProperty1");
-                        model.SetForeground("#FFFFFF", "StringProperty1");
+                        model.SetBackgroundInternal("#EC2B2B", "Background_StringProperty1");
+                        model.SetForegroundInternal("#FFFFFF", "Foreground_StringProperty1");
                     }
                     gridData.Add(model);
 

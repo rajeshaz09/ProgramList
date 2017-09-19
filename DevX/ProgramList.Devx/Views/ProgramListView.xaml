@@ -13,7 +13,7 @@
     <dxg:GridControl x:Name="ListGrid" 
                      ItemsSource="{Binding Path=GridData}" 
                      ColumnsSource="{Binding Columns}"
-                     SelectionMode="Row"
+                     SelectionMode="Cell"
                      
                      >
         <dxg:GridControl.View>

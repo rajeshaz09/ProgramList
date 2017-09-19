@@ -1,4 +1,6 @@
 ﻿using DevExpress.Xpf.Grid;
+using ProgramList.Common.Models;
+using ProgramList.DevX.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,29 +25,34 @@ namespace ProgramList.DevX.Views
             if (isCtrl)
             {
                 columnInfo.IsSelected = !columnInfo.IsSelected;
-                DataControl.BeginSelection();
-                for (int i = 0; i < Grid.VisibleRowCount; i++)
-                {
-                    if (columnInfo.IsSelected)
-                        SelectCell(i, columnInfo);
-                    else
-                        UnselectCell(i, columnInfo);
-                }
-                DataControl.EndSelection();
+
+                ApplyIsSelected(columnInfo.IsSelected, columnInfo.FieldName);
                 return;
             }
             base.OnColumnHeaderClick(column, isShift, isCtrl);
         }
+
+        private void ApplyIsSelected(bool isSelected, string columnName)
+        {
+            var viewModel = Grid.DataContext as ProgramListViewModel;
+            foreach (var row in viewModel.GridData)
+            {
+                var model = row as ListItemBase;
+                model.SetIsCurrentInternal(isSelected, $"IsCurrent_{columnName}");
+            }
+        }
+
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
         {
             TableViewHitInfo hitInfo = CalcHitInfo(e.OriginalSource as DependencyObject);
             if (hitInfo.InRowCell)
             {
-                foreach (var column in Grid.Columns.Cast<Columns.ColumnInfo>())
+                foreach (var columnInfo in Grid.Columns.Cast<Columns.ColumnInfo>())
                 {
-                    if (column.IsSelected)
+                    if (columnInfo.IsSelected)
                     {
-                        column.IsSelected = false;
+                        columnInfo.IsSelected = false;
+                        ApplyIsSelected(false, columnInfo.FieldName);
                     }
                 }
             }

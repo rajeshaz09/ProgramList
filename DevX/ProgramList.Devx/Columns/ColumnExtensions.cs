@@ -6,12 +6,16 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace ProgramList.DevX.Columns
 {
     public static class ColumnExtensions
     {
         private static Style DefaultCellStyle = Application.Current.FindResource(new GridRowThemeKeyExtension() { ResourceKey = GridRowThemeKeys.LightweightCellStyle }) as Style;
+
+        private static SolidColorBrush SelectedColumnForeground = new SolidColorBrush(Colors.Green);
+        private static SolidColorBrush SelectedColumnBackground = new SolidColorBrush(Colors.Yellow);
         private static IValueConverter RGBToBrushConverter = new RGBToBrushConverter();
         public static void ApplyDefaultSettings(this GridColumn column,
             string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
@@ -46,7 +50,18 @@ namespace ProgramList.DevX.Columns
             cellStyle.Setters.Add(new Setter(UIElement.IsEnabledProperty, new Binding($"Data.IsEnabled_{column.FieldName}") { Mode = BindingMode.TwoWay }));
             //cellStyle.Setters.Add(new Setter(GridCell.IsInEditModeProperty, new Binding($"IsInEditMode_{column.UniqueName}") { Mode = BindingMode.TwoWay }));
             //cellStyle.Setters.Add(new Setter(GridViewCell.IsCurrentProperty, new Binding($"IsCurrent_{column.UniqueName}") { Mode = BindingMode.TwoWay }));
-            //column.CellStyle = cellStyle;
+            var trigger = new DataTrigger()
+            {
+                Binding = new Binding($"RowData.Row.IsCurrent_{column.FieldName}"),
+                Value = true
+            };
+            SolidColorBrush SelectedColumnForeground = new SolidColorBrush(Colors.Green);
+            SolidColorBrush SelectedColumnBackground = new SolidColorBrush(Colors.Yellow);
+            trigger.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, SelectedColumnForeground));
+            trigger.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, SelectedColumnBackground));
+            cellStyle.Triggers.Add(trigger);
+
+            column.CellStyle = cellStyle;
 
 
 
