@@ -45,7 +45,7 @@ namespace ProgramList.DevX.Columns
             cellStyle.Setters.Add(new Setter(UIElement.IsEnabledProperty, new Binding($"Data.IsEnabled_{column.FieldName}") { Mode = BindingMode.TwoWay }));
             //cellStyle.Setters.Add(new Setter(GridCell.IsInEditModeProperty, new Binding($"IsInEditMode_{column.UniqueName}") { Mode = BindingMode.TwoWay }));
             //cellStyle.Setters.Add(new Setter(GridViewCell.IsCurrentProperty, new Binding($"IsCurrent_{column.UniqueName}") { Mode = BindingMode.TwoWay }));
-            column.CellStyle = cellStyle;
+            //column.CellStyle = cellStyle;
             
 
 

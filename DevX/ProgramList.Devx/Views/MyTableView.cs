@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace ProgramList.DevX.Views
 {
@@ -11,15 +13,38 @@ namespace ProgramList.DevX.Views
     {
         protected override void OnColumnHeaderClick(ColumnBase column, bool isShift, bool isCtrl)
         {
+            var columnInfo = column as Columns.ColumnInfo;
+
             if (isCtrl)
             {
-                BeginSelection();
+                columnInfo.IsSelected = !columnInfo.IsSelected;
+                DataControl.BeginSelection();
                 for (int i = 0; i < Grid.VisibleRowCount; i++)
-                    SelectCell(i, column as GridColumn);
-                EndSelection();
+                {
+                    if (columnInfo.IsSelected)
+                        SelectCell(i, columnInfo);
+                    else
+                        UnselectCell(i, columnInfo);
+                }
+                DataControl.EndSelection();
                 return;
             }
             base.OnColumnHeaderClick(column, isShift, isCtrl);
+        }
+        protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
+        {
+            TableViewHitInfo hitInfo = CalcHitInfo(e.OriginalSource as DependencyObject);
+            if (hitInfo.InRowCell)
+            {
+                foreach ( var column in Grid.Columns.Cast<Columns.ColumnInfo>())
+                {
+                    if (column.IsSelected)
+                    {
+                        column.IsSelected = false;
+                    }
+                }
+            }
+
         }
     }
 }
