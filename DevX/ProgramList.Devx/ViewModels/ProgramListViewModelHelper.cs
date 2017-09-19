@@ -35,7 +35,7 @@ namespace ProgramList.DevX.ViewModels
                 new DropDownItem("3", "Three"),
             };
 
-            viewModel.Columns.Add(new DropDownColumnInfo("DropDown", typeof(string), dropDownDataSource, true, true, true, false, false));
+            viewModel.Columns.Add(new DropDownColumnInfo("DropDown", typeof(string), dropDownDataSource, true, false, true, false, false));
 
             var chartItemsSource = new ChartPointCollection()
             {
@@ -55,7 +55,7 @@ namespace ProgramList.DevX.ViewModels
 
             viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(DateTime?),  true, false, true, false, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(DateTime?), true, false, true, false, false));
+            viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(DateTime?), true, true, true, false, false));
 
             viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false, false));
 

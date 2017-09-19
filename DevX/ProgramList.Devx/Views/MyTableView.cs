@@ -11,6 +11,11 @@ namespace ProgramList.DevX.Views
 {
     public class MyTableView : TableView
     {
+        public MyTableView()
+        {
+            AllowEditing = false;
+        }
+
         protected override void OnColumnHeaderClick(ColumnBase column, bool isShift, bool isCtrl)
         {
             var columnInfo = column as Columns.ColumnInfo;
@@ -36,7 +41,7 @@ namespace ProgramList.DevX.Views
             TableViewHitInfo hitInfo = CalcHitInfo(e.OriginalSource as DependencyObject);
             if (hitInfo.InRowCell)
             {
-                foreach ( var column in Grid.Columns.Cast<Columns.ColumnInfo>())
+                foreach (var column in Grid.Columns.Cast<Columns.ColumnInfo>())
                 {
                     if (column.IsSelected)
                     {
@@ -45,6 +50,42 @@ namespace ProgramList.DevX.Views
                 }
             }
 
+            base.OnMouseLeftButtonUp(e);
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            if (e.Key == Key.M && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
+            {
+                AllowEditing = true;
+                foreach (var column in Grid.Columns.Cast<Columns.ColumnInfo>())
+                {
+                    //if (!column.ReadOnly)
+                    //    column.AllowEditing = DevExpress.Utils.DefaultBoolean.True;
+                    column.TabStop = !column.ReadOnly;
+
+                    Commands.EditFocusedRow?.Execute(null);
+                }
+
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Q && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
+            {
+                AllowEditing = false;
+                foreach (var column in Grid.Columns.Cast<Columns.ColumnInfo>())
+                {
+                    //if (!column.ReadOnly)
+                    //    column.AllowEditing = DevExpress.Utils.DefaultBoolean.False;
+                    column.TabStop = true;
+                }
+                Commands.EndEditFocusedRow?.Execute(null);
+                //CommitEditing();
+
+                e.Handled = true;
+            }
+            else
+
+                base.OnKeyUp(e);
         }
     }
 }
