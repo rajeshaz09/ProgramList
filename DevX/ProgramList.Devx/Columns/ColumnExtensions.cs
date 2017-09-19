@@ -16,7 +16,8 @@ namespace ProgramList.DevX.Columns
 
         private static SolidColorBrush SelectedColumnForeground = new SolidColorBrush(Colors.Green);
         private static SolidColorBrush SelectedColumnBackground = new SolidColorBrush(Colors.Yellow);
-        private static IValueConverter RGBToBrushConverter = new RGBToBrushConverter();
+        private static IValueConverter RGBToBrushValueConverter = new RGBToBrushConverter();
+        private static IValueConverter NotNullValueConverte = new NotNullConverter();
         public static void ApplyDefaultSettings(this GridColumn column,
             string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
         {
@@ -45,21 +46,35 @@ namespace ProgramList.DevX.Columns
                 TargetType = typeof(LightweightCellEditor)
             };
 
-            cellStyle.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, new Binding($"Data.Foreground_{column.FieldName}") { Mode = BindingMode.TwoWay, Converter = RGBToBrushConverter }));
-            cellStyle.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, new Binding($"Data.Background_{column.FieldName}") { Mode = BindingMode.TwoWay, Converter = RGBToBrushConverter }));
+            //cellStyle.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, new Binding($"Data.Foreground_{column.FieldName}") { Mode = BindingMode.TwoWay, Converter = RGBToBrushValueConverter }));
+            //cellStyle.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, new Binding($"Data.Background_{column.FieldName}") { Mode = BindingMode.TwoWay, Converter = RGBToBrushValueConverter }));
             cellStyle.Setters.Add(new Setter(UIElement.IsEnabledProperty, new Binding($"Data.IsEnabled_{column.FieldName}") { Mode = BindingMode.TwoWay }));
             //cellStyle.Setters.Add(new Setter(GridCell.IsInEditModeProperty, new Binding($"IsInEditMode_{column.UniqueName}") { Mode = BindingMode.TwoWay }));
             //cellStyle.Setters.Add(new Setter(GridViewCell.IsCurrentProperty, new Binding($"IsCurrent_{column.UniqueName}") { Mode = BindingMode.TwoWay }));
-            var trigger = new DataTrigger()
+            var isCurrentTrigger = new DataTrigger()
             {
                 Binding = new Binding($"RowData.Row.IsCurrent_{column.FieldName}"),
                 Value = true
             };
-            SolidColorBrush SelectedColumnForeground = new SolidColorBrush(Colors.Green);
-            SolidColorBrush SelectedColumnBackground = new SolidColorBrush(Colors.Yellow);
-            trigger.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, SelectedColumnForeground));
-            trigger.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, SelectedColumnBackground));
-            cellStyle.Triggers.Add(trigger);
+            isCurrentTrigger.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, SelectedColumnForeground));
+            isCurrentTrigger.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, SelectedColumnBackground));
+            cellStyle.Triggers.Add(isCurrentTrigger);
+
+            var foregroundTrigger = new DataTrigger()
+            {
+                Binding = new Binding($"RowData.Row.Foreground_{column.FieldName}") { Converter = NotNullValueConverte },
+                Value = true
+            };
+            foregroundTrigger.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, new Binding($"Data.Foreground_{column.FieldName}") { Converter = RGBToBrushValueConverter }));
+            cellStyle.Triggers.Add(foregroundTrigger);
+
+            var backgroundTrigger = new DataTrigger()
+            {
+                Binding = new Binding($"RowData.Row.Background_{column.FieldName}") { Converter = NotNullValueConverte },
+                Value = true
+            };
+            backgroundTrigger.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, new Binding($"Data.Background_{column.FieldName}") { Converter = RGBToBrushValueConverter }));
+            cellStyle.Triggers.Add(backgroundTrigger);
 
             column.CellStyle = cellStyle;
 

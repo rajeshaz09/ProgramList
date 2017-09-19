@@ -21,7 +21,7 @@ namespace ProgramList.Common.Models
             nameof(IsCurrent)
         };
 
-        private string _background = "#ffffff";
+        private string _background;
         public string Background
         {
             get
@@ -34,7 +34,7 @@ namespace ProgramList.Common.Models
             }
         }
 
-        private string _foreground = "#000000";
+        private string _foreground;
         public string Foreground
         {
             get

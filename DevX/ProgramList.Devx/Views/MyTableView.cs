@@ -13,10 +13,6 @@ namespace ProgramList.DevX.Views
 {
     public class MyTableView : TableView
     {
-        public MyTableView()
-        {
-            AllowEditing = false;
-        }
 
         protected override void OnColumnHeaderClick(ColumnBase column, bool isShift, bool isCtrl)
         {
@@ -70,6 +66,7 @@ namespace ProgramList.DevX.Views
                     //if (!column.ReadOnly)
                     //    column.AllowEditing = DevExpress.Utils.DefaultBoolean.True;
                     column.TabStop = !column.ReadOnly;
+                    column.AllowFocus = !column.ReadOnly;
 
                     Commands.EditFocusedRow?.Execute(null);
                 }
@@ -84,6 +81,7 @@ namespace ProgramList.DevX.Views
                     //if (!column.ReadOnly)
                     //    column.AllowEditing = DevExpress.Utils.DefaultBoolean.False;
                     column.TabStop = true;
+                    column.AllowFocus = true;
                 }
                 Commands.EndEditFocusedRow?.Execute(null);
                 //CommitEditing();

@@ -60,6 +60,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\NotNullConverter.cs" />
     <Compile Include="Converters\RGBToBrushConverter.cs" />
     <Compile Include="DynamicType\CustomDictionary.cs" />
     <Compile Include="DynamicType\RuntimeHelperV2.cs" />
