@@ -58,7 +58,7 @@ namespace ProgramList.DevX.ViewModels
             viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(DateTime?), true, true, true, false, false));
 
             viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false, false,"hh:mm"));
-			0-
+			
 
             for (var i = 1; i <= viewModel.ColumnSets; i++)
             {
