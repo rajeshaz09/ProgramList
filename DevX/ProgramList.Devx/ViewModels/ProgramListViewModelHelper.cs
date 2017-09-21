@@ -53,12 +53,12 @@ namespace ProgramList.DevX.ViewModels
             viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button2"), true, false, true, false, false));
             //viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(DateTime?),  true, false, true, false, false));
+            viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(DateTime?),  true, false, true, false, false, "dd-mm-yyyy hh:mm"));
 
             viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(DateTime?), true, true, true, false, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false, false));
-
+            viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false, false,"hh:mm"));
+			0-
 
             for (var i = 1; i <= viewModel.ColumnSets; i++)
             {
