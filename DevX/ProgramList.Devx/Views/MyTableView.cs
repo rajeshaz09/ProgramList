@@ -88,6 +88,22 @@ namespace ProgramList.DevX.Views
 
                 e.Handled = true;
             }
+            else if (e.Key == Key.F && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
+            {
+                e.Handled = false;
+            }
+            else if (e.Key == Key.N && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
+            {
+                e.Handled = false;
+            }
+            else if (e.Key == Key.S && e.KeyboardDevice.Modifiers == ModifierKeys.Control)
+            {
+                e.Handled = false;
+            }
+            else if (e.Key == Key.F && e.KeyboardDevice.Modifiers == ModifierKeys.Shift)
+            {
+
+            }
             else
 
                 base.OnKeyUp(e);
