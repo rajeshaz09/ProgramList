@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:My="clr-namespace:ProgramList.DevX.Views"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
              x:Class="ProgramList.DevX.Views.ProgramListView"
              xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"          
              mc:Ignorable="d" 
@@ -14,6 +15,8 @@
                      ItemsSource="{Binding Path=GridData}" 
                      ColumnsSource="{Binding Columns}"
                      SelectionMode="Row"
+                     CurrentItem="{Binding CurrentRow, Mode=OneWayToSource}"
+                     CurrentColumn="{Binding CurrentColumn, Mode=OneWayToSource}"
                      
                      >
         <dxg:GridControl.View>
@@ -28,6 +31,11 @@
                 AllowEditing="False"
                 />
         </dxg:GridControl.View>
+        
+        <dxmvvm:Interaction.Behaviors>
+            <dxmvvm:EventToCommand EventName="CurrentColumnChanged" Command="{Binding CurrentColumnChangedCommand}" PassEventArgsToCommand="True" />
+            <dxmvvm:EventToCommand EventName="CurrentItemChanged" Command="{Binding CurrentRowChangedCommand}" PassEventArgsToCommand="True" />
+        </dxmvvm:Interaction.Behaviors>
     </dxg:GridControl>
 
     <!--<dxg:GridControl x:Name="ListGrid" 

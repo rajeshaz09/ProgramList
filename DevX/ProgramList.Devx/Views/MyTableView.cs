@@ -8,11 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using DevExpress.Data;
 
 namespace ProgramList.DevX.Views
 {
     public class MyTableView : TableView
     {
+        private void ApplyIsSelected(bool isSelected, string columnName)
+        {
+            var viewModel = Grid.DataContext as ProgramListViewModel;
+            foreach (var row in viewModel.GridData)
+            {
+                var model = row as ListItemBase;
+                model.SetIsCurrentInternal(isSelected, $"IsCurrent_{columnName}");
+            }
+        }
 
         protected override void OnColumnHeaderClick(ColumnBase column, bool isShift, bool isCtrl)
         {
@@ -26,16 +36,6 @@ namespace ProgramList.DevX.Views
                 return;
             }
             base.OnColumnHeaderClick(column, isShift, isCtrl);
-        }
-
-        private void ApplyIsSelected(bool isSelected, string columnName)
-        {
-            var viewModel = Grid.DataContext as ProgramListViewModel;
-            foreach (var row in viewModel.GridData)
-            {
-                var model = row as ListItemBase;
-                model.SetIsCurrentInternal(isSelected, $"IsCurrent_{columnName}");
-            }
         }
 
         protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
@@ -92,5 +92,6 @@ namespace ProgramList.DevX.Views
 
                 base.OnKeyUp(e);
         }
+        
     }
 }
