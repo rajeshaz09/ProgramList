@@ -35,6 +35,7 @@
         <dxmvvm:Interaction.Behaviors>
             <dxmvvm:EventToCommand EventName="CurrentColumnChanged" Command="{Binding CurrentColumnChangedCommand}" PassEventArgsToCommand="True" />
             <dxmvvm:EventToCommand EventName="CurrentItemChanged" Command="{Binding CurrentRowChangedCommand}" PassEventArgsToCommand="True" />
+            <dxmvvm:EventToCommand EventName="PreviewKeyDown" Command="{Binding PreviewKeyDownCommand}" PassEventArgsToCommand="True" />
         </dxmvvm:Interaction.Behaviors>
     </dxg:GridControl>
 
