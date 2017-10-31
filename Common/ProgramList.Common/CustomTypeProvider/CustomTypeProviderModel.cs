@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgramList.POC.Models
+namespace ProgramList.Common.DynamicType
 {
     public class CustomTypeProviderModel : CustomTypeProviderBaseModel<CustomTypeProviderModel>
     {

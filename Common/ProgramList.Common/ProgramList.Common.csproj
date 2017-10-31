@@ -62,6 +62,15 @@
   <ItemGroup>
     <Compile Include="Converters\NotNullConverter.cs" />
     <Compile Include="Converters\RGBToBrushConverter.cs" />
+    <Compile Include="CustiomTypeDescriptor\CustomTypeDescriptorBaseModel.cs" />
+    <Compile Include="CustiomTypeDescriptor\CustomTypeDescriptorModel.cs" />
+    <Compile Include="CustiomTypeDescriptor\CustomTypeDescriptorPropertyDescriptor.cs" />
+    <Compile Include="CustomTypeProvider\CustomTypeProviderBaseModel.cs" />
+    <Compile Include="CustomTypeProvider\CustomTypeProviderModel.cs" />
+    <Compile Include="CustomTypeProvider\CustomTypeProviderPropertyInfo.cs" />
+    <Compile Include="CustomTypeProvider\CustomTypeProviderType.cs" />
+    <Compile Include="DynamicObject\DynamicBaseModel.cs" />
+    <Compile Include="DynamicObject\DynamicModel.cs" />
     <Compile Include="DynamicType\CustomDictionary.cs" />
     <Compile Include="DynamicType\RuntimeHelperV2.cs" />
     <Compile Include="DynamicType\RunTimeTypeHelper.cs" />

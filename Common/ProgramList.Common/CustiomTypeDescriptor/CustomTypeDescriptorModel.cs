@@ -1,4 +1,4 @@
-﻿namespace ProgramList.POC.Models
+﻿namespace ProgramList.Common.DynamicType
 {
     public class CustomTypeDescriptorModel: CustomTypeDescriptorBaseModel
     {

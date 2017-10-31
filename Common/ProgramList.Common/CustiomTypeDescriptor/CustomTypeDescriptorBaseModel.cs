@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ProgramList.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace ProgramList.POC.Models
+namespace ProgramList.Common.DynamicType
 {
     public class CustomTypeDescriptorBaseModel : CustomTypeDescriptor, INotifyPropertyChanged
     {

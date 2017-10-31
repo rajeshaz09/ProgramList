@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace ProgramList.POC.Models
+namespace ProgramList.Common.DynamicType
 {
     public class CustomPropertyDescriptor<T> : PropertyDescriptor
     {

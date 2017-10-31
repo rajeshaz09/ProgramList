@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgramList.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
@@ -7,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgramList.POC.Models
+namespace ProgramList.Common.DynamicType
 {
     public abstract class DynamicBaseModel : DynamicObject, INotifyPropertyChanged
     {
