@@ -36,7 +36,7 @@ namespace ProgramList.DevX.Columns
             column.AllowGrouping = DevExpress.Utils.DefaultBoolean.True;
 
             column.MinWidth = 95;
-
+            column.Binding = new Binding($"RowData.Row.{header}") { Mode = BindingMode.TwoWay };
 
             //column.Rea = new Binding($"IsReadOnly_{column.FieldName}") { Mode = BindingMode.TwoWay };
 
@@ -48,7 +48,7 @@ namespace ProgramList.DevX.Columns
 
             //cellStyle.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, new Binding($"Data.Foreground_{column.FieldName}") { Mode = BindingMode.TwoWay, Converter = RGBToBrushValueConverter }));
             //cellStyle.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, new Binding($"Data.Background_{column.FieldName}") { Mode = BindingMode.TwoWay, Converter = RGBToBrushValueConverter }));
-            cellStyle.Setters.Add(new Setter(UIElement.IsEnabledProperty, new Binding($"Data.IsEnabled_{column.FieldName}") { Mode = BindingMode.TwoWay }));
+            cellStyle.Setters.Add(new Setter(UIElement.IsEnabledProperty, new Binding($"RowData.Row.IsEnabled_{column.FieldName}") { Mode = BindingMode.TwoWay }));
             //cellStyle.Setters.Add(new Setter(GridCell.IsInEditModeProperty, new Binding($"IsInEditMode_{column.UniqueName}") { Mode = BindingMode.TwoWay }));
             //cellStyle.Setters.Add(new Setter(GridViewCell.IsCurrentProperty, new Binding($"IsCurrent_{column.UniqueName}") { Mode = BindingMode.TwoWay }));
             var isCurrentTrigger = new DataTrigger()
@@ -65,7 +65,7 @@ namespace ProgramList.DevX.Columns
                 Binding = new Binding($"RowData.Row.Foreground_{column.FieldName}") { Converter = NotNullValueConverte },
                 Value = true
             };
-            foregroundTrigger.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, new Binding($"Data.Foreground_{column.FieldName}") { Converter = RGBToBrushValueConverter }));
+            foregroundTrigger.Setters.Add(new Setter(LightweightCellEditorBase.ForegroundProperty, new Binding($"RowData.Row.Foreground_{column.FieldName}") { Converter = RGBToBrushValueConverter }));
             cellStyle.Triggers.Add(foregroundTrigger);
 
             var backgroundTrigger = new DataTrigger()
@@ -73,7 +73,7 @@ namespace ProgramList.DevX.Columns
                 Binding = new Binding($"RowData.Row.Background_{column.FieldName}") { Converter = NotNullValueConverte },
                 Value = true
             };
-            backgroundTrigger.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, new Binding($"Data.Background_{column.FieldName}") { Converter = RGBToBrushValueConverter }));
+            backgroundTrigger.Setters.Add(new Setter(LightweightCellEditor.BackgroundProperty, new Binding($"RowData.Row.Background_{column.FieldName}") { Converter = RGBToBrushValueConverter }));
             cellStyle.Triggers.Add(backgroundTrigger);
 
             column.CellStyle = cellStyle;

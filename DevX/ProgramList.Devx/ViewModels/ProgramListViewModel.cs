@@ -1,6 +1,7 @@
 ﻿using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Grid;
 using Prism.Commands;
+using ProgramList.Common.DynamicType;
 using ProgramList.Common.Models;
 using ProgramList.Common.ViewModels;
 using ProgramList.DevX.Models;
@@ -21,8 +22,8 @@ namespace ProgramList.DevX.ViewModels
 	{
 		public ObservableCollectionCore<object> GridData { get; private set; }
 
-		private ListItemBase _currentRow;
-		public ListItemBase CurrentRow
+		private IListItemBase _currentRow;
+		public IListItemBase CurrentRow
 		{
 			get { return _currentRow; }
 			set { SetProperty(ref _currentRow, value); }
@@ -60,7 +61,7 @@ namespace ProgramList.DevX.ViewModels
 
 		public ICommand GenerateCommand(string columnName)
 		{
-			var command = new DelegateCommand<ListItemBase>(
+			var command = new DelegateCommand<IListItemBase>(
 					(model) =>
 					{
 						OnCommandExecute(columnName, model);
@@ -70,7 +71,7 @@ namespace ProgramList.DevX.ViewModels
 			return command;
 		}
 
-		private static void OnCommandExecute(string columnName, ListItemBase model)
+		private static void OnCommandExecute(string columnName, IListItemBase model)
 		{
 			MessageBox.Show($"Row\t{model.RowNumber}{Environment.NewLine}Column\t{columnName}");
 		}

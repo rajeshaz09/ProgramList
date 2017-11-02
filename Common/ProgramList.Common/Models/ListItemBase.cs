@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProgramList.Common.Models
 {
-    public class ListItemBase : RunTimeModelBase, ICustomisation
+    public class ListItemBase : RunTimeModelBase, ICustomisation, IListItemBase
     {
         private IList<IColumnInfo> _columns;
         private Dictionary<string, CellInfo> _cellInfoList;
@@ -114,7 +114,7 @@ namespace ProgramList.Common.Models
 
             foreach (var column in _columns)
             {
-                _cellInfoList.Add(column.UniqueName, new CellInfo(column.UniqueName, this, false));
+                _cellInfoList.Add(column.UniqueName, new CellInfo(column, this, false));
             }
 
         }

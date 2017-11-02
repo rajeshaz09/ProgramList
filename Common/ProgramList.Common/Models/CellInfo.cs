@@ -8,7 +8,7 @@ namespace ProgramList.Common.Models
 
     public class CellInfo : ModelBase, ICustomisation
     {
-        public string ColumnName { get; private set; }
+        public IColumnInfo Column { get; private set; }
         private ICustomisation _rowCustomisation;
         private bool _notifyChanges = true;
 
@@ -101,9 +101,9 @@ namespace ProgramList.Common.Models
 
         
 
-        public CellInfo(string columnName, ICustomisation rowCustomisation, bool notifyChanges = true)
+        public CellInfo(IColumnInfo column, ICustomisation rowCustomisation, bool notifyChanges = true)
         {
-            ColumnName = columnName;
+            Column = column;
             _rowCustomisation = rowCustomisation;
             _notifyChanges = notifyChanges;
         }

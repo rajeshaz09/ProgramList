@@ -66,7 +66,7 @@ namespace ProgramList.DevX.ViewModels
                 viewModel.Columns.Add(new ColumnInfo($"IntProperty{i}", typeof(int), true, false, true, false, false));
                 viewModel.Columns.Add(new ColumnInfo($"BoolProperty{i}", typeof(bool), true, false, true, false, false));
             }
-            RunTimeTypeHelper.CreateAssembly(viewModel.TypeName, viewModel.Columns);
+            //RunTimeTypeHelper.CreateAssembly(viewModel.TypeName, viewModel.Columns);
 
             return viewModel;
         }
@@ -77,7 +77,7 @@ namespace ProgramList.DevX.ViewModels
         }
         public static void AssignData(ProgramListViewModel viewModel, bool ClearOld = false)
         {
-            var objectExpression = RunTimeTypeHelper.GenerateObjectExpression($"{viewModel.TypeName}.dll");
+            //var objectExpression = RunTimeTypeHelper.GenerateObjectExpression($"{viewModel.TypeName}.dll");
 
             if (ClearOld)
                 viewModel.GridData.Clear();
@@ -94,10 +94,12 @@ namespace ProgramList.DevX.ViewModels
                     //var model = (ListItemBase)Activator.CreateInstance(ass.GetType("Jeeves.CustomModels.MyType", true), parameters);
 
 
-                    var model = objectExpression(viewModel.Columns, row);
+                    //var model = objectExpression(viewModel.Columns, row);
+                    var model = new DynamicModel(viewModel.Columns, row);
                     model.SetValue((row % 4).ToString(), "DropDown");
                     model.SetValue(row, "IntProperty");
                     model.SetValue($"String{row}", "StringProperty");
+                    model.SetValue($"String1{row}", "StringProperty1");
                     model.SetValue(row % 2 == 0, "BoolProperty");
                     model.SetValue($"1 R {row}", "Button1");
                     model.SetValue($"2 R {row}", "Button2");

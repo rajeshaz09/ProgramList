@@ -69,7 +69,7 @@
     <Compile Include="CustomTypeProvider\CustomTypeProviderModel.cs" />
     <Compile Include="CustomTypeProvider\CustomTypeProviderPropertyInfo.cs" />
     <Compile Include="CustomTypeProvider\CustomTypeProviderType.cs" />
-    <Compile Include="DynamicObject\DynamicBaseModel.cs" />
+    <Compile Include="DynamicObject\DynamicModelBase.cs" />
     <Compile Include="DynamicObject\DynamicModel.cs" />
     <Compile Include="DynamicType\CustomDictionary.cs" />
     <Compile Include="DynamicType\RuntimeHelperV2.cs" />
@@ -82,6 +82,7 @@
     <Compile Include="Models\DropDownItemCollection.cs" />
     <Compile Include="Models\IColumnInfo.cs" />
     <Compile Include="Models\ICustomisation.cs" />
+    <Compile Include="Models\IListItemBase.cs" />
     <Compile Include="Models\ListItemBase.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\NormalModel.cs" />

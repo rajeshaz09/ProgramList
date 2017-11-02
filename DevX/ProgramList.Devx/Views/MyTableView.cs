@@ -19,7 +19,7 @@ namespace ProgramList.DevX.Views
 			var viewModel = Grid.DataContext as ProgramListViewModel;
 			foreach (var row in viewModel.GridData)
 			{
-				var model = row as ListItemBase;
+				var model = row as IListItemBase;
 				model.SetIsCurrentInternal(isSelected, $"IsCurrent_{columnName}");
 			}
 		}

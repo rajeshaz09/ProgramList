@@ -41,7 +41,14 @@ namespace ProgramList.DevX
                 return;
             }
             var programListWindow = new Views.ProgramListWindow((FullScreen.IsChecked == true), rows, columns);
-            programListWindow.ShowDialog();
+            try
+            {
+                programListWindow.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

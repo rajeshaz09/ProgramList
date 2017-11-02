@@ -18,7 +18,7 @@ namespace ProgramList.DevX.Columns
             : base(header, dataType, isVisible, isReadOnly, isEnabled, isSelected, isLinked)
         {
             _command = command;
-            CellTemplate = GetCellEditTemplate(FieldName);
+            CellTemplate = GetCellEditTemplate(UniqueName);
 
             //var buttonInfo = new ButtonInfo()
             //{
@@ -45,7 +45,7 @@ namespace ProgramList.DevX.Columns
                     >
 
                     <dx:SimpleButton
-                        Content=""{{ Binding Data.{bindingProperty}, Mode = TwoWay }}""
+                        Content=""{{ Binding RowData.Row.{bindingProperty}, Mode = TwoWay }}""
                         CommandParameter=""{{ Binding RowData.Row, Mode = TwoWay }}""
                         Command=""{{ Binding RelativeSource={{RelativeSource Mode=FindAncestor, AncestorType={{x:Type dxg:GridControl}}}}, Path=DataContext.Commands[{bindingProperty}], Mode = TwoWay }}""
                     />
