@@ -53,12 +53,12 @@ namespace ProgramList.DevX.ViewModels
             viewModel.Columns.Add(new ButtonColumnInfo("Button2", typeof(string), viewModel.GenerateCommand("Button2"), true, false, true, false, false));
             //viewModel.Columns.Add(new ImageColumnInfo("Image", typeof(string), true, false, true, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(DateTime?),  true, false, true, false, false, "dd-mm-yyyy hh:mm"));
+            viewModel.Columns.Add(new DateTimeColumnInfo("DateTimeProperty", typeof(DateTime?), true, false, true, false, false, "dd-mm-yyyy hh:mm"));
 
             viewModel.Columns.Add(new DateTimeColumnInfo("DateProperty", typeof(DateTime?), true, true, true, false, false));
 
-            viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false, false,"hh:mm"));
-			
+            viewModel.Columns.Add(new DateTimeColumnInfo("TimeProperty", typeof(DateTime?), true, false, true, false, false, "hh:mm"));
+
 
             for (var i = 1; i <= viewModel.ColumnSets; i++)
             {
@@ -66,9 +66,18 @@ namespace ProgramList.DevX.ViewModels
                 viewModel.Columns.Add(new ColumnInfo($"IntProperty{i}", typeof(int), true, false, true, false, false));
                 viewModel.Columns.Add(new ColumnInfo($"BoolProperty{i}", typeof(bool), true, false, true, false, false));
             }
-            //RunTimeTypeHelper.CreateAssembly(viewModel.TypeName, viewModel.Columns);
+            RunTimeTypeHelper.CreateAssembly(viewModel.TypeName, viewModel.Columns);
 
             return viewModel;
+        }
+
+        internal static void Clear(ProgramListViewModel viewModel)
+        {
+            while (viewModel.GridData.IsLockUpdate)
+                continue;
+            viewModel.GridData.BeginUpdate();
+            viewModel.GridData.Clear();
+            viewModel.GridData.EndUpdate();
         }
 
         internal static void ClearAndAssignData(ProgramListViewModel viewModel)
@@ -77,10 +86,10 @@ namespace ProgramList.DevX.ViewModels
         }
         public static void AssignData(ProgramListViewModel viewModel, bool ClearOld = false)
         {
-            //var objectExpression = RunTimeTypeHelper.GenerateObjectExpression($"{viewModel.TypeName}.dll");
+            var objectExpression = RunTimeTypeHelper.GenerateObjectExpression($"{viewModel.TypeName}.dll");
 
             if (ClearOld)
-                viewModel.GridData.Clear();
+                Clear(viewModel);
 
             var gridData = viewModel.GridData;
 
@@ -125,6 +134,7 @@ namespace ProgramList.DevX.ViewModels
                     {
                         model.SetBackgroundInternal("#EC2B2B", "Background_StringProperty1");
                         model.SetForegroundInternal("#FFFFFF", "Foreground_StringProperty1");
+                        model.SetValue(row * 10 + 1, "IntProperty1");
                     }
                     gridData.Add(model);
 

@@ -88,7 +88,7 @@ namespace ProgramList.DevX.Views
 
             var viewModel = ProgramList.DataContext
                 as ViewModels.ProgramListViewModel;
-            viewModel.GridData.Clear();
+            ViewModels.ProgramListViewModelHelper.Clear(viewModel);
 
             //(((viewModel.Columns[3] as DropDownColumnInfo).EditSettings as ComboBoxEditSettings)
             //    .ItemsSource as DropDownItemCollection).Add(new DropDownItem("4", "Four"));
