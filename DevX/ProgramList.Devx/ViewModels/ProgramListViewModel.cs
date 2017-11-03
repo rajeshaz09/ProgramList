@@ -51,12 +51,12 @@ namespace ProgramList.DevX.ViewModels
 
 		private void OnCurrentRowChangedHandler(CurrentItemChangedEventArgs e)
 		{
-			Trace.WriteLine($"Row Changed  {_currentRow.RowNumber}");
+			Trace.WriteLine($"Row Changed  {_currentRow?.RowNumber}");
 		}
 
 		private void OnCurrentColumnChangedHandler(CurrentColumnChangedEventArgs e)
 		{
-			Trace.WriteLine($"Column Changed  {_currentColumn.FieldName}");
+			Trace.WriteLine($"Column Changed  {_currentColumn?.FieldName}");
 		}
 
 		public ICommand GenerateCommand(string columnName)
