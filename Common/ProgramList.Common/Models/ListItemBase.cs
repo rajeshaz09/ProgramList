@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProgramList.Common.Models
 {
-    public class ListItemBase : RunTimeModelBase, ICustomisation, IListItemBase
+    public class ListItemBase : RunTimeModelBase, IListItemBase
     {
         private IList<IColumnInfo> _columns;
         private Dictionary<string, CellInfo> _cellInfoList;

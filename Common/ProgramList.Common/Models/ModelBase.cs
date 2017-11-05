@@ -18,14 +18,15 @@ namespace ProgramList.Common.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public void SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
+        public bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
         {
-
             if (!EqualityComparer<T>.Default.Equals(storage, value))
             {
                 storage = value;
                 OnPropertyChanged(propertyName);
+                return true;
             }
+            return false;
         }
     }
 }

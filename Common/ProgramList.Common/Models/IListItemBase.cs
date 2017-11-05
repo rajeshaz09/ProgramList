@@ -1,6 +1,6 @@
 ﻿namespace ProgramList.Common.Models
 {
-    public interface IListItemBase
+    public interface IListItemBase: ICustomisation
     {
         int RowNumber { get; }
 

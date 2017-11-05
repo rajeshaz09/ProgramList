@@ -92,19 +92,39 @@ namespace ProgramList.DevX.ViewModels
                 Clear(viewModel);
 
             var gridData = viewModel.GridData;
-
-            viewModel.GridData.BeginUpdate();
+            var startIndex = gridData.Count;
+            gridData.BeginUpdate();
             //using (var gridData = viewModel.GridData.DelayNotifications())
             {
-                for (var index = 1; index <= viewModel.Rows; index++)
+
+                for (var index = 0; index <= viewModel.Rows; index++)
                 {
                     var row = index + viewModel.Seed;
+                    //var model = objectExpression(viewModel.Columns, row);
+                    var model = new DynamicModel(viewModel.Columns, row);
+
+                    if (index == 0)
+                    {
+                        if (startIndex == 0)
+                        {
+                            foreach (var column in viewModel.Columns)
+                            {
+                                if (!column.DataType.IsValueType)
+                                    continue;
+
+                                if (column.DataType == typeof(bool))
+                                    model.SetValue(default(bool), column.UniqueName);
+                                if (column.DataType == typeof(int))
+                                    model.SetValue(default(int), column.UniqueName);
+                            }
+                            gridData.Add(model);
+                        }
+                        continue;
+                    }
                     //parameters[1] = row;
                     //var model = (ListItemBase)Activator.CreateInstance(ass.GetType("Jeeves.CustomModels.MyType", true), parameters);
 
 
-                    //var model = objectExpression(viewModel.Columns, row);
-                    var model = new DynamicModel(viewModel.Columns, row);
                     model.SetValue((row % 4).ToString(), "DropDown");
                     model.SetValue(row, "IntProperty");
                     model.SetValue($"String{row}", "StringProperty");
@@ -130,7 +150,7 @@ namespace ProgramList.DevX.ViewModels
                     //model.Button2 = $"2 R {row}";
 
                     //batchList.Add(model);
-                    if (index == 1)
+                    if (row == 1)
                     {
                         model.SetBackgroundInternal("#EC2B2B", "Background_StringProperty1");
                         model.SetForegroundInternal("#FFFFFF", "Foreground_StringProperty1");
@@ -144,7 +164,9 @@ namespace ProgramList.DevX.ViewModels
             viewModel.Seed += viewModel.Rows;
 
 
-            viewModel.GridData.EndUpdate();
+            gridData.EndUpdate();
+            if (startIndex == 0)
+                gridData.RemoveAt(startIndex);
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProgramList.Common.DynamicType
 {
-    public class DynamicModel : DynamicModelBase, IListItemBase, ICustomisation
+    public class DynamicModel : DynamicModelBase, IListItemBase
     {
         private IList<IColumnInfo> _columns;
         private Dictionary<string, CellInfo> _cellInfoList;

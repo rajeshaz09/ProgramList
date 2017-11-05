@@ -10,11 +10,11 @@ namespace ProgramList.DevX.Columns
 {
     public class ColumnInfo : GridColumn, IColumnInfo
     {
-        public int Ordinal { get; private set; }
+        public int Ordinal { get; }
         public string UniqueName { get => FieldName; set => FieldName = value; }
         public Type DataType { get; set; }
         public bool IsSelected { get; set; }
-        public bool IsLinked { get; private set; }
+        public bool IsLinked { get; }
 
         public ColumnInfo(string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected, bool isLinked)
         {

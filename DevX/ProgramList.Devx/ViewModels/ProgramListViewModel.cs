@@ -20,7 +20,7 @@ namespace ProgramList.DevX.ViewModels
 {
 	public class ProgramListViewModel : ProgramListViewModelBase
 	{
-		public ObservableCollectionCore<object> GridData { get; private set; }
+		public ObservableCollectionCore<object> GridData { get; }
 
 		private IListItemBase _currentRow;
 		public IListItemBase CurrentRow
@@ -36,9 +36,9 @@ namespace ProgramList.DevX.ViewModels
 			set { SetProperty(ref _currentColumn, value); }
 		}
 		#region Commands
-		public ICommand PreviewKeyDownCommand { get; private set; }
-		public ICommand CurrentColumnChangedCommand { get; private set; }
-		public ICommand CurrentRowChangedCommand { get; private set; }
+		public ICommand PreviewKeyDownCommand { get; }
+		public ICommand CurrentColumnChangedCommand { get; }
+		public ICommand CurrentRowChangedCommand { get; }
 		#endregion Commands
 
 		public ProgramListViewModel(int rows, int columnSets) : base(rows, columnSets)

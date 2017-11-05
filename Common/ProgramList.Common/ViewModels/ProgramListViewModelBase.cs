@@ -12,13 +12,13 @@ namespace ProgramList.Common.ViewModels
     public class ProgramListViewModelBase : ModelBase
     {
         public readonly string TypeName;
-        public IList<IColumnInfo> Columns { get; private set; }
-        public IDictionary<string, ICommand> Commands { get; private set; }
+        public IList<IColumnInfo> Columns { get; }
+        public IDictionary<string, ICommand> Commands { get; }
 
         private static int TypeSeed = 0;
         public int Seed = 0;
-        public int Rows { get; private set; }
-        public int ColumnSets { get; private set; }
+        public int Rows { get; }
+        public int ColumnSets { get; }
 
 
         public ProgramListViewModelBase(int rows, int columnSets)

@@ -131,8 +131,7 @@ namespace ProgramList.Common.DynamicType
 
         public void SetValue<T>(T value, [CallerMemberName]string propertyName = "")
         {
-            PropertyValues[propertyName] = value;// new CustomProperty<T>(value);
-            OnPropertyChanged(propertyName);
+            this[propertyName] = value;
         }
     }
 }
