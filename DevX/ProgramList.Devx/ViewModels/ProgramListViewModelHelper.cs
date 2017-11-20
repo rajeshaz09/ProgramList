@@ -113,11 +113,11 @@ namespace ProgramList.DevX.ViewModels
                                     continue;
 
                                 if (column.DataType == typeof(bool))
-                                    model.SetValue(default(bool), column.UniqueName);
+                                    model.SetData(default(bool), column.UniqueName);
                                 if (column.DataType == typeof(int))
-                                    model.SetValue(default(int), column.UniqueName);
+                                    model.SetData(default(int), column.UniqueName);
                             }
-                            gridData.Add(model);
+                            //gridData.Add(model);
                         }
                         continue;
                     }
@@ -125,14 +125,13 @@ namespace ProgramList.DevX.ViewModels
                     //var model = (ListItemBase)Activator.CreateInstance(ass.GetType("Jeeves.CustomModels.MyType", true), parameters);
 
 
-                    model.SetValue((row % 4).ToString(), "DropDown");
-                    model.SetValue(row, "IntProperty");
-                    model.SetValue($"String{row}", "StringProperty");
-                    model.SetValue($"String1{row}", "StringProperty1");
-                    model.SetValue(row % 2 == 0, "BoolProperty");
-                    model.SetValue($"1 R {row}", "Button1");
-                    model.SetValue($"2 R {row}", "Button2");
-                    model.SetValue(false, "IsEnabled_DropDown");
+                    model.SetData((row % 4).ToString(), "DropDown");
+                    model.SetData(row, "IntProperty");
+                    model.SetData($"String{row}", "StringProperty");
+                    model.SetData($"String1{row}", "StringProperty1");
+                    //model.SetValue(row % 2 == 0, "BoolProperty");
+                    model.SetData($"1 R {row}", "Button1");
+                    model.SetData($"2 R {row}", "Button2");
 
                     //if (index == 1)
                     //{
@@ -152,9 +151,10 @@ namespace ProgramList.DevX.ViewModels
                     //batchList.Add(model);
                     if (row == 1)
                     {
-                        model.SetBackgroundInternal("#EC2B2B", "Background_StringProperty1");
-                        model.SetForegroundInternal("#FFFFFF", "Foreground_StringProperty1");
-                        model.SetValue(row * 10 + 1, "IntProperty1");
+                        model.SetBackground("#EC2B2B", "StringProperty1");
+                        model.SetForeground("#FFFFFF", "StringProperty1");
+                        model.SetData(row * 10 + 1, "IntProperty1");
+                        model.SetIsEnabled(false, "DropDown");
                     }
                     gridData.Add(model);
 
@@ -165,8 +165,8 @@ namespace ProgramList.DevX.ViewModels
 
 
             gridData.EndUpdate();
-            if (startIndex == 0)
-                gridData.RemoveAt(startIndex);
+            //if (startIndex == 0)
+                //gridData.RemoveAt(startIndex);
         }
     }
 }

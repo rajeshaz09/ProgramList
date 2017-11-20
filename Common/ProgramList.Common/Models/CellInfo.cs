@@ -21,6 +21,18 @@ namespace ProgramList.Common.Models
             nameof(IsInEditMode),
             nameof(IsCurrent)
         };
+        private object _data;
+        public object Data
+        {
+            get
+            {
+                return _data;
+            }
+            set
+            {
+                SetPropertyInternal(ref _data, value);
+            }
+        }
 
         private string _background;
         public string Background

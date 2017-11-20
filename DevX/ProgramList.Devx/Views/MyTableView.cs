@@ -20,7 +20,7 @@ namespace ProgramList.DevX.Views
 			foreach (var row in viewModel.GridData)
 			{
 				var model = row as IListItemBase;
-				model.SetIsCurrentInternal(isSelected, $"IsCurrent_{columnName}");
+				model.SetIsCurrent(isSelected, $"{columnName}");
 			}
 		}
 

@@ -5,15 +5,21 @@
         int RowNumber { get; }
 
         string GetBackground(string propertyName);
-        string GetBackgroundInternal(string caller);
+        void SetBackground(string background, string propertyName);
+
         string GetForeground(string propertyName);
-        string GetForegroundInternal(string caller);
+        void SetForeground(string foreground, string propertyName);
+
         bool GetIsCurrent(string propertyName);
+        void SetIsCurrent(bool isCurrent, string propertyName);
+
         bool GetIsEnabled(string propertyName);
+        void SetIsEnabled(bool isCurrent, string propertyName);
+
         bool GetIsInEditMode(string propertyName);
+        void SetIsInEditMode(bool isCurrent, string propertyName);
+
         bool GetIsReadOnly(string propertyName);
-        void SetBackgroundInternal(string background, string caller);
-        void SetForegroundInternal(string foreground, string caller);
-        void SetIsCurrentInternal(bool isCurrent, string caller);
+        void SetIsReadOnly(bool isCurrent, string propertyName);
     }
 }

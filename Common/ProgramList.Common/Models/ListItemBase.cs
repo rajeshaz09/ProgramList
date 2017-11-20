@@ -321,5 +321,34 @@ namespace ProgramList.Common.Models
                 OnPropertyChanged(caller);
         }
 
+        void IListItemBase.SetBackground(string background, string propertyName)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IListItemBase.SetForeground(string foreground, string propertyName)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IListItemBase.SetIsCurrent(bool isCurrent, string propertyName)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IListItemBase.SetIsEnabled(bool isCurrent, string propertyName)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IListItemBase.SetIsInEditMode(bool isCurrent, string propertyName)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IListItemBase.SetIsReadOnly(bool isCurrent, string propertyName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

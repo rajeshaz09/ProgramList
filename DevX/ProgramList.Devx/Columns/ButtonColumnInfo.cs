@@ -45,7 +45,7 @@ namespace ProgramList.DevX.Columns
                     >
 
                     <dx:SimpleButton
-                        Content=""{{ Binding RowData.Row.{bindingProperty}, Mode = TwoWay }}""
+                        Content=""{{ Binding RowData.Row.{bindingProperty}.Data, Mode = TwoWay }}""
                         CommandParameter=""{{ Binding RowData.Row, Mode = TwoWay }}""
                         Command=""{{ Binding RelativeSource={{RelativeSource Mode=FindAncestor, AncestorType={{x:Type dxg:GridControl}}}}, Path=DataContext.Commands[{bindingProperty}], Mode = TwoWay }}""
                     />

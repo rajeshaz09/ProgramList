@@ -1,6 +1,8 @@
 ﻿using ProgramList.Common.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -8,62 +10,48 @@ using System.Threading.Tasks;
 
 namespace ProgramList.Common.DynamicType
 {
-    public class DynamicModel : DynamicModelBase, IListItemBase
+    public class DynamicModel : DynamicObject, IListItemBase, INotifyPropertyChanged
     {
         private IList<IColumnInfo> _columns;
-        private Dictionary<string, CellInfo> _cellInfoList;
-        public override object this[string property]
-        {
+        private Dictionary<string, CellInfo> _PropertyValues;
 
-            get
-            {
-                if (property.IndexOf('_') >= 0)
-                {
-                    var styleProperty = property.Substring(0, property.IndexOf('_'));
-                    if (IsCellStylingProperty(styleProperty))
-                    {
-                        var columnNmae = property.Substring(property.IndexOf('_') + 1);
-                        if (_cellInfoList.ContainsKey(columnNmae))
-                        {
-                            var cellInfo = _cellInfoList[columnNmae];
-                            return cellInfo.GetType().GetProperty(styleProperty).GetValue(cellInfo);
-                        }
-                    }
-                }
-                return base[property];
-            }
-            set
-            {
-                if (property.IndexOf('_') >= 0)
-                {
-                    var styleProperty = property.Substring(0, property.IndexOf('_'));
-                    if (IsCellStylingProperty(styleProperty))
-                    {
-                        var columnNmae = property.Substring(property.IndexOf('_') + 1);
-                        if (_cellInfoList.ContainsKey(columnNmae))
-                        {
-                            var cellInfo = _cellInfoList[columnNmae];
-                            cellInfo.GetType().GetProperty(styleProperty).SetValue(cellInfo, value);
-                        }
-                        return;
-                    }
-                }
-                base[property] = value;
-            }
-        }
-
-        public DynamicModel(IList<IColumnInfo> columns, int rowNumber) : base(false, new Dictionary<string, object>(columns.Count))
+        public DynamicModel(IList<IColumnInfo> columns, int rowNumber)
         {
             _columns = columns;
             _rowNumber = rowNumber;
-            _cellInfoList = new Dictionary<string, CellInfo>(_columns.Count);
+            _PropertyValues = new Dictionary<string, CellInfo>(_columns.Count);
 
             foreach (var column in _columns)
             {
-                _cellInfoList.Add(column.UniqueName, new CellInfo(column, this, false));
+                _PropertyValues.Add(column.UniqueName, new CellInfo(column, this, false));
             }
 
         }
+
+        public override bool TryGetMember(GetMemberBinder binder, out object result)
+        {
+            result = _PropertyValues[binder.Name];
+
+            return true;
+        }
+
+        public override bool TrySetMember(SetMemberBinder binder, object value)
+        {
+            _PropertyValues[binder.Name].Data = value;
+
+            return true;
+        }
+
+        public override IEnumerable<string> GetDynamicMemberNames()
+        {
+            return _PropertyValues.Keys;
+        }
+
+        public void SetData<T>(T value, [CallerMemberName]string propertyName = "")
+        {
+            _PropertyValues[propertyName].Data = value;
+        }
+
         private bool IsCellStylingProperty(string styleProperty)
         {
             return CellInfo.CustomisationProperties.Contains(styleProperty);
@@ -164,205 +152,159 @@ namespace ProgramList.Common.DynamicType
 
         public string GetForeground(string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
-                return _cellInfoList[propertyName].Foreground;
+            if (_PropertyValues.ContainsKey(propertyName))
+                return _PropertyValues[propertyName].Foreground;
 
             return null;
         }
 
-        private bool SetForeground(string foreground, string propertyName)
+        public void SetForeground(string foreground, string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
+            if (_PropertyValues.ContainsKey(propertyName))
             {
-                var cellProperties = _cellInfoList[propertyName];
+                var cellProperties = _PropertyValues[propertyName];
                 if (cellProperties.Foreground == foreground)
-                    return false;
-                _cellInfoList[propertyName].Foreground = foreground;
-                return true;
+                    return;
+                _PropertyValues[propertyName].Foreground = foreground;
+                return;
             }
-            return false;
+            return;
 
         }
 
         public string GetBackground(string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
-                return _cellInfoList[propertyName].Background;
+            if (_PropertyValues.ContainsKey(propertyName))
+                return _PropertyValues[propertyName].Background;
 
             return null;
         }
 
-        private bool SetBackground(string background, string propertyName)
+        public void SetBackground(string background, string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
+            if (_PropertyValues.ContainsKey(propertyName))
             {
-                var cellProperties = _cellInfoList[propertyName];
+                var cellProperties = _PropertyValues[propertyName];
                 if (cellProperties.Background == background)
-                    return false;
-                _cellInfoList[propertyName].Background = background;
-                return true;
+                    return;
+                _PropertyValues[propertyName].Background = background;
+                return;
             }
-            return false;
+            return;
 
         }
 
         public bool GetIsEnabled(string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
-                return _cellInfoList[propertyName].IsEnabled;
+            if (_PropertyValues.ContainsKey(propertyName))
+                return _PropertyValues[propertyName].IsEnabled;
 
             return true;
         }
 
-        private bool SetIsEnabled(bool isEnabled, string propertyName)
+        public void SetIsEnabled(bool isEnabled, string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
+            if (_PropertyValues.ContainsKey(propertyName))
             {
-                var cellProperties = _cellInfoList[propertyName];
+                var cellProperties = _PropertyValues[propertyName];
                 if (cellProperties.IsEnabled == isEnabled)
-                    return false;
-                _cellInfoList[propertyName].IsEnabled = isEnabled;
-                return true;
+                    return;
+                _PropertyValues[propertyName].IsEnabled = isEnabled;
+                return;
             }
-            return false;
+            return;
         }
 
         public bool GetIsReadOnly(string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
-                return _cellInfoList[propertyName].IsReadOnly;
+            if (_PropertyValues.ContainsKey(propertyName))
+                return _PropertyValues[propertyName].IsReadOnly;
 
             return true;
         }
 
-        private bool SetIsReadOnly(bool isReadOnly, string propertyName)
+        public void SetIsReadOnly(bool isReadOnly, string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
+            if (_PropertyValues.ContainsKey(propertyName))
             {
-                var cellProperties = _cellInfoList[propertyName];
+                var cellProperties = _PropertyValues[propertyName];
                 if (cellProperties.IsReadOnly == isReadOnly)
-                    return false;
-                _cellInfoList[propertyName].IsReadOnly = isReadOnly;
-                return true;
+                    return;
+                _PropertyValues[propertyName].IsReadOnly = isReadOnly;
+                return;
             }
-            return false;
+            return;
 
         }
 
         public bool GetIsInEditMode(string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
-                return _cellInfoList[propertyName].IsInEditMode;
+            if (_PropertyValues.ContainsKey(propertyName))
+                return _PropertyValues[propertyName].IsInEditMode;
 
             return true;
         }
 
-        private bool SetIsInEditMode(bool isInEditMode, string propertyName)
+        public void SetIsInEditMode(bool isInEditMode, string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
+            if (_PropertyValues.ContainsKey(propertyName))
             {
-                var cellProperties = _cellInfoList[propertyName];
+                var cellProperties = _PropertyValues[propertyName];
                 if (cellProperties.IsInEditMode == isInEditMode)
-                    return false;
-                _cellInfoList[propertyName].IsInEditMode = isInEditMode;
-                return true;
+                    return;
+                _PropertyValues[propertyName].IsInEditMode = isInEditMode;
+                return;
             }
-            return false;
+            return;
         }
 
         public bool GetIsCurrent(string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
-                return _cellInfoList[propertyName].IsCurrent;
+            if (_PropertyValues.ContainsKey(propertyName))
+                return _PropertyValues[propertyName].IsCurrent;
 
             return true;
         }
 
-        private bool SetIsCurrent(bool isCurrent, string propertyName)
+        public void SetIsCurrent(bool isCurrent, string propertyName)
         {
-            if (_cellInfoList.ContainsKey(propertyName))
+            if (_PropertyValues.ContainsKey(propertyName))
             {
-                var cellProperties = _cellInfoList[propertyName];
+                var cellProperties = _PropertyValues[propertyName];
                 if (cellProperties.IsCurrent == isCurrent)
-                    return false;
-                _cellInfoList[propertyName].IsCurrent = isCurrent;
+                    return;
+                _PropertyValues[propertyName].IsCurrent = isCurrent;
+                return;
+            }
+            return;
+
+        }
+
+
+        #region INotifyPropertyChanged 
+
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        public void OnPropertyChanged([CallerMemberName]string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
+        {
+            if (!EqualityComparer<T>.Default.Equals(storage, value))
+            {
+                storage = value;
+                OnPropertyChanged(propertyName);
                 return true;
             }
             return false;
-
         }
 
-
-        private static string GetPropertyName(string caller)
-        {
-            return caller.Substring(caller.IndexOf('_') + 1);
-        }
+        #endregion INotifyPropertyChanged
 
 
-
-
-
-        public string GetForegroundInternal(string caller)
-        {
-            return GetForeground(GetPropertyName(caller));
-        }
-
-        public void SetForegroundInternal(string foreground, string caller)
-        {
-            if (SetForeground(foreground, GetPropertyName(caller)))
-                OnPropertyChanged(caller);
-        }
-        public string GetBackgroundInternal(string caller)
-        {
-            return GetBackground(GetPropertyName(caller));
-        }
-
-        public void SetBackgroundInternal(string background, string caller)
-        {
-            if (SetBackground(background, GetPropertyName(caller)))
-                OnPropertyChanged(caller);
-        }
-
-        protected bool GetIsEnabledInternal([CallerMemberName]string caller = "")
-        {
-            return GetIsEnabled(GetPropertyName(caller));
-        }
-
-        protected void SetIsEnabledInternal(bool isEnabled, [CallerMemberName] string caller = "")
-        {
-            if (SetIsEnabled(isEnabled, GetPropertyName(caller)))
-                OnPropertyChanged(caller);
-        }
-        protected bool GetIsReadOnlyInternal(string caller)
-        {
-            return GetIsReadOnly(GetPropertyName(caller));
-        }
-
-        protected void SetIsReadOnlyInternal(bool isReadOnly, string caller)
-        {
-            if (SetIsReadOnly(isReadOnly, GetPropertyName(caller)))
-                OnPropertyChanged(caller);
-        }
-        protected bool GetIsInEditModeInternal(string caller)
-        {
-            return GetIsInEditMode(GetPropertyName(caller));
-        }
-
-        protected void SetIsInEditModeInternal(bool isInEditMode, string caller)
-        {
-            if (SetIsInEditMode(isInEditMode, GetPropertyName(caller)))
-                OnPropertyChanged(caller);
-        }
-        protected bool GetIsCurrentInternal(string caller)
-        {
-            return GetIsCurrent(GetPropertyName(caller));
-        }
-
-        public void SetIsCurrentInternal(bool isCurrent, string caller)
-        {
-            if (SetIsCurrent(isCurrent, GetPropertyName(caller)))
-                OnPropertyChanged(caller);
-        }
 
     }
 }

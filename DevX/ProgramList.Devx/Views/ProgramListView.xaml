@@ -19,6 +19,7 @@
                      CurrentColumn="{Binding CurrentColumn, Mode=OneWayToSource}"
                      
                      >
+        
         <dxg:GridControl.View>
             <My:MyTableView 
                 AllowPerPixelScrolling="True" 
