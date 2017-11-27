@@ -117,7 +117,7 @@ namespace ProgramList.DevX.ViewModels
                                 if (column.DataType == typeof(int))
                                     model.SetData(default(int), column.UniqueName);
                             }
-                            //gridData.Add(model);
+                            gridData.Add(model);
                         }
                         continue;
                     }
@@ -165,8 +165,8 @@ namespace ProgramList.DevX.ViewModels
 
 
             gridData.EndUpdate();
-            //if (startIndex == 0)
-                //gridData.RemoveAt(startIndex);
+            if (startIndex == 0)
+                gridData.RemoveAt(startIndex);
         }
     }
 }
