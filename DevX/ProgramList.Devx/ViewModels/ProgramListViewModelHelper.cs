@@ -125,13 +125,25 @@ namespace ProgramList.DevX.ViewModels
                     //var model = (ListItemBase)Activator.CreateInstance(ass.GetType("Jeeves.CustomModels.MyType", true), parameters);
 
 
+                    model.SetData($"String {row}-0", "StringProperty");
+                    model.SetData(row * 10 + 0, "IntProperty");
+                    model.SetData(row % 2 == 0, "BoolProperty");
+
+                    model.SetData($"1 R {row}-0", "Button1");
+                    model.SetData($"2 R {row}-0", "Button2");
                     model.SetData((row % 4).ToString(), "DropDown");
-                    model.SetData(row, "IntProperty");
-                    model.SetData($"String{row}", "StringProperty");
-                    model.SetData($"String1{row}", "StringProperty1");
-                    //model.SetValue(row % 2 == 0, "BoolProperty");
-                    model.SetData($"1 R {row}", "Button1");
-                    model.SetData($"2 R {row}", "Button2");
+
+                    var currentDate = DateTime.Now;
+                    model.SetData(currentDate, "DateTimeProperty");
+                    model.SetData(currentDate, "DateProperty");
+                    model.SetData(currentDate, "TimeProperty");
+
+                    for (var i = 1; i <= viewModel.ColumnSets; i++)
+                    {
+                        model.SetData($"String {row}-{i}", $"StringProperty{i}");
+                        model.SetData(row * 10 + i, $"IntProperty{i}");
+                        model.SetData((row + i) % 2 == 0, $"BoolProperty{i}");
+                    }
 
                     //if (index == 1)
                     //{
@@ -153,7 +165,7 @@ namespace ProgramList.DevX.ViewModels
                     {
                         model.SetBackground("#EC2B2B", "StringProperty1");
                         model.SetForeground("#FFFFFF", "StringProperty1");
-                        model.SetData(row * 10 + 1, "IntProperty1");
+
                         model.SetIsEnabled(false, "DropDown");
                     }
                     gridData.Add(model);
