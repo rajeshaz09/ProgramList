@@ -10,16 +10,25 @@
              xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"          
              mc:Ignorable="d" 
              Width="auto"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+    >
     <dxg:GridControl x:Name="ListGrid" 
                      ItemsSource="{Binding Path=GridData}" 
                      ColumnsSource="{Binding Columns}"
                      SelectionMode="Row"
                      CurrentItem="{Binding CurrentRow, Mode=OneWayToSource}"
                      CurrentColumn="{Binding CurrentColumn, Mode=OneWayToSource}"
-                     
                      >
-        
+        <dxg:GridControl.Resources>
+            <Style TargetType="{x:Type MenuItem}" x:Key="ReportSettingsContextMenuItemStyle">
+                <Setter Property="Command" Value="{Binding Command}"/>
+                <Setter Property="Header" Value="{Binding Header}"/>
+                <Setter Property="IsCheckable" Value="{Binding IsCheckable}"/>
+                <Setter Property="IsChecked" Value="{Binding IsChecked}"/>
+                <Setter Property="StaysOpenOnClick" Value="True"/>
+                <Setter Property="AutomationProperties.AutomationId" Value="{Binding AutomationId}"/>
+            </Style>
+        </dxg:GridControl.Resources>
         <dxg:GridControl.View>
             <My:MyTableView 
                 AllowPerPixelScrolling="True" 
@@ -30,6 +39,10 @@
                 AllowResizing="True"
                 NavigationStyle="Cell"
                 AllowEditing="False"
+                ShowAutoFilterRow="True"
+                
+                     PreviewMouseRightButtonDown="ListGrid_PreviewMouseRightButtonDown"
+                     MouseRightButtonDown="ListGrid_MouseRightButtonDown"
                 />
         </dxg:GridControl.View>
         
@@ -38,6 +51,13 @@
             <dxmvvm:EventToCommand EventName="CurrentItemChanged" Command="{Binding CurrentRowChangedCommand}" PassEventArgsToCommand="True" />
             <dxmvvm:EventToCommand EventName="PreviewKeyDown" Command="{Binding PreviewKeyDownCommand}" PassEventArgsToCommand="True" />
         </dxmvvm:Interaction.Behaviors>
+        <!--<dxg:GridControl.ContextMenu>
+            <ContextMenu ContextMenuOpening="ContextMenu_ContextMenuOpening">
+                <MenuItem Header="abc" />
+                <MenuItem Header="bcd" />
+            </ContextMenu>
+
+        </dxg:GridControl.ContextMenu>-->
     </dxg:GridControl>
 
     <!--<dxg:GridControl x:Name="ListGrid" 

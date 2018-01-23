@@ -26,7 +26,7 @@ namespace ProgramList.DevX.ViewModels
 
             viewModel.Columns.Add(new ColumnInfo("StringProperty", typeof(string), false, false, true, false, false));
             viewModel.Columns.Add(new ColumnInfo("IntProperty", typeof(int), true, true, true, false, false));
-            viewModel.Columns.Add(new ColumnInfo("BoolProperty", typeof(bool), true, false, true, false, false));
+            viewModel.Columns.Add(new ColumnInfo("BoolProperty", typeof(bool), true, false, true, false, false) { UnboundType = DevExpress.Data.UnboundColumnType.Boolean });
             var dropDownDataSource = new DropDownItemCollection()
             {
                 new DropDownItem("0", "Zero"),
@@ -117,7 +117,7 @@ namespace ProgramList.DevX.ViewModels
                                 if (column.DataType == typeof(int))
                                     model.SetData(default(int), column.UniqueName);
                             }
-                            gridData.Add(model);
+                            //gridData.Add(model);
                         }
                         continue;
                     }
@@ -177,8 +177,8 @@ namespace ProgramList.DevX.ViewModels
 
 
             gridData.EndUpdate();
-            if (startIndex == 0)
-                gridData.RemoveAt(startIndex);
+            //if (startIndex == 0)
+            //    gridData.RemoveAt(startIndex);
         }
     }
 }

@@ -24,5 +24,20 @@ namespace ProgramList.DevX.Views
         {
             InitializeComponent();
         }
+
+        private void ListGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //e.Handled = true;
+        }
+
+        private void ListGrid_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //e.Handled = true;
+        }
+
+        private void ContextMenu_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

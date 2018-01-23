@@ -22,7 +22,7 @@ namespace ProgramList.DevX.Columns
             string header, Type dataType, bool isVisible, bool isReadOnly, bool isEnabled, bool isSelected)
         {
             column.FieldName = header;
-
+            column.ShowCriteriaInAutoFilterRow = true;
             column.Header = header;
             //column.DataType = dataType;
             column.Visible = isVisible;
