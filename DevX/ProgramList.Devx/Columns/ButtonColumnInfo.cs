@@ -24,7 +24,7 @@ namespace ProgramList.DevX.Columns
             //{
             //    Command = command
             //};
-            //buttonInfo.SetBinding(ButtonInfo.ContentProperty, new Binding(FieldName) { Mode = BindingMode.TwoWay });
+            //buttonInfo.SetBinding(ButtonInfo.ContentProperty, new Binding(UniqueName) { Mode = BindingMode.TwoWay });
             //buttonInfo.SetBinding(ButtonInfo.CommandParameterProperty, new Binding(".") { Mode = BindingMode.TwoWay });
 
 

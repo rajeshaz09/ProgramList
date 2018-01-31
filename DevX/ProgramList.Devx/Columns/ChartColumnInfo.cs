@@ -15,7 +15,7 @@ namespace ProgramList.DevX.Columns
             : base(header, dataType, isVisible, isReadOnly, isEnabled, isSelected, isLinked)
         {
             _itemsSource = itemsSource;
-            CellTemplate = GetCellEditTemplate(FieldName);
+            CellTemplate = GetCellEditTemplate(UniqueName);
             //CellEditTemplate = CellEditTemplate;
             Width = 200;
             

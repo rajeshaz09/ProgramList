@@ -18,6 +18,7 @@
                      SelectionMode="Row"
                      CurrentItem="{Binding CurrentRow, Mode=OneWayToSource}"
                      CurrentColumn="{Binding CurrentColumn, Mode=OneWayToSource}"
+                     
                      >
         <dxg:GridControl.Resources>
             <Style TargetType="{x:Type MenuItem}" x:Key="ReportSettingsContextMenuItemStyle">
@@ -40,6 +41,7 @@
                 NavigationStyle="Cell"
                 AllowEditing="False"
                 ShowAutoFilterRow="True"
+                ShowSearchPanelMode="Always"
                 
                      PreviewMouseRightButtonDown="ListGrid_PreviewMouseRightButtonDown"
                      MouseRightButtonDown="ListGrid_MouseRightButtonDown"

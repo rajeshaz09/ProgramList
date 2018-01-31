@@ -25,7 +25,7 @@ namespace ProgramList.DevX.Columns
 			{
 				EditSettings = new DateEditSettings() { Mask = "g", MaskUseAsDisplayFormat = true, StyleSettings = new DateEditPickerStyleSettings() };
 			}
-			//CellEditTemplate = GetCellEditTemplate(FieldName, pickerType);
+			//CellEditTemplate = GetCellEditTemplate(UniqueName, pickerType);
 			//CellTemplate = CellEditTemplate;
 		}
 

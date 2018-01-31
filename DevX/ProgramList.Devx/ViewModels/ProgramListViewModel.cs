@@ -29,8 +29,8 @@ namespace ProgramList.DevX.ViewModels
 			set { SetProperty(ref _currentRow, value); }
 		}
 
-		private ColumnBase _currentColumn;
-		public ColumnBase CurrentColumn
+		private IColumnInfo _currentColumn;
+		public IColumnInfo CurrentColumn
 		{
 			get { return _currentColumn; }
 			set { SetProperty(ref _currentColumn, value); }
@@ -56,7 +56,7 @@ namespace ProgramList.DevX.ViewModels
 
 		private void OnCurrentColumnChangedHandler(CurrentColumnChangedEventArgs e)
 		{
-			Trace.WriteLine($"Column Changed  {_currentColumn?.FieldName}");
+			Trace.WriteLine($"Column Changed  {_currentColumn?.UniqueName}");
 		}
 
 		public ICommand GenerateCommand(string columnName)

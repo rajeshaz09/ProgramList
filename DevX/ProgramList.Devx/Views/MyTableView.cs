@@ -32,7 +32,7 @@ namespace ProgramList.DevX.Views
 			{
 				columnInfo.IsSelected = !columnInfo.IsSelected;
 
-				ApplyIsSelected(columnInfo.IsSelected, columnInfo.FieldName);
+				ApplyIsSelected(columnInfo.IsSelected, columnInfo.UniqueName);
 				return;
 			}
 			base.OnColumnHeaderClick(column, isShift, isCtrl);
@@ -48,7 +48,7 @@ namespace ProgramList.DevX.Views
 					if (columnInfo.IsSelected)
 					{
 						columnInfo.IsSelected = false;
-						ApplyIsSelected(false, columnInfo.FieldName);
+						ApplyIsSelected(false, columnInfo.UniqueName);
 					}
 				}
 			}
