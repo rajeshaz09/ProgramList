@@ -7,7 +7,7 @@
         Title="MainWindow" WindowState="Maximized">
     <Grid>
         <TextBox MinWidth="100" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                 Text="{Binding SearchString, ElementName=MyTableView, UpdateSourceTrigger=PropertyChanged, Delay=200}" Margin="0,0,0,0" Height="20" />
+                 Text="{Binding SearchString, ElementName=MyTableView, UpdateSourceTrigger=PropertyChanged, Delay=300}" Margin="0,0,0,0" Height="20" />
         <dxg:GridControl HorizontalAlignment="Left" VerticalAlignment="Top" 
                      x:Name="ListGrid" Margin="0,20,0,0"
                      ItemsSource="{Binding}" 
@@ -27,6 +27,7 @@
             <dxg:GridControl.View>
                 <dxg:TableView Name="MyTableView"
                 ShowSearchPanelMode="Always"
+                               AllowEditing="False"
                 >
 
                 </dxg:TableView>
