@@ -1,0 +1,13 @@
+﻿<dx:ThemedWindow x:Class="DevX.PerformanceTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+        Title="MainWindow" WindowState="Maximized">
+
+    <dxg:GridControl x:Name="ListGrid" 
+                     ItemsSource="{Binding Path=GridData}" 
+                     ColumnsSource="{Binding Columns}"
+                     />
+</dx:ThemedWindow>
