@@ -20,32 +20,37 @@ namespace DevX.PerformanceTest
     /// </summary>
     public partial class MainWindow : ThemedWindow
     {
-        ObservableCollectionCore<object> GridData = new ObservableCollectionCore<object>();
+        ViewModel _viewModel = new ViewModel();
         public MainWindow()
         {
             InitializeComponent();
-            for (int i = 0; i < 10000; i++)
+            DataContext = _viewModel;
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 1000; i++)
             {
                 var index = i * 10 + 1;
-                GridData.Add(
+                _viewModel.GridData.Add(
                     new DynamicModel(
                     new Item()
-                {
-                    Id = index,
-                    Active = (i % 2) == 0,
-                    Prop01 = $"string{1 + index}",
-                    Prop02 = $"string{2 + index}",
-                    Prop03 = $"string{3 + index}",
-                    Prop04 = $"string{4 + index}",
-                    Prop05 = $"string{5 + index}",
-                    Prop06 = $"string{6 + index}",
-                    Prop07 = $"string{7 + index}",
-                    Prop08 = $"string{8 + index}",
-                }
+                    {
+                        Id = index,
+                        Active = (i % 2) == 0,
+                        Prop01 = $"string{1 + index}",
+                        Prop02 = $"string{2 + index}",
+                        Prop03 = $"string{3 + index}",
+                        Prop04 = $"string{4 + index}",
+                        Prop05 = $"string{5 + index}",
+                        Prop06 = $"string{6 + index}",
+                        Prop07 = $"string{7 + index}",
+                        Prop08 = $"string{8 + index}",
+                    }
                     )
                     );
             }
-            ListGrid.DataContext = GridData;
         }
     }
 }

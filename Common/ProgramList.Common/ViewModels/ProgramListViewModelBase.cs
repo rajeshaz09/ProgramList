@@ -15,6 +15,13 @@ namespace ProgramList.Common.ViewModels
         public IList<IColumnInfo> Columns { get; }
         public IDictionary<string, ICommand> Commands { get; }
 
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set { SetProperty(ref _searchText, value); }
+        }
+
         private static int TypeSeed = 0;
         public int Seed = 0;
         public int Rows { get; }

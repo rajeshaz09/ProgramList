@@ -6,11 +6,16 @@
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
         Title="MainWindow" WindowState="Maximized">
     <Grid>
-        <TextBox MinWidth="100" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                 Text="{Binding SearchString, ElementName=MyTableView, UpdateSourceTrigger=PropertyChanged, Delay=300}" Margin="0,0,0,0" Height="20" />
+        <TextBox Name="SearchTextBox" MinWidth="100" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                 Text="{Binding SearchString, UpdateSourceTrigger=Explicit}" Margin="0,0,0,0" Height="20">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding SearchCommand}" Key="Return" CommandParameter="{Binding Text, ElementName=SearchTextBox}" />
+            </TextBox.InputBindings>
+
+        </TextBox>
         <dxg:GridControl HorizontalAlignment="Left" VerticalAlignment="Top" 
                      x:Name="ListGrid" Margin="0,20,0,0"
-                     ItemsSource="{Binding}" 
+                     ItemsSource="{Binding GridData}" 
                      >
             <dxg:GridControl.Columns>
                 <dxg:GridColumn Header="Id"     FieldName="Id"      Binding="{Binding Id}"   />
@@ -26,8 +31,9 @@
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
                 <dxg:TableView Name="MyTableView"
-                ShowSearchPanelMode="Always"
                                AllowEditing="False"
+                               SearchString="{Binding SearchString}"
+                               ShowSearchPanelMode="Never"
                 >
 
                 </dxg:TableView>
