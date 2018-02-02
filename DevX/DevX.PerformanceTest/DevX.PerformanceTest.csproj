@@ -62,6 +62,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CellInfo.cs" />
+    <Compile Include="CellInfoDescriptor.cs" />
+    <Compile Include="ModelData.cs" />
+    <Compile Include="MyCollection.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

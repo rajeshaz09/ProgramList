@@ -7,32 +7,27 @@
         Title="MainWindow" WindowState="Maximized">
     <Grid>
         <TextBox Name="SearchTextBox" MinWidth="100" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                 Text="{Binding SearchString, UpdateSourceTrigger=Explicit}" Margin="0,0,0,0" Height="20">
-            <TextBox.InputBindings>
-                <KeyBinding Command="{Binding SearchCommand}" Key="Return" CommandParameter="{Binding Text, ElementName=SearchTextBox}" />
-            </TextBox.InputBindings>
-
+                 Text="{Binding SearchString, ElementName=MyTableView, UpdateSourceTrigger=PropertyChanged, Delay=300}" Margin="0,0,0,0" Height="20">
         </TextBox>
         <dxg:GridControl HorizontalAlignment="Left" VerticalAlignment="Top" 
                      x:Name="ListGrid" Margin="0,20,0,0"
                      ItemsSource="{Binding GridData}" 
                      >
             <dxg:GridControl.Columns>
-                <dxg:GridColumn Header="Id"     FieldName="Id"      Binding="{Binding Id}"   />
-                <dxg:GridColumn Header="Active" FieldName="Active"  Binding="{Binding Active}"   />
-                <dxg:GridColumn Header="Prop01" FieldName="Prop01"  Binding="{Binding Prop01}"   />
-                <dxg:GridColumn Header="Prop02" FieldName="Prop02"  Binding="{Binding Prop02}"   />
-                <dxg:GridColumn Header="Prop03" FieldName="Prop03"  Binding="{Binding Prop03}"   />
-                <dxg:GridColumn Header="Prop04" FieldName="Prop04"  Binding="{Binding Prop04}"   />
-                <dxg:GridColumn Header="Prop05" FieldName="Prop05"  Binding="{Binding Prop05}"   />
-                <dxg:GridColumn Header="Prop06" FieldName="Prop06"  Binding="{Binding Prop06}"   />
-                <dxg:GridColumn Header="Prop07" FieldName="Prop07"  Binding="{Binding Prop07}"   />
-                <dxg:GridColumn Header="Prop08" FieldName="Prop08"  Binding="{Binding Prop08}"   />
+                <dxg:GridColumn Header="Id"     FieldName="Id.Data"         />
+                <dxg:GridColumn Header="Active" FieldName="Active.Data"     />
+                <dxg:GridColumn Header="Prop01" FieldName="Prop01.Data"     />
+                <dxg:GridColumn Header="Prop02" FieldName="Prop02.Data"     />
+                <dxg:GridColumn Header="Prop03" FieldName="Prop03.Data"     />
+                <dxg:GridColumn Header="Prop04" FieldName="Prop04.Data"     />
+                <dxg:GridColumn Header="Prop05" FieldName="Prop05.Data"     />
+                <dxg:GridColumn Header="Prop06" FieldName="Prop06.Data"     />
+                <dxg:GridColumn Header="Prop07" FieldName="Prop07.Data"     />
+                <dxg:GridColumn Header="Prop08" FieldName="Prop08.Data"     />
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
                 <dxg:TableView Name="MyTableView"
-                               AllowEditing="False"
-                               SearchString="{Binding SearchString}"
+                               AllowEditing="True"
                                ShowSearchPanelMode="Never"
                 >
 

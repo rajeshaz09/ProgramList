@@ -1,123 +1,121 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
+using System.Linq;
 
 namespace DevX.PerformanceTest
 {
-    public class DynamicModel: DynamicObject, INotifyPropertyChanged
+    public class DynamicModel : DynamicObject, ICustomTypeDescriptor, INotifyPropertyChanged
     {
-        private Item _item = new Item();
         private ModelBase _modelBase = new ModelBase();
+        PropertyDescriptorCollection _props;
 
-        string[] _properties = new string[] 
-        {
-            "Id", 
-            "Active",
-            "Prop01",
-            "Prop02",
-            "Prop03",
-            "Prop04",
-            "Prop05",
-            "Prop06",
-            "Prop07",
-            "Prop08",
-        };
+        private ModelData _cellDetails;
 
-        public DynamicModel(Item item)
+        public DynamicModel(PropertyDescriptorCollection props)
         {
-            _item = item;
+            _props = props;
+            _cellDetails = new ModelData(_props.Count);
+            foreach (var property in _props.Cast<PropertyDescriptor>())
+                _cellDetails.Add(property.Name, new CellInfo());
         }
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add { _modelBase.PropertyChanged += value; }
             remove { _modelBase.PropertyChanged -= value; }
         }
 
+        internal CellInfo GetValue(string columnName)
+        {
+            return _cellDetails[columnName];
+        }
+
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
-            switch (binder.Name)
-            {
-                case "Id":
-                    result = _item.Id;
-                    break;
-                case "Active":
-                    result = _item.Active;
-                    break;
-                case "Prop01":
-                    result = _item.Prop01;
-                    break;
-                case "Prop02":
-                    result = _item.Prop02;
-                    break;
-                case "Prop03":
-                    result = _item.Prop03;
-                    break;
-                case "Prop04":
-                    result = _item.Prop04;
-                    break;
-                case "Prop05":
-                    result = _item.Prop05;
-                    break;
-                case "Prop06":
-                    result = _item.Prop06;
-                    break;
-                case "Prop07":
-                    result = _item.Prop07;
-                    break;
-                case "Prop08":
-                    result = _item.Prop08;
-                    break;
-                default:
-                    result = null;
-                    break;
-            }
-            
-            
+            result = GetValue(binder.Name);
             return true;
+        }
+
+        internal void SetValue(string columnName, CellInfo cellInfo)
+        {
+            _cellDetails[columnName] = cellInfo;
         }
 
         public override bool TrySetMember(SetMemberBinder binder, object value)
         {
-            switch (binder.Name)
-            {
-                case "Id":
-                    _item.Id = (int)value;
-                    break;
-                case "Active":
-                    _item.Active = (bool)value;
-                    break;
-                case "Prop01":
-                    _item.Prop01 = (string)value;
-                    break;
-                case "Prop02":
-                    _item.Prop02 = (string)value;
-                    break;
-                case "Prop03":
-                    _item.Prop03 = (string)value;
-                    break;
-                case "Prop04":
-                    _item.Prop04 = (string)value;
-                    break;
-                case "Prop05":
-                    _item.Prop05 = (string)value;
-                    break;
-                case "Prop06":
-                    _item.Prop06 = (string)value;
-                    break;
-                case "Prop07":
-                    _item.Prop07 = (string)value;
-                    break;
-                case "Prop08":
-                    _item.Prop08 = (string)value;
-                    break;
-                default:
-                    break;
-            }
+            SetValue(binder.Name, value as CellInfo);
             return true;
         }
+
+
         public override IEnumerable<string> GetDynamicMemberNames()
         {
-            return _properties;
+            return _cellDetails.Keys;
         }
+
+        #region ICustomTypeDescriptor
+        public AttributeCollection GetAttributes()
+        {
+            return AttributeCollection.Empty;
+        }
+
+        public string GetClassName()
+        {
+            return null;
+        }
+
+        public string GetComponentName()
+        {
+            return null;
+        }
+
+        public TypeConverter GetConverter()
+        {
+            return new TypeConverter();
+        }
+
+        public EventDescriptor GetDefaultEvent()
+        {
+            return null;
+        }
+
+        public PropertyDescriptor GetDefaultProperty()
+        {
+            return null;
+        }
+
+        public object GetEditor(Type editorBaseType)
+        {
+            return null;
+        }
+
+        public EventDescriptorCollection GetEvents()
+        {
+            return EventDescriptorCollection.Empty;
+        }
+
+        public EventDescriptorCollection GetEvents(Attribute[] attributes)
+        {
+            return GetEvents();
+        }
+
+        public PropertyDescriptorCollection GetProperties()
+        {
+            return _props;
+        }
+
+        public PropertyDescriptorCollection GetProperties(Attribute[] attributes)
+        {
+            return GetProperties();
+        }
+
+        public object GetPropertyOwner(PropertyDescriptor pd)
+        {
+            return null;
+        }
+        #endregion ICustomTypeDescriptor
     }
+
 }
