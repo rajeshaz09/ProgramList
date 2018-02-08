@@ -64,6 +64,8 @@
     </ApplicationDefinition>
     <Compile Include="CellInfo.cs" />
     <Compile Include="CellInfoDescriptor.cs" />
+    <Compile Include="CustomColumnChooser.cs" />
+    <Compile Include="CustomColumnChooserControl.cs" />
     <Compile Include="ModelData.cs" />
     <Compile Include="MyCollection.cs" />
     <Compile Include="ViewModel.cs" />
@@ -76,7 +78,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DynamicModel.cs" />
-    <Compile Include="Item.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

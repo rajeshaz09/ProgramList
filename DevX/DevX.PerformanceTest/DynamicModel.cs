@@ -117,5 +117,4 @@ namespace DevX.PerformanceTest
         }
         #endregion ICustomTypeDescriptor
     }
-
 }

@@ -6,29 +6,37 @@
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
         Title="MainWindow" WindowState="Maximized">
     <Grid>
-        <TextBox Name="SearchTextBox" MinWidth="100" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                 Text="{Binding SearchString, ElementName=MyTableView, UpdateSourceTrigger=PropertyChanged, Delay=300}" Margin="0,0,0,0" Height="20">
-        </TextBox>
+        <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+            <TextBox Name="SearchTextBox" MinWidth="100" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                 Text="{Binding SearchString, ElementName=MyTableView, UpdateSourceTrigger=PropertyChanged, Delay=300}" Margin="0,0,0,0" Height="20" />
+            <Button Content="Show/Hide" Click="Button_Click" />
+        </StackPanel>
         <dxg:GridControl HorizontalAlignment="Left" VerticalAlignment="Top" 
                      x:Name="ListGrid" Margin="0,20,0,0"
                      ItemsSource="{Binding GridData}" 
+                         
                      >
             <dxg:GridControl.Columns>
-                <dxg:GridColumn Header="Id"     FieldName="Id.Data"         />
-                <dxg:GridColumn Header="Active" FieldName="Active.Data"     />
-                <dxg:GridColumn Header="Prop01" FieldName="Prop01.Data"     />
-                <dxg:GridColumn Header="Prop02" FieldName="Prop02.Data"     />
-                <dxg:GridColumn Header="Prop03" FieldName="Prop03.Data"     />
-                <dxg:GridColumn Header="Prop04" FieldName="Prop04.Data"     />
-                <dxg:GridColumn Header="Prop05" FieldName="Prop05.Data"     />
-                <dxg:GridColumn Header="Prop06" FieldName="Prop06.Data"     />
-                <dxg:GridColumn Header="Prop07" FieldName="Prop07.Data"     />
-                <dxg:GridColumn Header="Prop08" FieldName="Prop08.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Id"     FieldName="Id.Data"         />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Active" FieldName="Active.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop01" FieldName="Prop01.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop02" FieldName="Prop02.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop03" FieldName="Prop03.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop04" FieldName="Prop04.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop05" FieldName="Prop05.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop06" FieldName="Prop06.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop07" FieldName="Prop07.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop08" FieldName="Prop08.Data"     />
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
                 <dxg:TableView Name="MyTableView"
                                AllowEditing="True"
+                               AllowColumnMoving="True"
                                ShowSearchPanelMode="Never"
+                               IsColumnMenuEnabled="False"
+                               ShowGroupPanel="True"
+                               ShowGroupedColumns="True"
+                               IsColumnChooserVisible="{Binding ShowCloumnChooser, Mode=TwoWay}"
                 >
 
                 </dxg:TableView>

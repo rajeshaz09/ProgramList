@@ -41,15 +41,32 @@ namespace DevX.PerformanceTest
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var item = new Item();
             var descriptors = new PropertyDescriptor[10];
             for (var count = 0; count < descriptors.Length; count++)
                 descriptors[count] = new CellInfoDescriptor(_properties[count]);
             var descriptorCollection = new PropertyDescriptorCollection(descriptors);
 
             var viewModel = new ViewModel(descriptorCollection);
+            var rows = 1000;
+            for (int i = 0; i < rows; i++)
+            {
+                var index = i * 10 + 1;
+                var model = new DynamicModel(descriptorCollection);
 
-            for (int i = 0; i < 10000; i++)
+                for (var count = 1; count <= _properties.Length; count++)
+                {
+                    if (count == 1)
+                        model.SetValue(_properties[count - 1], new CellInfo() { Data = index });
+
+                    else if (count == 2)
+                        model.SetValue(_properties[count - 1], new CellInfo() { Data = ((i % 2) == 0) });
+                    else
+                        model.SetValue(_properties[count - 1], new CellInfo() { Data = $"string{count + index}" });
+
+                }
+                viewModel.GridData.Add(model);
+            }
+            for (int i = 0; i < rows; i++)
             {
                 var index = i * 10 + 1;
                 var model = new DynamicModel(descriptorCollection);
@@ -69,6 +86,12 @@ namespace DevX.PerformanceTest
             }
 
             DataContext = viewModel;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as ViewModel;
+            viewModel.ShowCloumnChooser = !viewModel.ShowCloumnChooser;
         }
     }
 }
