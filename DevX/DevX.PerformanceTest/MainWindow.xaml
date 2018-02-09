@@ -68,7 +68,7 @@
                      ItemsSource="{Binding GridData}"  
                          ColumnsSource="{Binding Columns}" 
                          ColumnGeneratorTemplateSelector="{StaticResource ColumnTemplateSelector}">
-            <dxg:GridControl.Columns>
+            <!--<dxg:GridControl.Columns>
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Id"     FieldName="Id.Data"         />
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Active" FieldName="Active.Data"     >
                     <dxg:GridColumn.EditSettings>
@@ -88,7 +88,7 @@
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop06" FieldName="Prop06.Data"     />
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop07" FieldName="Prop07.Data"     />
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop08" FieldName="Prop08.Data"     />
-            </dxg:GridControl.Columns>
+            </dxg:GridControl.Columns>-->
             <dxg:GridControl.View>
                 <dxg:TableView Name="MyTableView"
                                AllowEditing="True"

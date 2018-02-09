@@ -15,7 +15,7 @@
             UniqueName = uniqueName;
             FieldName = $"{uniqueName}.Data";
             Header = uniqueName;
-            Width = 20;
+            Width = 100;
         }
         private string _fieldName;
         private SettingsType _settings;

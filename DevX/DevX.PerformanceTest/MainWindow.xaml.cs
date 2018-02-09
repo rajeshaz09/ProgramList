@@ -57,7 +57,7 @@ namespace DevX.PerformanceTest
             {
                 new DefaultColumn               ("Id"      ),
                 new TwoStateCheckBoxColumn      ("Active1" ),
-                new ThreeStateCheckBoxColumn    ("Active1" ),
+                new ThreeStateCheckBoxColumn    ("Active2" ),
                 new DefaultColumn               ("Prop01"  ),
                 new DefaultColumn               ("Prop02"  ),
                 new DefaultColumn               ("Prop03"  ),
