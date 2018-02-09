@@ -11,23 +11,21 @@
     <dx:ThemedWindow.Resources>
 
         <local:ColumnTemplateSelector x:Key="ColumnTemplateSelector"/>
-        <Style x:Key="ColumnStyle" TargetType="dxg:GridColumn">
+        <Style TargetType="dxg:GridColumn">
             <Setter Property="FilterPopupMode" Value="CheckedList"/>
             <Setter Property="FieldName" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Header" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Width" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}"/>
         </Style>
 
         <DataTemplate x:Key="DefaultColumnTemplate">
             <ContentControl>
-                <dxg:GridColumn FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}" 
-                Header="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}" 
-                Width="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}" />
+                <dxg:GridColumn />
             </ContentControl>
         </DataTemplate>
         <DataTemplate x:Key="TwoStateCheckBoxColumnTemplate">
             <ContentControl>
-                <dxg:GridColumn FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}" 
-                Header="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}" 
-                Width="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}">
+                <dxg:GridColumn>
                     <dxg:GridColumn.EditSettings>
                         <dxe:CheckEditSettings IsThreeState="False" />
                     </dxg:GridColumn.EditSettings>
@@ -36,9 +34,7 @@
         </DataTemplate>
         <DataTemplate x:Key="ThreeStateCheckBoxColumnTemplate">
             <ContentControl>
-                <dxg:GridColumn FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}" 
-                Header="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}" 
-                Width="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}">
+                <dxg:GridColumn>
                     <dxg:GridColumn.EditSettings>
                         <dxe:CheckEditSettings IsThreeState="True" />
                     </dxg:GridColumn.EditSettings>
@@ -48,9 +44,9 @@
 
         <DataTemplate x:Key="ComboBoxColumnTemplate">
             <ContentControl>
-                <dxg:GridColumn  FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}">
+                <dxg:GridColumn>
                     <dxg:GridColumn.EditSettings>
-                        <dxe:ComboBoxEditSettings ItemsSource="{Binding Source}"/>
+                        <dxe:ComboBoxEditSettings ItemsSource="{Binding ItemsSource}"/>
                     </dxg:GridColumn.EditSettings>
                 </dxg:GridColumn>
             </ContentControl>
