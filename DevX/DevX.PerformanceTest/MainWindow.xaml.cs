@@ -15,16 +15,26 @@ using DevExpress.Xpf.Core;
 
 namespace DevX.PerformanceTest
 {
+
+    public class ColumnTemplateSelector : DataTemplateSelector
+    {
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            Column column = (Column)item;
+            return (DataTemplate)((Control)container).FindResource(column.EditSettings + "ColumnTemplate");
+        }
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : ThemedWindow
     {
 
-        public static string[] _properties = new string[]
+        public static string[] _propertiees = new string[]
         {
             "Id",
-            "Active",
+            "Active1",
+            "Active2",
             "Prop01",
             "Prop02",
             "Prop03",
@@ -41,49 +51,50 @@ namespace DevX.PerformanceTest
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var descriptors = new PropertyDescriptor[10];
-            for (var count = 0; count < descriptors.Length; count++)
-                descriptors[count] = new CellInfoDescriptor(_properties[count]);
-            var descriptorCollection = new PropertyDescriptorCollection(descriptors);
+            var viewModel = new ViewModel();
 
-            var viewModel = new ViewModel(descriptorCollection);
+            var columns = new Column[]
+            {
+                new DefaultColumn               ("Id"      ),
+                new TwoStateCheckBoxColumn      ("Active1" ),
+                new ThreeStateCheckBoxColumn    ("Active1" ),
+                new DefaultColumn               ("Prop01"  ),
+                new DefaultColumn               ("Prop02"  ),
+                new DefaultColumn               ("Prop03"  ),
+                new DefaultColumn               ("Prop04"  ),
+                new DefaultColumn               ("Prop05"  ),
+                new DefaultColumn               ("Prop06"  ),
+                new DefaultColumn               ("Prop07"  ),
+                new DefaultColumn               ("Prop08"  ),
+            };
+
+            foreach (var column in columns)
+                viewModel.Columns.Add(column);
+            viewModel.GeneratePropertyDescriptors();
+
             var rows = 1000;
-            for (int i = 0; i < rows; i++)
-            {
-                var index = i * 10 + 1;
-                var model = new DynamicModel(descriptorCollection);
-
-                for (var count = 1; count <= _properties.Length; count++)
+            for (var loops = 0; loops < 2; loops++)
+                for (int i = 0; i < rows; i++)
                 {
-                    if (count == 1)
-                        model.SetValue(_properties[count - 1], new CellInfo() { Data = index });
+                    var index = i * 10 + 1;
+                    var model = new DynamicModel(viewModel.GridData.PropertyInfo);
 
-                    else if (count == 2)
-                        model.SetValue(_properties[count - 1], new CellInfo() { Data = ((i % 2) == 0) });
-                    else
-                        model.SetValue(_properties[count - 1], new CellInfo() { Data = $"string{count + index}" });
+                    for (var count = 1; count <= viewModel.Columns.Count; count++)
+                    {
+                        if (count == 1)
+                            model.SetValue(viewModel.Columns[count - 1].UniqueName, new CellInfo() { Data = index });
 
+                        else if (count == 2 || count == 3)
+                            if (i % 3 == 0)
+                                continue;
+                            else
+                                model.SetValue(viewModel.Columns[count - 1].UniqueName, new CellInfo() { Data = (((i - 1) % 2) == 0) });
+                        else
+                            model.SetValue(viewModel.Columns[count - 1].UniqueName, new CellInfo() { Data = $"string{count + index}" });
+
+                    }
+                    viewModel.GridData.Add(model);
                 }
-                viewModel.GridData.Add(model);
-            }
-            for (int i = 0; i < rows; i++)
-            {
-                var index = i * 10 + 1;
-                var model = new DynamicModel(descriptorCollection);
-
-                for (var count = 1; count <= _properties.Length; count++)
-                {
-                    if (count == 1)
-                        model.SetValue(_properties[count - 1], new CellInfo() { Data = index });
-
-                    else if (count == 2)
-                        model.SetValue(_properties[count - 1], new CellInfo() { Data = ((i % 2) == 0) });
-                    else
-                        model.SetValue(_properties[count - 1], new CellInfo() { Data = $"string{count + index}" });
-
-                }
-                viewModel.GridData.Add(model);
-            }
 
             DataContext = viewModel;
         }

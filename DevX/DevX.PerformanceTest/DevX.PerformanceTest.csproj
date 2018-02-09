@@ -64,6 +64,7 @@
     </ApplicationDefinition>
     <Compile Include="CellInfo.cs" />
     <Compile Include="CellInfoDescriptor.cs" />
+    <Compile Include="Column.cs" />
     <Compile Include="CustomColumnChooser.cs" />
     <Compile Include="CustomColumnChooserControl.cs" />
     <Compile Include="ModelData.cs" />

@@ -4,7 +4,59 @@
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+        xmlns:local="clr-namespace:DevX.PerformanceTest"
         Title="MainWindow" WindowState="Maximized">
+    <dx:ThemedWindow.Resources>
+
+        <local:ColumnTemplateSelector x:Key="ColumnTemplateSelector"/>
+        <Style x:Key="ColumnStyle" TargetType="dxg:GridColumn">
+            <Setter Property="FilterPopupMode" Value="CheckedList"/>
+            <Setter Property="FieldName" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"/>
+        </Style>
+
+        <DataTemplate x:Key="DefaultColumnTemplate">
+            <ContentControl>
+                <dxg:GridColumn FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}" 
+                Header="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}" 
+                Width="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}" />
+            </ContentControl>
+        </DataTemplate>
+        <DataTemplate x:Key="TwoStateCheckBoxColumnTemplate">
+            <ContentControl>
+                <dxg:GridColumn FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}" 
+                Header="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}" 
+                Width="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings IsThreeState="False" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </ContentControl>
+        </DataTemplate>
+        <DataTemplate x:Key="ThreeStateCheckBoxColumnTemplate">
+            <ContentControl>
+                <dxg:GridColumn FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}" 
+                Header="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}" 
+                Width="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings IsThreeState="True" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </ContentControl>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ComboBoxColumnTemplate">
+            <ContentControl>
+                <dxg:GridColumn  FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:ComboBoxEditSettings ItemsSource="{Binding Source}"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </ContentControl>
+        </DataTemplate>
+    </dx:ThemedWindow.Resources>
+
     <Grid>
         <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top">
             <TextBox Name="SearchTextBox" MinWidth="100" HorizontalAlignment="Left" VerticalAlignment="Top" 
@@ -13,12 +65,21 @@
         </StackPanel>
         <dxg:GridControl HorizontalAlignment="Left" VerticalAlignment="Top" 
                      x:Name="ListGrid" Margin="0,20,0,0"
-                     ItemsSource="{Binding GridData}" 
-                         
-                     >
+                     ItemsSource="{Binding GridData}"  
+                         ColumnsSource="{Binding Columns}" 
+                         ColumnGeneratorTemplateSelector="{StaticResource ColumnTemplateSelector}">
             <dxg:GridControl.Columns>
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Id"     FieldName="Id.Data"         />
-                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Active" FieldName="Active.Data"     />
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Active" FieldName="Active.Data"     >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings IsThreeState="False" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Active" FieldName="Active.Data"     >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings IsThreeState="True" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop01" FieldName="Prop01.Data"     />
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop02" FieldName="Prop02.Data"     />
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Prop03" FieldName="Prop03.Data"     />
