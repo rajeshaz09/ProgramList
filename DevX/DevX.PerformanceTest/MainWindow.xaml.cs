@@ -65,8 +65,12 @@ namespace DevX.PerformanceTest
                 new DefaultColumn               ("Prop05"  ),
                 new DefaultColumn               ("Prop06"  ),
                 new DefaultColumn               ("Prop07"  ),
-                new DefaultColumn               ("Prop08"  ),
+                new ComboColumn                 ("Prop08"  ),
             };
+            (columns.Last() as ComboColumn).ItemsSource.Add("A");
+            (columns.Last() as ComboColumn).ItemsSource.Add("B");
+            (columns.Last() as ComboColumn).ItemsSource.Add("C");
+            (columns.Last() as ComboColumn).ItemsSource.Add("D");
 
             foreach (var column in columns)
                 viewModel.Columns.Add(column);
@@ -89,6 +93,8 @@ namespace DevX.PerformanceTest
                                 continue;
                             else
                                 model.SetValue(viewModel.Columns[count - 1].UniqueName, new CellInfo() { Data = (((i - 1) % 2) == 0) });
+                        else if (count == 11)
+                            model.SetValue(viewModel.Columns[count - 1].UniqueName, new CellInfo() { Data = (i % 2 == 0) ? "A" : "B" });
                         else
                             model.SetValue(viewModel.Columns[count - 1].UniqueName, new CellInfo() { Data = $"string{count + index}" });
 
@@ -103,6 +109,16 @@ namespace DevX.PerformanceTest
         {
             var viewModel = DataContext as ViewModel;
             viewModel.ShowCloumnChooser = !viewModel.ShowCloumnChooser;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            //ListGrid.SaveLayoutToStream()
+        }
+
+        private void RestoreButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
