@@ -67,7 +67,9 @@
                      x:Name="ListGrid" Margin="0,20,0,0"
                      ItemsSource="{Binding GridData}"  
                          ColumnsSource="{Binding Columns}" 
-                         ColumnGeneratorTemplateSelector="{StaticResource ColumnTemplateSelector}">
+                         ColumnGeneratorTemplateSelector="{StaticResource ColumnTemplateSelector}"
+                         ShowAllTableValuesInCheckedFilterPopup="False"
+                         ShowAllTableValuesInFilterPopup="False" >
             <!--<dxg:GridControl.Columns>
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Id"     FieldName="Id.Data"         />
                 <dxg:GridColumn AllowGrouping="True" AllowSorting="True" Header="Active" FieldName="Active.Data"     >
@@ -94,7 +96,7 @@
                                AllowEditing="True"
                                AllowColumnMoving="True"
                                ShowSearchPanelMode="Never"
-                               IsColumnMenuEnabled="False"
+                               IsColumnMenuEnabled="False" ShowAutoFilterRow="True"
                                ShowGroupPanel="True"
                                ShowGroupedColumns="True"
                                IsColumnChooserVisible="{Binding ShowCloumnChooser, Mode=TwoWay}"
