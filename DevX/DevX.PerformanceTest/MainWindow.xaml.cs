@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -24,6 +25,7 @@ namespace DevX.PerformanceTest
             return (DataTemplate)((Control)container).FindResource(column.EditSettings + "ColumnTemplate");
         }
     }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -107,6 +109,8 @@ namespace DevX.PerformanceTest
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MyPopup.IsOpen = true;
+            return;
             var viewModel = DataContext as ViewModel;
             viewModel.ShowCloumnChooser = !viewModel.ShowCloumnChooser;
         }

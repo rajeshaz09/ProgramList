@@ -7,6 +7,16 @@ namespace DevX.PerformanceTest
 {
     public class ViewModel : ModelBase
     {
+        public ViewModel()
+        {
+            IntellisenceCommand = new DelegateCommand(() =>
+            {
+                FocusedElement = Keyboard.FocusedElement;
+                IsOpen = true;
+            });
+        }
+        public object FocusedElement { get => _focusedElement; set => SetProperty(ref _focusedElement, value); }
+        public ICommand IntellisenceCommand { get; set; }
         private MyCollection<DynamicModel> _gridData;
         public MyCollection<DynamicModel> GridData
         {
@@ -17,12 +27,17 @@ namespace DevX.PerformanceTest
             = new ObservableCollectionCore<Column>();
 
 
+        private bool _isOpen;
         private bool _showCloumnChooser;
+        private object _focusedElement;
+
         public bool ShowCloumnChooser
         {
             get { return _showCloumnChooser; }
             set { SetProperty(ref _showCloumnChooser, value); }
         }
+
+        public bool IsOpen { get => _isOpen; set => SetProperty(ref _isOpen, value); }
 
         public void GeneratePropertyDescriptors()
         {
