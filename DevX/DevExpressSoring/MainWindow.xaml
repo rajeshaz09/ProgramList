@@ -1,0 +1,72 @@
+﻿<dx:ThemedWindow
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+		xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+		xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+		xmlns:local="clr-namespace:DevExpressSoring"
+		xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+		xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+		x:Class="DevExpressSoring.MainWindow"
+		Title="MainWindow" Height="350" Width="525">
+	<dx:ThemedWindow.Resources>
+
+		<local:ColumnTemplateSelector x:Key="ColumnTemplateSelector"/>
+		<Style TargetType="dxg:GridColumn">
+			<Setter Property="FilterPopupMode" Value="CheckedList"/>
+			<Setter Property="FieldName" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"/>
+			<Setter Property="Header" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}"/>
+			<Setter Property="Width" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}"/>
+			<Setter Property="AllowSorting" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).AllowSorting, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+		</Style>
+
+		<DataTemplate x:Key="DefaultColumnTemplate">
+			<ContentControl>
+				<dxg:GridColumn />
+			</ContentControl>
+		</DataTemplate>
+		<DataTemplate x:Key="TwoStateCheckBoxColumnTemplate">
+			<ContentControl>
+				<dxg:GridColumn>
+					<dxg:GridColumn.EditSettings>
+						<dxe:CheckEditSettings IsThreeState="False" />
+					</dxg:GridColumn.EditSettings>
+				</dxg:GridColumn>
+			</ContentControl>
+		</DataTemplate>
+		<DataTemplate x:Key="ThreeStateCheckBoxColumnTemplate">
+			<ContentControl>
+				<dxg:GridColumn>
+					<dxg:GridColumn.EditSettings>
+						<dxe:CheckEditSettings IsThreeState="True" />
+					</dxg:GridColumn.EditSettings>
+				</dxg:GridColumn>
+			</ContentControl>
+		</DataTemplate>
+
+		<DataTemplate x:Key="ComboBoxColumnTemplate">
+			<ContentControl>
+				<dxg:GridColumn>
+					<dxg:GridColumn.EditSettings>
+						<dxe:ComboBoxEditSettings
+							IsTextEditable="False"
+							ItemsSource="{Binding ItemsSource}"/>
+					</dxg:GridColumn.EditSettings>
+				</dxg:GridColumn>
+			</ContentControl>
+		</DataTemplate>
+	</dx:ThemedWindow.Resources>
+	<Grid>
+		<dxg:GridControl Name="MyGridControl" 
+						 ItemsSource="{Binding GridData}" 
+						 ColumnsSource="{Binding Columns}" 
+						 ColumnGeneratorTemplateSelector="{StaticResource ColumnTemplateSelector}"
+						 >
+			<dxg:GridControl.View>
+				<dxg:TableView
+                    AllowSorting="True"
+                    />
+			</dxg:GridControl.View>
+		</dxg:GridControl>
+	</Grid>
+</dx:ThemedWindow>

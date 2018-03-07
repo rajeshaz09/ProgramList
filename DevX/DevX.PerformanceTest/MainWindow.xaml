@@ -15,9 +15,10 @@
 		<Style TargetType="dxg:GridColumn">
 			<Setter Property="FilterPopupMode" Value="CheckedList"/>
 			<Setter Property="FieldName" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"/>
-			<Setter Property="Header" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}"/>
-			<Setter Property="Width" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}"/>
-		</Style>
+            <Setter Property="Header" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Width" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="AllowSorting" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).AllowSorting, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        </Style>
 
 		<DataTemplate x:Key="DefaultColumnTemplate">
 			<ContentControl>
@@ -105,7 +106,7 @@
 							   IsColumnMenuEnabled="False" ShowAutoFilterRow="True"
 							   ShowGroupPanel="True"
 							   ShowGroupedColumns="True"
-							   IsColumnChooserVisible="{Binding ShowCloumnChooser, Mode=TwoWay}"
+							   IsColumnChooserVisible="{Binding ShowCloumnChooser, Mode=TwoWay}" AllowSorting="True"
 				>
 					<mvvm:Interaction.Triggers>
 						<mvvm:KeyToCommand KeyGesture="Ctrl+Space"
