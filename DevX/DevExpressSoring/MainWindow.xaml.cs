@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -92,7 +93,22 @@ namespace DevExpressSoring
                     }
                     VM.GridData.Add(model);
                 }
-            
+
+            Task.Run(() =>
+            {
+                Dispatcher.Invoke((Action)(async () =>
+               {
+                   await Task.Delay(1000);
+                   MyGridControl.CurrentColumn = MyGridControl.Columns[3];
+                   MyTableView.FocusedRowHandle = 2;
+                   MyTableView.ShowEditor();
+               }));
+            });
+            Task.Run(async () =>
+            {
+                await Task.Delay(2000);
+                VM.GridData[2].GetValue(columns[3].UniqueName).Data = DateTime.Now.Ticks.ToString();
+            });
 
         }
     }

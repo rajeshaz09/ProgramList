@@ -63,7 +63,7 @@
 						 ColumnGeneratorTemplateSelector="{StaticResource ColumnTemplateSelector}"
 						 >
 			<dxg:GridControl.View>
-				<dxg:TableView
+				<dxg:TableView x:Name="MyTableView"
                     AllowSorting="True"
                     />
 			</dxg:GridControl.View>
