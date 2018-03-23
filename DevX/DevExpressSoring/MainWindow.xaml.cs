@@ -130,6 +130,8 @@ namespace DevExpressSoring
             Dispatcher.BeginInvoke((Action)(() =>
             {
                 var te = MyTableView.ActiveEditor as TextEdit;
+                if (te == null)
+                    return;
                 te?.SelectAll();
                 te.SelectionStart = 2;
                 te.SelectionLength = 3;
