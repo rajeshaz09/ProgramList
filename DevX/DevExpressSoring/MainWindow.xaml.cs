@@ -10,7 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using DevExpress.Xpf.Core;
+using DevExpress.Xpf.Editors;
 
 namespace DevExpressSoring
 {
@@ -68,7 +70,7 @@ namespace DevExpressSoring
                 VM.Columns.Add(column);
             VM.GeneratePropertyDescriptors();
 
-            var rows = 1000;
+            var rows = 100000;
             for (var loops = 0; loops < 2; loops++)
                 for (int i = 0; i < rows; i++)
                 {
@@ -94,22 +96,44 @@ namespace DevExpressSoring
                     VM.GridData.Add(model);
                 }
 
-            Task.Run(() =>
+            Dispatcher.BeginInvoke((Action)(() =>
             {
-                Dispatcher.Invoke((Action)(async () =>
-               {
-                   await Task.Delay(1000);
-                   MyGridControl.CurrentColumn = MyGridControl.Columns[3];
-                   MyTableView.FocusedRowHandle = 2;
-                   MyTableView.ShowEditor();
-               }));
-            });
+                MyGridControl.CurrentColumn = MyGridControl.Columns[3];
+                MyTableView.FocusedRowHandle = 2;
+                MyTableView.ShowEditor();
+                SelectText();
+
+            }));
+            
+
             Task.Run(async () =>
             {
                 await Task.Delay(2000);
-                VM.GridData[2].GetValue(columns[3].UniqueName).Data = DateTime.Now.Ticks.ToString();
-            });
+                VM.GridData[2].GetValue(columns[3].UniqueName).Data =
+                "12345678";
+                VM.GridData[2].GetValue(columns[4].UniqueName).Data =
+                DateTime.Now.Ticks.ToString();
+                await Dispatcher.BeginInvoke((Action)(() =>
+                {
+                    //MyGridControl.RefreshData();
+                    MyGridControl.RefreshRow(MyTableView.FocusedRowHandle);
+                    MyTableView.CloseEditor();
+                    MyTableView.ShowEditor();
+                    SelectText();
+                }));
 
+            }).ConfigureAwait(false);
+        }
+
+        private void SelectText()
+        {
+            Dispatcher.BeginInvoke((Action)(() =>
+            {
+                var te = MyTableView.ActiveEditor as TextEdit;
+                te?.SelectAll();
+                te.SelectionStart = 2;
+                te.SelectionLength = 3;
+            }), DispatcherPriority.Input);
         }
     }
 }
