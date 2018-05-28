@@ -96,30 +96,39 @@ namespace DevExpressSoring
                     VM.GridData.Add(model);
                 }
 
+            var num = 3;
             Dispatcher.BeginInvoke((Action)(() =>
             {
-                MyGridControl.CurrentColumn = MyGridControl.Columns[3];
+                MyGridControl.CurrentColumn = MyGridControl.Columns[num];
                 MyTableView.FocusedRowHandle = 2;
                 MyTableView.ShowEditor();
                 SelectText();
 
             }));
-            
+
 
             Task.Run(async () =>
             {
                 await Task.Delay(2000);
-                VM.GridData[2].GetValue(columns[3].UniqueName).Data =
-                "12345678";
+                VM.GridData[2].GetValue(columns[num].UniqueName).Data =
+                "234567";
+               //!(bool)VM.GridData[2].GetValue(columns[num].UniqueName).Data;
                 VM.GridData[2].GetValue(columns[4].UniqueName).Data =
                 DateTime.Now.Ticks.ToString();
                 await Dispatcher.BeginInvoke((Action)(() =>
                 {
                     //MyGridControl.RefreshData();
                     MyGridControl.RefreshRow(MyTableView.FocusedRowHandle);
-                    MyTableView.CloseEditor();
-                    MyTableView.ShowEditor();
-                    SelectText();
+                    var val = (MyTableView.Grid.CurrentItem as DynamicModel)
+                    .GetValue((MyGridControl.CurrentColumn.DataContext as Column).UniqueName).Data;
+                    if (MyTableView.Grid.CurrentCellValue != val)
+                    {
+                        MyTableView.Grid.CurrentCellValue = val;
+                        MyTableView.CloseEditor();
+                        MyTableView.ShowEditor(true);
+                    }
+
+                    //SelectText();
                 }));
 
             }).ConfigureAwait(false);

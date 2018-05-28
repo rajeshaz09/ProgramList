@@ -65,11 +65,15 @@
 			<Button Content="Save" Click="SaveButton_Click" />
 			<Button Content="Restore" Click="RestoreButton_Click" />
 		</StackPanel>
-		<Popup  x:Name="MyPopup" StaysOpen="False"  IsOpen="{Binding IsOpen}" PlacementTarget="{Binding FocusedElement}">
-			<Border BorderBrush="Black" BorderThickness="1" Background="LightYellow">
-				<CheckBox Content="This is a popup"/>
-			</Border>
-		</Popup>
+		<Popup  x:Name="MyPopup" StaysOpen="False" Opened="MyPopup_Opened"  IsOpen="{Binding IsOpen}" PlacementTarget="{Binding ActiveEditor, ElementName=MyTableView}">
+            <StackPanel>
+                <dxg:GridControl x:Name="IntellisenseGrid" ItemsSource="{Binding GridData}" AutoGenerateColumns="RemoveOld" EnableSmartColumnsGeneration="True">
+                    <dxg:GridControl.View>
+                        <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="False"  ShowGroupPanel="False" />
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </StackPanel>
+        </Popup>
 		<dxg:GridControl HorizontalAlignment="Left" VerticalAlignment="Top" 
 					 x:Name="ListGrid" Margin="0,20,0,0"
 					 ItemsSource="{Binding GridData}"  
@@ -106,6 +110,7 @@
 							   IsColumnMenuEnabled="False" ShowAutoFilterRow="True"
 							   ShowGroupPanel="True"
 							   ShowGroupedColumns="True"
+                               TopRowIndex="{Binding TopRowIndex, Mode=TwoWay, Delay=10}"
 							   IsColumnChooserVisible="{Binding ShowCloumnChooser, Mode=TwoWay}" AllowSorting="True"
 				>
 					<mvvm:Interaction.Triggers>

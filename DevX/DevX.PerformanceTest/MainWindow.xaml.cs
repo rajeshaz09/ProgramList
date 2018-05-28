@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
+using DevExpress.Xpf.Grid;
 
 namespace DevX.PerformanceTest
 {
@@ -50,6 +51,7 @@ namespace DevX.PerformanceTest
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
+            GridControl.AllowInfiniteGridSize = true;
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -124,5 +126,13 @@ namespace DevX.PerformanceTest
         {
 
         }
+
+        private void MyPopup_Opened(object sender, System.EventArgs e)
+        {
+        }
+    }
+
+    public class TableViewEx: TableView
+    {
     }
 }

@@ -14,9 +14,15 @@ namespace DevX.PerformanceTest
                 FocusedElement = Keyboard.FocusedElement;
                 IsOpen = true;
             });
+
+            TopRowIndexCommand = new DelegateCommand(() =>
+            {
+
+            });
         }
         public object FocusedElement { get => _focusedElement; set => SetProperty(ref _focusedElement, value); }
         public ICommand IntellisenceCommand { get; set; }
+        public ICommand TopRowIndexCommand { get; set; }
         private MyCollection<DynamicModel> _gridData;
         public MyCollection<DynamicModel> GridData
         {
@@ -38,6 +44,10 @@ namespace DevX.PerformanceTest
         }
 
         public bool IsOpen { get => _isOpen; set => SetProperty(ref _isOpen, value); }
+        public int TopRowIndex { get => _topRowIndex;
+            set => SetProperty(ref _topRowIndex, value); }
+
+        private int _topRowIndex;
 
         public void GeneratePropertyDescriptors()
         {
