@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevExpressSoring.Properties {
+namespace ProgramList.DevX.Final.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
