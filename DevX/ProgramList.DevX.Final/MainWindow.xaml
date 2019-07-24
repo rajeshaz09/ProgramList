@@ -4,17 +4,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+    xmlns:final="clr-namespace:ProgramList.DevX.Final"
+    xmlns:viewmodels="clr-namespace:ProgramList.DevX.ViewModels;assembly=ProgramList.DevX.ViewModels"
     Title="MainWindow" 
     WindowState="Maximized">
+    <dx:DXWindow.DataContext>
+        <viewmodels:ProgramListViewModel x:Name="ViewModel" />
+    </dx:DXWindow.DataContext>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button x:Name="InitGrid" Content="Init" Margin="5" Click="InitGrid_Click" />
-            <Button x:Name="LoadGrid" Content="Load" Margin="5"  Click="LoadGrid_Click"  />
+        <StackPanel VerticalAlignment="Top" Height="40" Orientation="Horizontal" Grid.Row="0" Margin="0,5,0,0">
+            <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="ColumnCount" Text="10" Width="50" Margin="5,0,0,0" />
+            <Button x:Name="ClearGrid" Content="Clear" Margin="5,0,0,0" Click="ClearGrid_Click" />
+            <Button x:Name="InitGrid" Content="Init" Margin="5,0,0,0" Click="InitGrid_Click" />
+            <Button x:Name="LoadGrid" Content="Load" Margin="5,0,0,0"  Click="LoadGrid_Click"  />
         </StackPanel>
-
+        <Border x:Name="PlaceHolder" Height="200"  VerticalAlignment="Top" Margin="2,42,2,2" Background="Red" >
+            <final:ProgramListView DataContext="{Binding}" />
+        </Border>
     </Grid>
 </dx:DXWindow>

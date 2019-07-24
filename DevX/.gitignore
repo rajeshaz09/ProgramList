@@ -3,6 +3,7 @@
 ################################################################################
 
 /.vs
+/packages
 /ProgramList.Devx/obj
 /ProgramList.Devx/bin
 /DevX.PerformanceTest/obj
@@ -11,3 +12,7 @@
 /DevExpressSoring/bin
 /ProgramList.DevX.Final/obj
 /ProgramList.DevX.Final/bin
+/ProgramList.DevX.Models/bin
+/ProgramList.DevX.Models/obj
+/ProgramList.DevX.ViewModels/obj
+/ProgramList.DevX.ViewModels/bin
