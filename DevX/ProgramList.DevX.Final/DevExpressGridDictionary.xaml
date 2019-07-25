@@ -10,6 +10,7 @@
                     xmlns:converter="clr-namespace:ProgramList.DevX.Models;assembly=ProgramList.DevX.Models"
                     xmlns:controls="clr-namespace:ProgramList.DevX.Models;assembly=ProgramList.DevX.Models"
 		                xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
 
     <ResourceDictionary.MergedDictionaries>
@@ -23,6 +24,103 @@
     <converter:ReadOnlyListModeConverter x:Key="ReadOnlyListModeConverter"/>
     <converter:BooleanToTextConverter x:Key="BooleanToTextConverter"/>
     <converter:IsListTypeSourceConverter x:Key="IsListTypeSourceConverter"/>
+    <converter:GridColumnConverter x:Key="GridColumnConverter"/>
+
+    <!-- Transparencies -->
+    <sys:Byte x:Key="SolidAlpha">#FF</sys:Byte>
+    <sys:Byte x:Key="MediumAlpha">#A6</sys:Byte>
+    <sys:Byte x:Key="LightAlpha">#26</sys:Byte>
+
+    <!-- Primary colors from JayWay -->
+    <Color x:Key="DarkBlueColor" R="#3D" G="#50" B="#6F" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="MediumBlueColor" R="#3D" G="#50" B="#6F" A="{StaticResource MediumAlpha}" />
+    <Color x:Key="MediumBlueSolidColor" R="#51" G="#63" B="#82" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="MediumBlueSolidColor2" R="#81" G="#8D" B="#A1" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="LightBlueColor" R="#3D" G="#50" B="#6F" A="{StaticResource LightAlpha}" />
+    <Color x:Key="LightBlueSolidColor" R="#DC" G="#E0" B="#E6" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="DarkOrangeColor" R="#DD" G="#4F" B="#20" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="DarkBrownColor" R="#60" G="#38" B="#13" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="MediumBrownColor" R="151" G="125" B="101" A="{StaticResource MediumAlpha}" />
+    <Color x:Key="MediumBrownSolidColor" R="151" G="125" B="101" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="DarkYellowColor" R="#FC" G="#AE" B="#00" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="DarkGreenColor" R="#3F" G="#82" B="#0B" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="MediumGreenSolidColor" R="144" G="198" B="107" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="DarkGreyColor" R="#33" G="#33" B="#33" A="{StaticResource SolidAlpha}" />
+
+    <Color x:Key="ClearRedColor" R="#ED" G="#1C" B="#24" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="ClearOrangeColor" R="#FF" G="#78" B="#35" A="{StaticResource SolidAlpha}" />
+    <Color x:Key="ClearGreenColor" R="#54" G="#A8" B="#1B" A="{StaticResource SolidAlpha}" />
+
+    <SolidColorBrush x:Key="DarkBlueBrush" Color="{StaticResource DarkBlueColor}" />
+    <SolidColorBrush x:Key="DarkOrangeBrush" Color="{StaticResource DarkOrangeColor}" />
+    <SolidColorBrush x:Key="DarkBrownBrush" Color="{StaticResource DarkBrownColor}" />
+    <SolidColorBrush x:Key="DarkYellowBrush" Color="{StaticResource DarkYellowColor}" />
+    <SolidColorBrush x:Key="DarkGreenBrush" Color="{StaticResource DarkGreenColor}" />
+    <SolidColorBrush x:Key="MediumGreenBrush" Color="{StaticResource MediumGreenSolidColor}" />
+    <SolidColorBrush x:Key="MediumBrownBrush" Color="{StaticResource MediumBrownColor}" />
+    <SolidColorBrush x:Key="DarkGreyBrush" Color="{StaticResource DarkGreyColor}" />
+    <SolidColorBrush x:Key="ClearRedBrush" Color="{StaticResource ClearRedColor}" />
+
+    <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource DarkBlueColor}" />
+    <SolidColorBrush x:Key="SecondaryColorBrush" Color="{DynamicResource MediumBlueSolidColor}"/>
+    <!--<SolidColorBrush x:Key="SecondaryColorBrush" Color="#FF516382"/>-->
+    <!--<SolidColorBrush x:Key="LightBlueBrush" Color="#FFDCE0E6"/>-->
+    <SolidColorBrush x:Key="LightBlueBrush" Color="{StaticResource LightBlueSolidColor}"/>
+    <SolidColorBrush x:Key="JeevesToolbarBrush" Color="#FF4D4D4D"/>
+    <SolidColorBrush x:Key="LightTextBrush" Color="White"/>
+    <SolidColorBrush x:Key="DarkTextBrush" Color="Black"/>
+    <SolidColorBrush x:Key="OrangeTextBrush" Color="{DynamicResource DarkOrangeColor}"/>
+    <SolidColorBrush x:Key="TextBoxNormalBrush" Color="#FFF0F0F0"/>
+    <SolidColorBrush x:Key="TextBoxReadOnlyBrush" Color="#FFDCE0E6"/>
+    <SolidColorBrush x:Key="FilterActiveBrush" Color="Yellow"/>
+    <SolidColorBrush x:Key="SearchSelectedBrush" Color="{DynamicResource DarkBrownColor}"/>
+    <SolidColorBrush x:Key="FocusBrush" Color="{DynamicResource MediumBlueSolidColor}"/>
+    <SolidColorBrush x:Key="LinkedProgramBrush" Color="{DynamicResource DarkYellowColor}"/>
+    <SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
+    <SolidColorBrush x:Key="GridReadOnlyBrush" Color="#FFF0F0F0"/>
+
+    <!-- Button Brushes -->
+    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource LightBlueSolidColor}"/>
+    <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{DynamicResource DarkBlueColor}"/>
+    <SolidColorBrush x:Key="ButtonBackgroundClickBrush" Color="#FFB8C1CC"/>
+    <SolidColorBrush x:Key="ButtonDisabledBrush" Color="#FFD5D5D5"/>
+    <SolidColorBrush x:Key="ButtonDisabledTextBrush" Color="#FF969696"/>
+    <SolidColorBrush x:Key="ButtonBorderBrush" Color="{DynamicResource DarkBlueColor}"/>
+    <SolidColorBrush x:Key="ButtonFocusedBorderBrush" Color="{DynamicResource DarkBlueColor}"/>
+
+    <!-- Expandable Menu Brushes -->
+    <SolidColorBrush x:Key="ExpandableMenuBackgroundBrush" Color="{StaticResource DarkBlueColor}"/>
+    <SolidColorBrush x:Key="ExpandableMenuForegroundBrush" Color="White"/>
+
+    <LinearGradientBrush x:Key="ListHeaderGridBrush" StartPoint="0.5 0" EndPoint="0.5 1">
+        <GradientStop Color="#5E5E5C" Offset="0" />
+        <GradientStop Color="#6F706E" Offset="0.25" />
+        <GradientStop Color="#5E5E5C" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- Menu Brushes -->
+    <SolidColorBrush x:Key="MenuPopupBackgroundBrush" Color="White" />
+    <SolidColorBrush x:Key="MenuPopupHighlightBrush" Color="{DynamicResource LightBlueSolidColor}"/>
+    <SolidColorBrush x:Key="MenuPopupForegroundBrush" Color="Black" />
+    <SolidColorBrush x:Key="MenuPopupBorderBrush" Color="{DynamicResource LightBlueSolidColor}" />
+    <!--<SolidColorBrush x:Key="MenuPopupBorderBrush" Color="{DynamicResource MediumBlueSolidColor}" />-->
+
+    <!--Dynamic Grid Brushes-->
+    <SolidColorBrush x:Key="DynamicGridSelectedRowBrush" Color="#FF4E6281" Opacity="0.2"/>
+    <SolidColorBrush x:Key="DynamicGridDisableBrush" Color="#FF4E6281" Opacity="0.1"/>
+    <SolidColorBrush x:Key="DynamicGridVerticalGridLineBrush" Color="#FF6F6F6F" Opacity="0.5"/>
+
+    <!-- ListGrid Brushes-->
+    <SolidColorBrush x:Key="LightBlueBrushWithOpacity" Color="{DynamicResource LightBlueSolidColor}" Opacity="0.6"/>
+    <SolidColorBrush x:Key="GridCellReadOnlyBrush" Opacity="0.1" Color="Gray" />
+    <SolidColorBrush x:Key="GridCellBorderBrush" Color="Black" />
+    <SolidColorBrush x:Key="GridHeaderForegroundBrush" Color="White" />
+    <SolidColorBrush x:Key="GridSelectedCellsBackgroundBrush" Color="#FF4E6281" Opacity="0.4" />
+
+    <!-- Checkoff List Brushes-->
+    <SolidColorBrush x:Key="GridCellUnsavedForegroundBrush" Color="#FFEB2A2A" />
+    <SolidColorBrush x:Key="StandardBackground" Color="{Binding Color, Source={StaticResource SecondaryColorBrush}}"/>
+    
     <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <dx:BoolToVisibilityInverseConverter x:Key="BoolToVisibilityInverseConverter" />
 
@@ -212,13 +310,13 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <mvvm:Interaction.Triggers>
-                <mvvm:EventToCommand EventName="MouseRightButtonUp"
+                <!--<mvvm:EventToCommand EventName="MouseRightButtonUp"
 																		 Command="{Binding DataContext.ShowColumnSelectorWindowCommand, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}}"
 																		 PassEventArgsToCommand="True">
                     <mvvm:EventToCommand.EventArgsConverter>
                         <converter:HeaderRightUpMouseEventConverter/>
                     </mvvm:EventToCommand.EventArgsConverter>
-                </mvvm:EventToCommand>
+                </mvvm:EventToCommand>-->
             </mvvm:Interaction.Triggers>
             <Rectangle x:Name="BackgroundRectangle" Grid.ColumnSpan="2" Stretch="Fill"/>
             <Rectangle x:Name="BackgroundGradient" Grid.ColumnSpan="2" Stretch="Fill" Fill="{StaticResource StandardBackground}"/>

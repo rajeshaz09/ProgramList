@@ -3,33 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:My="clr-namespace:ProgramList.DevX.Final"
+             xmlns:local="clr-namespace:ProgramList.DevX.Final"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+		     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
              x:Class="ProgramList.DevX.Final.ProgramListView"
              xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"          
              mc:Ignorable="d" 
              Width="auto"
              d:DesignHeight="300" d:DesignWidth="300"
     >
-    <My:ListGrid x:Name="ListGrid" 
-                     ItemsSource="{Binding Path=GridData}" 
-                     ColumnsSource="{Binding Columns}"
-                     SelectionMode="Row">
-        <My:ListGrid.View>
-            <My:ListView 
-                AllowPerPixelScrolling="True" 
-                ShowTotalSummary="True" 
-                BestFitArea="Header" 
-                AllowBestFit="True" 
-                AllowColumnMoving="True"
-                AllowResizing="True"
-                NavigationStyle="Cell"
-                AllowEditing="False"
-                ShowAutoFilterRow="True"
-                ShowSearchPanelMode="Always"
-                />
-        </My:ListGrid.View>
+    <local:ListGrid x:Name="ListGrid"
+												 ItemsSource="{Binding Path=GridData, IsAsync=True}"                                        
+												 ColumnsSource="{Binding Columns}"
+												 ColumnGeneratorTemplateSelector="{StaticResource ColumnTemplateSelector}"
+												 CurrentItem="{Binding CurrentRow, Mode=TwoWay}"
+												 CurrentColumn="{Binding CurrentColumn, Mode=OneWayToSource, Converter={StaticResource GridColumnConverter}}"
+												 Grid.Row="1"
+												 SelectedItems="{Binding SelectedItems}"
+												 dx:ThemeManager.ThemeName="Office2016White"
+                      AllowInitiallyFocusedRow="False">
 
-    </My:ListGrid>
+        <local:ListGrid.View >
+            <local:ListView x:Name="ListTableView"                         
+								ShowSearchPanelMode="Never"
+													TopRowIndex="{Binding TopRowIndex, Mode=TwoWay, Delay=100}"
+                          VerticalScrollbarVisibility="Auto"
+                          SearchString="{Binding TableFilterSearchString, Mode=TwoWay}" CellTemplate="{StaticResource GridCellTemplate}">
+
+            </local:ListView>
+        </local:ListGrid.View>
+
+    </local:ListGrid>
 </UserControl>

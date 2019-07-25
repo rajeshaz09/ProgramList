@@ -31,10 +31,8 @@ namespace ProgramList.DevX.Final
                 case EditorType.TwoStateCheckBox:
                     return twoStateDataTemplate;
                 case EditorType.ThreeStateCheckBox:
-                    //return (DataTemplate)((Control)container).FindResource(column.EditSettings + "ColumnTemplate");
                     return threeStateDataTemplate;
                 default:
-                    //return (DataTemplate)((Control)container).FindResource("DefaultColumnTemplate");
                     return defaultDataTemplate;
             }
         }

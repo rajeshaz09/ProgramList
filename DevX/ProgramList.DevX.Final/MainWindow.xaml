@@ -16,12 +16,13 @@
     <Grid>
         <StackPanel VerticalAlignment="Top" Height="40" Orientation="Horizontal" Grid.Row="0" Margin="0,5,0,0">
             <TextBox PreviewTextInput="NumberValidationTextBox" x:Name="ColumnCount" Text="10" Width="50" Margin="5,0,0,0" />
-            <Button x:Name="ClearGrid" Content="Clear" Margin="5,0,0,0" Click="ClearGrid_Click" />
-            <Button x:Name="InitGrid" Content="Init" Margin="5,0,0,0" Click="InitGrid_Click" />
-            <Button x:Name="LoadGrid" Content="Load" Margin="5,0,0,0"  Click="LoadGrid_Click"  />
+            <Button x:Name="InitGrid" Content="Add" Margin="5,0,0,0" Click="InitGrid_Click" />
+            <Button x:Name="Bestfit" Content="Bestfit" Margin="5,0,0,0" Click="Bestfit_Click"  />
+            <Button x:Name="ClearGrid" Content="Clear Columns" Margin="5,0,0,0" Click="ClearGrid_Click" />
+            <!--<Button x:Name="LoadGrid" Content="Load" Margin="5,0,0,0"  Click="LoadGrid_Click" />-->
         </StackPanel>
-        <Border x:Name="PlaceHolder" Height="200"  VerticalAlignment="Top" Margin="2,42,2,2" Background="Red" >
-            <final:ProgramListView DataContext="{Binding}" />
+        <Border x:Name="PlaceHolder" VerticalAlignment="Top" Margin="2,42,2,2" Background="Red" >
+            <final:ProgramListView x:Name="MyProgramList" DataContext="{Binding}" />
         </Border>
     </Grid>
 </dx:DXWindow>

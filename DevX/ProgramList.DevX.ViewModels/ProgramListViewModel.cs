@@ -25,7 +25,20 @@ namespace ProgramList.DevX.ViewModels
         public DynamicModelCollection<DynamicModel>  GridData { get; set; }
         public Dictionary<string, DropDownItemCollection> ComboBoxDictionary { get; set; }
 
-		public ProgramListViewModel()
+        private bool _isColumnSearchVisible;
+        public bool IsColumnSearchVisible
+        {
+            get
+            {
+                return _isColumnSearchVisible;
+            }
+            set
+            {
+                SetProperty(ref _isColumnSearchVisible, value);
+            }
+        }
+
+        public ProgramListViewModel()
 		{
 			Columns = new ObservableCollectionCore<IColumnInfo>();
 			GridData = new DynamicModelCollection<DynamicModel>();

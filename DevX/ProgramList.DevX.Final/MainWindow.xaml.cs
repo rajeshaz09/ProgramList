@@ -45,11 +45,23 @@ namespace ProgramList.DevX.Final
 
             var columns = new List<IColumnInfo>(columnCount);
             for (var count = 1; count <= columnCount; count++)
-                columns.Add(new DefaultColumnInfo($"Column{count}", EditorType.Default, ListColumnAlignment.Left, count, "table", "windowcontext", "field", count, true, false, true, false, count % 2 == 0, double.NaN));
+                columns.Add(new DefaultColumnInfo(
+                    $"Column{count}", 
+                    EditorType.Default, 
+                    ListColumnAlignment.Left, 
+                    count, "" +
+                    "table", "windowcontext", "field", count, true, false, true, false,
+                    count % 2 == 0, 
+                    0));
 
             ViewModel.UpdateDescriptors(columns);
             ViewModel.Columns.AddRange(columns);
 
+        }
+
+        private void Bestfit_Click(object sender, RoutedEventArgs e)
+        {
+            MyProgramList.ListTableView.BestFitColumns();
         }
 
         private void LoadGrid_Click(object sender, RoutedEventArgs e)

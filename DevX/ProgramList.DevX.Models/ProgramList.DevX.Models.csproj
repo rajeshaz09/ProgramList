@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="DevExpress.Data.v19.1, Version=19.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v19.1, Version=19.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v19.1, Version=19.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Grid.v19.1.Core, Version=19.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -56,6 +57,7 @@
     <Compile Include="DropDownItemCollection.cs" />
     <Compile Include="DynamicModel.cs" />
     <Compile Include="DynamicModelCollection.cs" />
+    <Compile Include="GridColumnConverter.cs" />
     <Compile Include="GridColumnWidthConverter.cs" />
     <Compile Include="HeaderRightUpMouseEventConverter.cs" />
     <Compile Include="IColumnInfo.cs" />
