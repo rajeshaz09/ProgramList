@@ -1,0 +1,468 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ProgramList.DevX.Final"
+                    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+                    xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+                    xmlns:converter="clr-namespace:ProgramList.DevX.Models;assembly=ProgramList.DevX.Models"
+                    xmlns:controls="clr-namespace:ProgramList.DevX.Models;assembly=ProgramList.DevX.Models"
+		                xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="{dx:EditorsResource Themes/Generic/TextEditBase.xaml}" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converter:NotNullConverter x:Key="NotNullConverter"/>
+    <converter:RGBToBrushConverter x:Key="RGBToBrushConverter"/>
+    <converter:GridColumnWidthConverter x:Key="GridColumnWidthConverter" />
+    <converter:MarkedRowConverter x:Key="MarkedRowConverter" />
+    <converter:ReadOnlyListModeConverter x:Key="ReadOnlyListModeConverter"/>
+    <converter:BooleanToTextConverter x:Key="BooleanToTextConverter"/>
+    <converter:IsListTypeSourceConverter x:Key="IsListTypeSourceConverter"/>
+    <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <dx:BoolToVisibilityInverseConverter x:Key="BoolToVisibilityInverseConverter" />
+
+    <local:ColumnTemplateSelector x:Key="ColumnTemplateSelector"/>
+
+    <ControlTemplate x:Key="FocusedControlBorderTemplate">
+        <Border BorderThickness="1" BorderBrush="{StaticResource GridCellBorderBrush}"/>
+    </ControlTemplate>
+
+    <Style  TargetType="{x:Type local:ListView}">
+        <Setter Property="AllowPerPixelScrolling" Value="True"/>
+        <Setter Property="ShowTotalSummary" Value="False"/>
+        <Setter Property="ShowFixedTotalSummary" Value="False" />
+        <Setter Property="BestFitArea" Value="All"/>
+        <Setter Property="AllowBestFit" Value="True"/>
+        <Setter Property="AllowResizing" Value="True"/>
+        <Setter Property="NavigationStyle" Value="Cell"/>
+        <Setter Property="AllowEditing" Value="{Binding AllowEditing}"/>
+        <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
+        <Setter Property="ShowGroupPanel" Value="False" />
+        <Setter Property="IsColumnMenuEnabled" Value="False" />
+        <Setter Property="FadeSelectionOnLostFocus" Value="False" />
+        <Setter Property="ShowFilterPanelMode" Value="Never" />
+        <Setter Property="SearchPanelFindFilter" Value="Contains"/>
+        <Setter Property="ShowGroupedColumns" Value="True" />
+        <Setter Property="ShowFocusedRectangle" Value="True"/>
+        <Setter Property="FocusedCellBorderTemplate" Value="{StaticResource  FocusedControlBorderTemplate}"/>
+        <Setter Property="ShowHorizontalLines" Value="False"/>
+        <Setter Property="AllowColumnMoving" Value="{Binding AllowColumnMoving}"/>
+        <Setter Property="EnableImmediatePosting" Value="True" />
+        <Setter Property="AllowGrouping" Value="True" />
+        <Setter Property="AllowMoveColumnToDropArea" Value="False" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ShowGroupPanel}" Value="True">
+                <Setter Property="ShowGroupPanel" Value="True" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsFocus}" Value="True">
+                <Setter Property="FocusManager.FocusedElement" Value="{Binding RelativeSource={RelativeSource Self}}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ListType}" Value="Widget">
+                <Setter Property="ShowIndicator" Value="False" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ListType}" Value="WidgetTagged">
+                <Setter Property="ShowIndicator" Value="False" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Border" x:Key="RowBorderStyle">
+        <Setter Property="Width" Value="{Binding FixedNoneContentWidth}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ShowIndicator, RelativeSource={RelativeSource AncestorType=local:ListView, Mode=FindAncestor}}" Value="True">
+                <Setter Property="Margin" Value="16 0 0 0"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <DataTemplate DataType="{x:Type dxg:LightweightCellEditor}" x:Key="GridCellTemplate">
+        <Grid>
+            <Border x:Name="CellSelectionBackground" Margin="0 0 -1 0"/>
+            <dxe:InplaceBaseEdit Name="PART_Editor"/>
+        </Grid>
+        <DataTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=RowData.IndicatorState}" Value="Focused"/>
+                    <Condition Binding="{Binding DataContext.Mode, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}, Converter={StaticResource ReadOnlyListModeConverter}}" Value="Readonly"/>
+                    <Condition Binding="{Binding DataContext.ListType, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}, Converter={StaticResource IsListTypeSourceConverter}}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="CellSelectionBackground" Property="Background" Value="{StaticResource LightBlueBrushWithOpacity}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource AncestorType=dxg:RowControl, Mode=FindAncestor}}" Value="True"/>
+                    <Condition Binding="{Binding Path=(dxg:GridViewBase.IsFocusedRow), RelativeSource={RelativeSource AncestorType=dxg:RowControl, Mode=FindAncestor}}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="CellSelectionBackground" Property="Background" Value="{StaticResource LightBlueBrushWithOpacity}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource AncestorType=dxg:RowControl, Mode=FindAncestor}}" Value="True"/>
+                    <Condition Binding="{Binding DataContext.ListType, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}, Converter={StaticResource IsListTypeSourceConverter}}" Value="True"/>
+                    <Condition Binding="{Binding RowData.Row.SelectionState, Converter={StaticResource MarkedRowConverter}}" Value="False"/>
+                    <Condition Binding="{Binding DataContext.Mode, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}, Converter={StaticResource ReadOnlyListModeConverter}}" Value="Readonly"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="CellSelectionBackground" Property="Background" Value="{StaticResource LightBlueBrushWithOpacity}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RowData.Row.SelectionState, Converter={StaticResource MarkedRowConverter}}" Value="True"/>
+                    <Condition Binding="{Binding DataContext.ListType, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}, Converter={StaticResource IsListTypeSourceConverter}}" Value="True"/>
+                    <Condition Binding="{Binding DataContext.Mode, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}, Converter={StaticResource ReadOnlyListModeConverter}}" Value="Readonly"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="CellSelectionBackground" Property="Background" Value="{StaticResource LightBlueBrushWithOpacity}"/>
+            </MultiDataTrigger>
+            <DataTrigger Binding="{Binding SelectionState}" Value="Selected">
+                <Setter TargetName="CellSelectionBackground" Property="Background" Value="{StaticResource GridSelectedCellsBackgroundBrush}"/>
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding SelectionState}" Value="FocusedAndSelected"/>
+                    <Condition Binding="{Binding DataContext.CurrentRowIndicatorHit, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="CellSelectionBackground" Property="Background" Value="{StaticResource GridSelectedCellsBackgroundBrush}"/>
+            </MultiDataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=RowTemplate, IsThemeIndependent=True}" TargetType="dxg:RowControl">
+        <Grid>
+            <Border x:Name="RowConditionalFormatting" Background="{Binding Row.Background, Converter={StaticResource RGBToBrushConverter}}" SnapsToDevicePixels="True" Style="{StaticResource RowBorderStyle}"/>
+            <Border x:Name="RowContentBackground" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" Style="{StaticResource RowBorderStyle}"/>
+            <Grid x:Name="PART_LayoutPanel"/>
+            <Border x:Name="RowContentBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" SnapsToDevicePixels="True" Style="{StaticResource RowBorderStyle}"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Row.Background, Converter={StaticResource NotNullConverter}}" Value="True">
+                <Setter Property="Background" TargetName="RowConditionalFormatting" Value="{Binding Row.Background, Converter={StaticResource RGBToBrushConverter}}" />
+            </DataTrigger>
+            <Trigger Property="dxg:DataViewBase.IsFocusedRow" Value="true">
+                <Setter TargetName="RowContentBorder" Property="BorderBrush" Value="{StaticResource PrimaryColorBrush}" />
+                <Setter TargetName="RowContentBorder" Property="BorderThickness" Value="1" />
+            </Trigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding DataContext.Mode, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}, Converter={StaticResource ReadOnlyListModeConverter}}" Value="Readonly"/>
+                    <Condition Binding="{Binding DataContext.ListType, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}}" Value="Source"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(dxg:GridViewBase.IsFocusedRow)}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="RowContentBorder" Property="BorderBrush" Value="{x:Null}" />
+                <Setter TargetName="RowContentBorder" Property="BorderThickness" Value="0" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding DataContext.Mode, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}, Converter={StaticResource ReadOnlyListModeConverter}}" Value="Readonly"/>
+                    <Condition Binding="{Binding DataContext.ListType, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}}" Value="Source"/>
+                    <Condition Binding="{Binding Row.SelectionState, Converter={StaticResource MarkedRowConverter}}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="RowContentBorder" Property="BorderBrush" Value="{StaticResource PrimaryColorBrush}" />
+                <Setter TargetName="RowContentBorder" Property="BorderThickness" Value="0.5" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding DataContext.Mode, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}}" Value="Edit"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(dxg:GridViewBase.IsFocusedRow)}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="RowContentBackground" Property="Background" Value="{StaticResource MediumGreenBrush}" />
+            </MultiDataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type local:ListGrid}">
+        <Setter Property="ShowAllTableValuesInCheckedFilterPopup" Value="False"/>
+        <Setter Property="ShowAllTableValuesInFilterPopup" Value="False" />
+        <Setter Property="AutoExpandAllGroups" Value="True"/>
+        <Setter Property="SelectionMode" Value="Cell"/>
+    </Style>
+
+    <Style TargetType="dxg:RowControl">
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="ContextMenu" Value="{DynamicResource ListContextMenu}"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Row.Foreground, Converter={StaticResource NotNullConverter}}" Value="True">
+                <Setter Property="Foreground" Value="{Binding Row.Foreground, Converter={StaticResource RGBToBrushConverter}}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style BasedOn="{StaticResource BaseTextInplaceStyle}"
+         x:Key="{dxet:TextEditThemeKey ResourceKey=TextInplaceStyle, IsThemeIndependent=True}"
+         TargetType="{x:Type TextBox}">
+        <Setter Property="ContextMenu"
+            Value="{Binding ContextMenu, RelativeSource={RelativeSource AncestorType=dxg:RowControl, Mode=FindAncestor}}" />
+    </Style>
+
+    <Style TargetType="{x:Type dxe:TextEdit}">
+        <Setter Property="SelectAllOnGotFocus" Value="True" />
+        <Setter Property="SelectAllOnMouseUp" Value="True" />
+    </Style>
+
+    <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=Layout, IsThemeIndependent=True}" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <mvvm:Interaction.Triggers>
+                <mvvm:EventToCommand EventName="MouseRightButtonUp"
+																		 Command="{Binding DataContext.ShowColumnSelectorWindowCommand, RelativeSource={RelativeSource AncestorType=local:ProgramListView, Mode=FindAncestor}}"
+																		 PassEventArgsToCommand="True">
+                    <mvvm:EventToCommand.EventArgsConverter>
+                        <converter:HeaderRightUpMouseEventConverter/>
+                    </mvvm:EventToCommand.EventArgsConverter>
+                </mvvm:EventToCommand>
+            </mvvm:Interaction.Triggers>
+            <Rectangle x:Name="BackgroundRectangle" Grid.ColumnSpan="2" Stretch="Fill"/>
+            <Rectangle x:Name="BackgroundGradient" Grid.ColumnSpan="2" Stretch="Fill" Fill="{StaticResource StandardBackground}"/>
+            <Grid x:Name="LinkedProgramBG" Visibility="Hidden" Grid.ColumnSpan="2">
+                <Polygon x:Name="LinkedProgramPolygon" Fill="{StaticResource LinkedProgramBrush}" HorizontalAlignment="Right" Margin="1" >
+                    <Polygon.Points>
+                        <Point X="0" Y="0"/>
+                        <Point X="8" Y="0"/>
+                        <Point X="8" Y="8"/>
+                    </Polygon.Points>
+                </Polygon>
+            </Grid>
+            <ContentControl Name="PART_Content" VerticalAlignment="Center" Margin="5 0 0 0" Grid.Column="0"/>
+            <dxg:SortIndicatorControl Name="PART_SortIndicator" Visibility="Collapsed" Grid.Column="1"/>
+            <dxg:GridThumb Name="PART_Thumb" Cursor="SizeWE" Grid.Column="1" HorizontalAlignment="Right"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsLinkedProgram}" Value="True">
+                <Setter TargetName="LinkedProgramBG" Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding FieldName}" Value="{x:Null}">
+                <Setter TargetName="PART_Thumb" Property="Visibility" Value="Hidden"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Disable Filter icon-->
+    <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=ColumnFilterTemplate, IsThemeIndependent=True}" TargetType="{x:Type ToggleButton}" />
+
+    <!-- Indicator Row Column Header Style-->
+    <Style TargetType="dxg:IndicatorColumnHeader">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle x:Name="ColumnIndicatorBackground" Stretch="Fill" Fill="{StaticResource StandardBackground}"
+                     Stroke="White">
+                    </Rectangle>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:ListColumn">
+        <Setter Property="HorizontalHeaderContentAlignment" Value="Stretch"/>
+        <Setter Property="FilterPopupMode" Value="CheckedList"/>
+        <Setter Property="FieldName" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="ColumnName" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ColumnName, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Header" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext), RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="Width" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Width, RelativeSource={RelativeSource Self}, Mode=OneWay, Converter={StaticResource GridColumnWidthConverter}}"/>
+        <Setter Property="Visible" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Visible, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="ReadOnly" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ReadOnly, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="IsEnabled" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).IsEnabled, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="MinWidth" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).MinWidth, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="AllowEditing" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).AllowEditing, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="TabStop" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).TabStop, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="AllowFocus" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).AllowFocus, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="AllowGrouping" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).AllowGrouping, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="AllowSorting" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).AllowSorting, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="ColumnSortOrder" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ColumnSortOrder, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="GroupIndex" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).GroupIndex, RelativeSource={RelativeSource Self}, Mode=TwoWay}"/>
+        <Setter Property="IsLinkedProgram" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).IsLinkedProgram, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="ColumnAlignment" Value="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).ColumnAlignment, RelativeSource={RelativeSource Self}}"/>
+
+        <Setter Property="HeaderStyle">
+            <Setter.Value>
+                <Style TargetType="dxg:BaseGridHeader">
+                    <Setter Property="Foreground" Value="{StaticResource GridHeaderForegroundBrush}"/>
+                    <Setter Property="IsTabStop" Value="False"/>
+                    <Setter Property="Padding" Value="4"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+
+        <!--Column Header Content Customization-->
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Header}" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis"/>
+                            <Path Fill="#FFFFFF" Grid.Column="1" Stretch="Fill" 
+                            VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Height="5" Width="8" Margin="3 0 1 0">
+                                <Path.Style>
+                                    <Style TargetType="Path">
+                                        <Setter Property="Opacity" Value="1" />
+                                        <Setter Property="Data" Value="" />
+                                        <Style.Triggers>
+                                            <DataTrigger  Binding="{Binding ColumnSortOrder}" Value="Ascending">
+                                                <Setter Property="Data" Value="F1 M -5.215,6.099L 5.215,6.099L 0,0L -5.215,6.099 Z " />
+                                            </DataTrigger>
+                                            <DataTrigger  Binding="{Binding ColumnSortOrder}" Value="Descending">
+                                                <Setter Property="Data" Value="F1 M -5.215,6.099L 5.215,6.099L 0,0L -5.215,6.099 Z " />
+                                                <Setter Property="Path.RenderTransform">
+                                                    <Setter.Value>
+                                                        <TransformGroup>
+                                                            <RotateTransform Angle="180" />
+                                                        </TransformGroup>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger  Binding="{Binding ColumnSortOrder}" Value="SecondaryAscending">
+                                                <Setter Property="Data" Value="F1 M -5.215,6.099L 5.215,6.099L 0,0L -5.215,6.099 Z " />
+                                                <Setter Property="Opacity" Value="0.5" />
+                                            </DataTrigger>
+                                            <DataTrigger  Binding="{Binding ColumnSortOrder}" Value="SecondaryDescending">
+                                                <Setter Property="Data" Value="F1 M -5.215,6.099L 5.215,6.099L 0,0L -5.215,6.099 Z " />
+                                                <Setter Property="Opacity" Value="0.5" />
+                                                <Setter Property="Path.RenderTransform">
+                                                    <Setter.Value>
+                                                        <TransformGroup>
+                                                            <RotateTransform Angle="180" />
+                                                        </TransformGroup>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Path.Style>
+                            </Path>
+                        </Grid>
+                        <ContentControl
+              x:Name="ColumnSearchContentControl"
+              Content="{Binding}" Margin="0,5,0,5"
+              Visibility="{Binding DataContext.IsColumnSearchVisible, RelativeSource={RelativeSource  AncestorType=local:ProgramListView, Mode=FindAncestor}, Converter={dx:BooleanToVisibilityConverter}, Mode=TwoWay}">
+
+                            <ContentControl.Style>
+                                <Style TargetType="ContentControl">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding EditSettings}" Value="Default">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate>
+                                                        <dxe:TextEdit x:Name="ColumnSearchControl" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding SearchToolTip}" >
+                                                        </dxe:TextEdit>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding EditSettings}" Value="TwoStateCheckBox">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate>
+                                                        <dxe:CheckEdit x:Name="ColumnSearchControl" HorizontalAlignment="Center" IsChecked="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToTextConverter}}" IsThreeState="False" ToolTip="{Binding SearchToolTip}" >
+                                                        </dxe:CheckEdit>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding EditSettings}" Value="ThreeStateCheckBox">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate>
+                                                        <dxe:CheckEdit x:Name="ColumnSearchControl" IsChecked="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BooleanToTextConverter}}" HorizontalAlignment="Center"  IsThreeState="True" ToolTip="{Binding SearchToolTip}" >
+                                                        </dxe:CheckEdit>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding EditSettings}" Value="ComboBox">
+                                            <Setter Property="ContentTemplate">
+                                                <Setter.Value>
+                                                    <DataTemplate>
+                                                        <dxe:ComboBoxEdit x:Name="ColumnSearchControl" IsTextEditable="False"  DisplayMember="Name" ValueMember="Id"
+                                              EditValue="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                              ItemsSource="{Binding ItemsSource}" ToolTip="{Binding SearchToolTip}" Focusable="True" IsPopupOpen="{Binding IsPopupOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              >
+                                                        </dxe:ComboBoxEdit>
+                                                    </DataTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+
+                        </ContentControl>
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate x:Key="DefaultColumnTemplate">
+        <ContentControl>
+            <local:ListColumn>
+                <dxg:GridColumn.EditSettings>
+                    <dxe:TextEditSettings HorizontalContentAlignment="{Binding ColumnAlignment}" />
+                </dxg:GridColumn.EditSettings>
+            </local:ListColumn>
+        </ContentControl>
+    </DataTemplate>
+    <DataTemplate x:Key="TwoStateCheckBoxColumnTemplate">
+        <ContentControl>
+            <local:ListColumn CopyValueAsDisplayText="False">
+                <local:ListColumn.EditSettings>
+                    <dxe:CheckEditSettings IsThreeState="False" HorizontalContentAlignment="{Binding ColumnAlignment}" />
+                </local:ListColumn.EditSettings>
+            </local:ListColumn>
+        </ContentControl>
+    </DataTemplate>
+    <DataTemplate x:Key="ThreeStateCheckBoxColumnTemplate">
+        <ContentControl>
+            <local:ListColumn CopyValueAsDisplayText="False">
+                <local:ListColumn.EditSettings>
+                    <dxe:CheckEditSettings IsThreeState="True" HorizontalContentAlignment="{Binding ColumnAlignment}" />
+                </local:ListColumn.EditSettings>
+            </local:ListColumn>
+        </ContentControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ComboBoxColumnTemplate">
+        <ContentControl>
+            <local:ListColumn>
+                <local:ListColumn.EditSettings>
+                    <dxe:ComboBoxEditSettings
+            IsTextEditable="False" DisplayMember="Name" ValueMember="Name"
+            ItemsSource="{Binding ItemsSource}" HorizontalContentAlignment="{Binding ColumnAlignment}"/>
+                </local:ListColumn.EditSettings>
+            </local:ListColumn>
+        </ContentControl>
+    </DataTemplate>
+
+    <Style TargetType="dxg:GridColumn" x:Key="GridControlColumnStyle">
+        <Setter Property="HeaderStyle">
+            <Setter.Value>
+                <Style TargetType="dxg:BaseGridHeader">
+                    <Setter Property="Foreground" Value="{StaticResource GridHeaderForegroundBrush}"/>
+                    <Setter Property="IsTabStop" Value="False"/>
+                    <Setter Property="Padding" Value="4"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
