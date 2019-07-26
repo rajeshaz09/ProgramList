@@ -55,7 +55,11 @@ namespace ProgramList.DevX.Final
                     0));
 
             ViewModel.UpdateDescriptors(columns);
-            ViewModel.Columns.AddRange(columns);
+            ViewModel.Columns.BeginUpdate();
+            //ViewModel.Columns.AddRange(columns);
+            //foreach (var col in columns)
+            //    ViewModel.Columns.Add(col);
+            ViewModel.Columns.EndUpdate();
 
         }
 
